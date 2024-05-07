@@ -2,6 +2,8 @@ package partPlanetas;
 
 import java.util.ArrayList;
 
+import interfacesProj.MilitaryUnit;
+
 public class planeta {
 	private int technologyDefense;
 	private int technologyAtack;
