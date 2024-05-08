@@ -1,8 +1,7 @@
 package Atack;
-import interfacesProj.MilitaryUnit;
-import interfacesProj.Variables;
+import interfacesProj.*;
 
-abstract class Ship implements MilitaryUnit{
+abstract class Ship implements MilitaryUnit, Variables{
 	private int armor;
 	private int initialArmor;
 	private int baseDamage;
@@ -55,20 +54,53 @@ abstract class Ship implements MilitaryUnit{
 		this.armor = this.initialArmor;
 	}
 
+	public int getArmor() {
+		return armor;
+	}
+
+	public void setArmor(int armor) {
+		this.armor = armor;
+	}
+
+	public int getInitialArmor() {
+		return initialArmor;
+	}
+
+	public void setInitialArmor(int initialArmor) {
+		this.initialArmor = initialArmor;
+	}
+
+	public int getBaseDamage() {
+		return baseDamage;
+	}
+
+	public void setBaseDamage(int baseDamage) {
+		this.baseDamage = baseDamage;
+	}
+	
+	
+
 
 	
 }
 
-class LightHunter extends Ship {
+class LigthHunter extends Ship {
 	
-	public LightHunter(int armor, int baseDamage) {
+	public LigthHunter(int armor, int baseDamage) {
 		super(armor, baseDamage);
-		
+		int temp = 2;
+		armor = ARMOR_LIGTHHUNTER + (temp*PLUS_ARMOR_LIGTHHUNTER_BY_TECHNOLOGY)*1000/100;
+		baseDamage = BASE_DAMAGE_LIGTHHUNTER + (temp*PLUS_ATTACK_LIGTHHUNTER_BY_TECHNOLOGY)*1000/100;
+		setInitialArmor(armor);
 	}
-
-	public LightHunter(int technologyLevel) {
-		super(Variables.ARMOR_LIGTHHUNTER + technologyLevel * Variables.PLUS_ARMOR_LIGTHHUNTER_BY_TECHNOLOGY, Variables.BASE_DAMAGE_LIGTHHUNTER);
+	
+	public LigthHunter() {
+		super(ARMOR_LIGTHHUNTER, BASE_DAMAGE_LIGTHHUNTER);
 	}
+	
+	
+	
+	
 	
 	@Override
 	public int attack() {
@@ -100,12 +132,16 @@ class LightHunter extends Ship {
 
 class HeavyHunter extends Ship {
 	
-	public HeavyHunter (int armor, int baseDamage) {
+	public HeavyHunter(int armor, int baseDamage) {
 		super(armor, baseDamage);
+		int temp = 2;
+		armor = ARMOR_HEAVYHUNTER + (temp*PLUS_ARMOR_HEAVYHUNTER_BY_TECHNOLOGY)*1000/100;
+		baseDamage = BASE_DAMAGE_HEAVYHUNTER + (temp*PLUS_ATTACK_HEAVYHUNTER_BY_TECHNOLOGY)*1000/100;
+		setInitialArmor(armor);
 	}
-
-	public HeavyHunter(int technologyLevel) {
-		super(Variables.ARMOR_HEAVYHUNTER + technologyLevel * Variables.PLUS_ARMOR_HEAVYHUNTER_BY_TECHNOLOGY, Variables.BASE_DAMAGE_HEAVYHUNTER);
+	
+	public HeavyHunter() {
+		super(ARMOR_HEAVYHUNTER, BASE_DAMAGE_HEAVYHUNTER);
 	}
 
 	@Override
@@ -154,12 +190,15 @@ class BattleShip extends Ship {
 
 	public BattleShip(int armor, int baseDamage) {
 		super(armor, baseDamage);
+		int temp = 2;
+		armor = ARMOR_BATTLESHIP + (temp*PLUS_ARMOR_BATTLESHIP_BY_TECHNOLOGY)*1000/100;
+		baseDamage = BASE_DAMAGE_BATTLESHIP + (temp*PLUS_ATTACK_BATTLESHIP_BY_TECHNOLOGY)*1000/100;
+		setInitialArmor(armor);
 	}
-
-	public BattleShip(int technologyLevel) {
-		super(Variables.ARMOR_BATTLESHIP + technologyLevel * Variables.PLUS_ARMOR_BATTLESHIP_BY_TECHNOLOGY, Variables.BASE_DAMAGE_BATTLESHIP);
+	
+	public BattleShip() {
+		super(ARMOR_BATTLESHIP, BASE_DAMAGE_BATTLESHIP);
 	}
-
 
 	@Override
 	public int attack() {
@@ -209,10 +248,14 @@ class ArmoredShip extends Ship{
 
 	public ArmoredShip(int armor, int baseDamage) {
 		super(armor, baseDamage);
+		int temp = 2;
+		armor = ARMOR_ARMOREDSHIP + (temp*PLUS_ARMOR_ARMOREDSHIP_BY_TECHNOLOGY)*1000/100;
+		baseDamage = BASE_DAMAGE_ARMOREDSHIP + (temp*PLUS_ATTACK_ARMOREDSHIP_BY_TECHNOLOGY)*1000/100;
+		setInitialArmor(armor);
 	}
-
-	public ArmoredShip(int technologyLevel) {
-		super(Variables.ARMOR_ARMOREDSHIP + technologyLevel * Variables.PLUS_ARMOR_ARMOREDSHIP_BY_TECHNOLOGY, Variables.BASE_DAMAGE_ARMOREDSHIP);
+	
+	public ArmoredShip() {
+		super(ARMOR_ARMOREDSHIP, BASE_DAMAGE_ARMOREDSHIP);
 	}
 
 	@Override
@@ -220,10 +263,6 @@ class ArmoredShip extends Ship{
 		return 0;
 	}
 
-	@Override
-	public void tekeDamage(int receivedDamage) {
-		super.tekeDamage(receivedDamage);
-	}
 
 	@Override
 	public int getActualArmor() {
