@@ -9,10 +9,11 @@ public abstract class Defense implements Variables, MilitaryUnit {
 	private int baseDamage; // El poder de ataque
 	
 	// Constructor
-	public Defense(int initialArmor, int baseDamage) {
+	public Defense(int Armor, int baseDamage) {
 		super();
-		this.initialArmor = initialArmor;
+		this.armor = Armor;
 		this.baseDamage = baseDamage;
+		this.initialArmor = Armor;
 	}
 	
 	// Getters and Setters
@@ -34,6 +35,10 @@ public abstract class Defense implements Variables, MilitaryUnit {
 
 	public void setBaseDamage(int baseDamage) {
 		this.baseDamage = baseDamage;
+	}
+
+	public void setInitialArmor(int initialArmor) {
+		this.initialArmor = initialArmor;
 	}
 	
 }
