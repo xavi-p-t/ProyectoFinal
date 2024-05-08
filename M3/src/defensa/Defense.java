@@ -40,6 +40,13 @@ public abstract class Defense implements Variables, MilitaryUnit {
 	public void setInitialArmor(int initialArmor) {
 		this.initialArmor = initialArmor;
 	}
+
+	@Override
+	public String toString() {
+		return "Defense [armor=" + armor + ", initialArmor=" + initialArmor + ", baseDamage=" + baseDamage + "]";
+	}
+	
+	
 	
 }
 
