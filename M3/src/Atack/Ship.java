@@ -12,16 +12,7 @@ abstract class Ship implements MilitaryUnit, Variables{
 		this.baseDamage = baseDamage;
 	}
 	
-	public abstract int attack();
-
-	@Override
-	public void tekeDamage(int receivedDamage) {
-		this.armor -= receivedDamage;
-		if (this.armor < 0) {
-			this.armor = 0;
-		}
-		
-	}
+	
 
 	@Override
 	public int getActualArmor() {
@@ -76,6 +67,11 @@ abstract class Ship implements MilitaryUnit, Variables{
 
 	public void setBaseDamage(int baseDamage) {
 		this.baseDamage = baseDamage;
+	}
+
+	@Override
+	public String toString() {
+		return "Ship [armor=" + armor + ", initialArmor=" + initialArmor + ", baseDamage=" + baseDamage + "]";
 	}
 	
 	
