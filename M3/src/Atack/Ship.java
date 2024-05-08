@@ -65,6 +65,10 @@ class LightHunter extends Ship {
 		super(armor, baseDamage);
 		
 	}
+
+	public LightHunter(int technologyLevel) {
+		super(Variables.ARMOR_LIGTHHUNTER + technologyLevel * Variables.PLUS_ARMOR_LIGTHHUNTER_BY_TECHNOLOGY, Variables.BASE_DAMAGE_LIGTHHUNTER);
+	}
 	
 	@Override
 	public int attack() {
@@ -98,6 +102,10 @@ class HeavyHunter extends Ship {
 	
 	public HeavyHunter (int armor, int baseDamage) {
 		super(armor, baseDamage);
+	}
+
+	public HeavyHunter(int technologyLevel) {
+		super(Variables.ARMOR_HEAVYHUNTER + technologyLevel * Variables.PLUS_ARMOR_HEAVYHUNTER_BY_TECHNOLOGY, Variables.BASE_DAMAGE_HEAVYHUNTER);
 	}
 
 	@Override
@@ -148,6 +156,11 @@ class BattleShip extends Ship {
 		super(armor, baseDamage);
 	}
 
+	public BattleShip(int technologyLevel) {
+		super(Variables.ARMOR_BATTLESHIP + technologyLevel * Variables.PLUS_ARMOR_BATTLESHIP_BY_TECHNOLOGY, Variables.BASE_DAMAGE_BATTLESHIP);
+	}
+
+
 	@Override
 	public int attack() {
 		return 0;
@@ -196,6 +209,10 @@ class ArmoredShip extends Ship{
 
 	public ArmoredShip(int armor, int baseDamage) {
 		super(armor, baseDamage);
+	}
+
+	public ArmoredShip(int technologyLevel) {
+		super(Variables.ARMOR_ARMOREDSHIP + technologyLevel * Variables.PLUS_ARMOR_ARMOREDSHIP_BY_TECHNOLOGY, Variables.BASE_DAMAGE_ARMOREDSHIP);
 	}
 
 	@Override
