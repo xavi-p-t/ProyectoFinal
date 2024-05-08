@@ -1,0 +1,58 @@
+:root {
+    --purpura: #2E294E;
+    --azul1: #1679e3;
+    --azul2: #003366;
+    --plata: #B0C4DE;
+    --blanco: #d5dfe7;
+  }
+  
+body {
+    margin: 0;
+}
+
+header {
+    /*background-image: url("../Images/cielo-estrellado.jpg");*/
+    background-color: var(--purpura);
+    display: flex;
+    position: sticky;
+}
+
+.logo {
+    max-width: 80%;
+}
+
+.logo img {
+    max-width: 8%;
+    margin-left:2%;
+}
+
+.header-links {
+    max-width: 20%;
+}
+
+.header-links ul, .header-links a {
+    display: flex;
+    text-decoration: none;
+    color: white;
+    list-style: none;
+}
+
+.header-links a {
+    padding-right: 10%;
+
+}
+
+.header-links ul {
+    padding-left: 0;
+    margin-left: 0;
+}
+
+.header-links li:hover {
+    text-decoration: underline overline;
+    text-decoration-color: var(--azul1);
+}
+
+footer {
+    text-align: center;
+    justify-content: center;
+}
