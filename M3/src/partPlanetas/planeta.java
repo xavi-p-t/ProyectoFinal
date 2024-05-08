@@ -143,6 +143,16 @@ public class planeta implements Variables{
 		}
 	}
 	
+	// metodo print stats
+	public void printStats() {
+		String mens =String.format("Planet Stats:\n\nTECHNOLOGY\n\n%-30s%d\n%-30s%d\n\nDEFENSES\n\n%-30s%d\n%-30s%d\n%-30s%d\n\nFLEET\n\n%-30s%d\n%-30s%d\n%-30s%d\n%-30s%d\n\nRESOURCES\n\n%-30s%d\n%-30s%d",
+				"Atack Technology",this.technologyAtack,"Defense Technology",this.technologyDefense,"Missile Launcher",army[4].size(),
+				"Ion Cannon",army[5].size(),"Plasma Cannon",army[6].size(),"Light Hunter",army[0].size(),
+				"Heavy Hunter",army[1].size(),"Battle Ship",army[2].size(),"Armored Ship",army[3].size(),
+				"Metal",this.metal,"Deuterium",this.deuterium) ;
+		System.out.println(mens);
+	}
+	
 
 	//constructor
 	public planeta(int metal, int deuterium) {
