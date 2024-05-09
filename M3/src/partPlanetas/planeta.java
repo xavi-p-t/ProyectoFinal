@@ -14,7 +14,7 @@ public class planeta implements Variables{
 	private int deuterium;
 	private int upgradeDefenseTechnologyDeuteriumCost;
 	private int upgradeAttackTechnologyDeuteriumCost;
-	private ArrayList[] army = new ArrayList[7];
+	private ArrayList<MilitaryUnit>[] army = new ArrayList[7];
 	
 	
 	//metodos necesarios
@@ -164,13 +164,9 @@ public class planeta implements Variables{
 		
 	}
 	public void setArray() {
-		this.army[0] = new ArrayList<LigthHunter>();
-		this.army[1] = new ArrayList<HeavyHunter>();
-		this.army[2] = new ArrayList<BattleShip>();
-		this.army[3] = new ArrayList<ArmoredShip>();
-		this.army[4] = new ArrayList<MissileLauncher>();
-		this.army[5] = new ArrayList<IonCannon>();
-		this.army[6] = new ArrayList<PlasmaCannon>();
+		for (int i = 0;i<this.army.length;i++) {
+			this.army[i] = new ArrayList<MilitaryUnit>();
+		}
 	}
 	
 	//seters geters
