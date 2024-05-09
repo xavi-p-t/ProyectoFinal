@@ -4,9 +4,6 @@ public class PlasmaCannon extends Defense{
 	// contructor
 	public PlasmaCannon(int Armor, int baseDamage) {
 		super(Armor, baseDamage);
-		//falta el nivel
-		Armor = ARMOR_PLASMACANNON +(1*PLUS_ARMOR_PLASMACANNON_BY_TECHNOLOGY)*1000/100;
-		baseDamage = BASE_DAMAGE_PLASMACANNON +(1*PLUS_ATTACK_PLASMACANNON_BY_TECHNOLOGY)*1000/100;
 	}
 	public PlasmaCannon() {
 		super(ARMOR_PLASMACANNON,BASE_DAMAGE_PLASMACANNON);
