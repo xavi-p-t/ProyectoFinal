@@ -3,10 +3,6 @@ package Atack;
 public class BattleShip extends Ship{
 	public BattleShip(int armor, int baseDamage) {
 		super(armor, baseDamage);
-		int temp = 2;
-		armor = ARMOR_BATTLESHIP + (temp*PLUS_ARMOR_BATTLESHIP_BY_TECHNOLOGY)*1000/100;
-		baseDamage = BASE_DAMAGE_BATTLESHIP + (temp*PLUS_ATTACK_BATTLESHIP_BY_TECHNOLOGY)*1000/100;
-		setInitialArmor(armor);
 	}
 	
 	public BattleShip() {
