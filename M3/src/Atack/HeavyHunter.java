@@ -3,11 +3,6 @@ package Atack;
 public class HeavyHunter extends Ship{
 	public HeavyHunter(int armor, int baseDamage) {
 		super(armor, baseDamage);
-		//falta nivel
-		int temp = 2;
-		armor = ARMOR_HEAVYHUNTER + (temp*PLUS_ARMOR_HEAVYHUNTER_BY_TECHNOLOGY)*1000/100;
-		baseDamage = BASE_DAMAGE_HEAVYHUNTER + (temp*PLUS_ATTACK_HEAVYHUNTER_BY_TECHNOLOGY)*1000/100;
-		setInitialArmor(armor);
 	}
 	
 	public HeavyHunter() {
