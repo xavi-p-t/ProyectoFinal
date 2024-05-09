@@ -5,10 +5,6 @@ package Atack;
 public class LigthHunter extends Ship{
 	public LigthHunter(int armor, int baseDamage) {
 		super(armor, baseDamage);
-		//falta lo del nivel
-		int temp = 2;
-		armor = ARMOR_LIGTHHUNTER + (temp*PLUS_ARMOR_LIGTHHUNTER_BY_TECHNOLOGY)*1000/100;
-		baseDamage = BASE_DAMAGE_LIGTHHUNTER + (temp*PLUS_ATTACK_LIGTHHUNTER_BY_TECHNOLOGY)*1000/100;
 	}
 	
 	public LigthHunter() {
