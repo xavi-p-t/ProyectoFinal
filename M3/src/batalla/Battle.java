@@ -1,6 +1,7 @@
 package batalla;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 import interfacesProj.*;
 
@@ -96,9 +97,14 @@ public class Battle {
 					this.initialArmys[i][j] = (int) this.enemyArmy[j].clone();
 				}
 			}
-		}
-		
+		}	
 	}
 	
+	public void updateResourcesLooses() {
+		String mens = String.format("%-40sLoosses Army Enemy\n%-15s%-25d%-15s%d\n%-15s%-25d%-15s%d\n%-15s%-25d%-15s%d\n\n%s\n%s\n%-15s%d\n%-15s%d",
+				"Losses Army Planet","Metal:",50,"Metal:",40,"Deuterium:",20,"Deuterium",20
+				,"Weighted:",0,"Weighted:",0,"*".repeat(60), "Waste Generated:","Metal:",20,"Deuterium:",20);
+		System.out.println(mens);
+	}
 	
 }
