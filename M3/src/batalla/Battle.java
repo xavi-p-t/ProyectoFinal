@@ -37,4 +37,68 @@ public class Battle {
 //	actualNumberUnitsPlanet[0] --> Cañones de iones
 //	actualNumberUnitsPlanet[0] --> Cañones de Plasma
 	private int[] actualNumberUnitsPlaneta,actualNumberUnitsEnemy;
+	
+	private ArrayList<String> arBattles;
+	private ArrayList<String> arBattlesDevelopment;
+	
+	private void iniciarArays() {
+		this.arBattles = new ArrayList<String>();
+		this.arBattlesDevelopment = new ArrayList<String>();
+		this.planetArmy = new ArrayList[7];
+		this.enemyArmy = new ArrayList[7];
+		this.armies = new ArrayList[2][7];
+	}
+	public void setArBattles() {
+		if (this.arBattlesDevelopment.size() < 5) {
+			this.arBattlesDevelopment.add(getBattleDevelopment());
+		}
+		else {
+			this.arBattlesDevelopment.remove(0);
+			this.arBattlesDevelopment.add(getBattleDevelopment());
+		}
+	}
+	public void setArBattlesDevelopment() {
+		if (this.arBattles.size() < 5) {
+			this.arBattles.add(getBattleDevelopment());
+		}
+		else {
+			this.arBattles.remove(0);
+			this.arBattles.add(getBattleDevelopment());
+		}
+	}
+	public String getBattleDevelopment() {
+		return battleDevelopment;
+	}
+
+
+	public void setBattleDevelopment(String battleDevelopment) {
+		this.battleDevelopment = battleDevelopment;
+		
+	}
+	
+
+	//metodos enseñar lo de batalla
+	public String getBattleReport(int battles) {
+		return this.arBattles.get(battles);
+	}
+	public String getBattleDevelopment(int battles) {
+		return this.arBattlesDevelopment.get(battles);
+	}
+	
+	//inicializar initialarmis
+	public void  initInitialArmies() {
+		for (int i = 0; i<2;i++) {
+			for (int j = 0;j<this.planetArmy.length;j++) {
+				if (i == 0) {
+					this.initialArmys[i][j] = (int) this.planetArmy[j].clone();
+				}
+				else {
+					this.initialArmys[i][j] = (int) this.enemyArmy[j].clone();
+				}
+			}
+		}
+		
+	}
+	
+	
 }
