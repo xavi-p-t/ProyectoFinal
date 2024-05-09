@@ -4,9 +4,6 @@ public class MissileLauncher extends Defense{
 	// contructor
 		public MissileLauncher(int Armor, int baseDamage) {
 			super(Armor, baseDamage);
-			//falta el nivel
-			Armor = ARMOR_MISSILELAUNCHER +(1*PLUS_ARMOR_MISSILELAUNCHER_BY_TECHNOLOGY)*1000/100;
-			baseDamage = BASE_DAMAGE_MISSILELAUNCHER +(1*PLUS_ATTACK_MISSILELAUNCHER_BY_TECHNOLOGY)*1000/100;
 		}
 		public MissileLauncher() {
 			super(ARMOR_MISSILELAUNCHER,BASE_DAMAGE_MISSILELAUNCHER);
