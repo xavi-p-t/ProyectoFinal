@@ -4,9 +4,6 @@ public class IonCannon extends Defense{
 
 	public IonCannon(int Armor, int baseDamage) {
 		super(Armor, baseDamage);
-		//falta el nivel
-		Armor = ARMOR_IONCANNON +(1*PLUS_ARMOR_IONCANNON_BY_TECHNOLOGY)*1000/100;
-		baseDamage = BASE_DAMAGE_IONCANNON +(1*PLUS_ATTACK_IONCANNON_BY_TECHNOLOGY)*1000/100;
 	}
 	public IonCannon() {
 		super(ARMOR_IONCANNON,BASE_DAMAGE_IONCANNON);
