@@ -42,12 +42,14 @@ public class Battle {
 	private ArrayList<String> arBattles;
 	private ArrayList<String> arBattlesDevelopment;
 	
-	private void iniciarArays() {
+	public void iniciarArays() {
 		this.arBattles = new ArrayList<String>();
 		this.arBattlesDevelopment = new ArrayList<String>();
 		this.planetArmy = new ArrayList[7];
 		this.enemyArmy = new ArrayList[7];
 		this.armies = new ArrayList[2][7];
+		this.wasteMetalDeuterium = new int[2];
+		this.resourcesLooses = new int[2][7];
 	}
 	public void setArBattles() {
 		if (this.arBattlesDevelopment.size() < 5) {
@@ -99,11 +101,11 @@ public class Battle {
 			}
 		}	
 	}
-	
+	//mostrar perdidas
 	public void updateResourcesLooses() {
 		String mens = String.format("%-40sLoosses Army Enemy\n%-15s%-25d%-15s%d\n%-15s%-25d%-15s%d\n%-15s%-25d%-15s%d\n\n%s\n%s\n%-15s%d\n%-15s%d",
-				"Losses Army Planet","Metal:",50,"Metal:",40,"Deuterium:",20,"Deuterium",20
-				,"Weighted:",0,"Weighted:",0,"*".repeat(60), "Waste Generated:","Metal:",20,"Deuterium:",20);
+				"Losses Army Planet","Metal:",this.resourcesLooses[0][0],"Metal:",this.resourcesLooses[1][0],"Deuterium:",this.resourcesLooses[0][1],"Deuterium",this.resourcesLooses[1][1]
+				,"Weighted:",this.resourcesLooses[0][2],"Weighted:",this.resourcesLooses[1][2],"*".repeat(60), "Waste Generated:","Metal:",this.wasteMetalDeuterium[0],"Deuterium:",this.wasteMetalDeuterium[1]);
 		System.out.println(mens);
 	}
 	
