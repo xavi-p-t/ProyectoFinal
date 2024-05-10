@@ -27,7 +27,6 @@ public class planeta implements Variables{
 		else {
 			this.deuterium -= this.upgradeDefenseTechnologyDeuteriumCost;
 			this.technologyDefense += 1;
-			System.out.println("Your technology level has been upgrade succesfuly, your current level is: "+this.technologyDefense);
 		}
 	}
 	//upgrade tecnologia atake
@@ -39,7 +38,6 @@ public class planeta implements Variables{
 		else {
 			this.deuterium -= this.upgradeAttackTechnologyDeuteriumCost;
 			this.technologyAtack += 1;
-			System.out.println("Your technology level has been upgrade succesfuly, your current level is: "+this.technologyAtack);
 		}
 	}
 	
@@ -161,14 +159,18 @@ public class planeta implements Variables{
 		this.deuterium = deuterium;
 		this.technologyDefense = 0;
 		this.technologyAtack = 0;
+		this.upgradeAttackTechnologyDeuteriumCost = UPGRADE_BASE_DEFENSE_TECHNOLOGY_DEUTERIUM_COST;
+		this.upgradeDefenseTechnologyDeuteriumCost = UPGRADE_BASE_ATTACK_TECHNOLOGY_DEUTERIUM_COST;
 		
 	}
 	public planeta() {
 		super();
-		this.metal = 100000;
-		this.deuterium = 50000;
+		this.metal = 50000;
+		this.deuterium = 25000;
 		this.technologyDefense = 0;
 		this.technologyAtack = 0;
+		this.upgradeAttackTechnologyDeuteriumCost = UPGRADE_BASE_DEFENSE_TECHNOLOGY_DEUTERIUM_COST;
+		this.upgradeDefenseTechnologyDeuteriumCost = UPGRADE_BASE_ATTACK_TECHNOLOGY_DEUTERIUM_COST;
 		
 	}
 	public void setArray() {

@@ -186,9 +186,6 @@ public class Battle implements Variables {
 		}
 		return res;
 	}
-	//primero sacamos los porcentajes con 100*(Cantidad de cazadores ligeros ) / (total de unidades)
-	//luego los metemos un array y hacemos el algoritmo
-	//antes de sacarlo genero un numero aleatorio dependiendo de atake o defensa
 	
 	public int getGroupDefender(ArrayList<MilitaryUnit>[] army) {
 		int calcProb = 0;
