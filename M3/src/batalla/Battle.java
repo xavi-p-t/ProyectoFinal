@@ -3,9 +3,10 @@ package batalla;
 import java.util.ArrayList;
 import java.util.Random;
 
-import interfacesProj.*;
+import interfacesProj.MilitaryUnit;
+import interfacesProj.Variables;
 
-public class Battle {
+public class Battle implements Variables {
 	//Nuestra flota
 	private ArrayList<MilitaryUnit>[] planetArmy;
 	//flota enemiga
@@ -79,7 +80,6 @@ public class Battle {
 		
 	}
 	
-
 	//metodos enseñar lo de batalla
 	public String getBattleReport(int battles) {
 		return this.arBattles.get(battles);
@@ -107,6 +107,44 @@ public class Battle {
 				"Losses Army Planet","Metal:",this.resourcesLooses[0][0],"Metal:",this.resourcesLooses[1][0],"Deuterium:",this.resourcesLooses[0][1],"Deuterium",this.resourcesLooses[1][1]
 				,"Weighted:",this.resourcesLooses[0][2],"Weighted:",this.resourcesLooses[1][2],"*".repeat(60), "Waste Generated:","Metal:",this.wasteMetalDeuterium[0],"Deuterium:",this.wasteMetalDeuterium[1]);
 		System.out.println(mens);
+	}
+	//coste flota
+	public void fleetResourceCost(ArrayList<MilitaryUnit>[] army) {
+		int metalCost = 0;
+		int deutCost = 0;
+		for (int i = 0;i<army.length;i++) {
+			switch(i) {
+			case 0:
+				metalCost += army[i].size() * METAL_COST_LIGTHHUNTER;
+				deutCost += army[i].size() * DEUTERIUM_COST_LIGTHHUNTER;
+				break;
+			case 1:
+				metalCost += army[i].size() * METAL_COST_HEAVYHUNTER;
+				deutCost += army[i].size() * DEUTERIUM_COST_HEAVYHUNTER;
+				break;
+			case 2:
+				metalCost += army[i].size() * METAL_COST_BATTLESHIP;
+				deutCost += army[i].size() * DEUTERIUM_COST_BATTLESHIP;
+				break;
+			case 3:
+				metalCost += army[i].size() * METAL_COST_ARMOREDSHIP;
+				deutCost += army[i].size() * DEUTERIUM_COST_ARMOREDSHIP;
+				break;
+			case 4:
+				metalCost += army[i].size() * METAL_COST_MISSILELAUNCHER;
+				deutCost += army[i].size() * DEUTERIUM_COST_MISSILELAUNCHER;
+				break;
+			case 5:
+				metalCost += army[i].size() * METAL_COST_IONCANNON;
+				deutCost += army[i].size() * DEUTERIUM_COST_IONCANNON;
+				break;
+			case 6:
+				metalCost += army[i].size() * METAL_COST_PLASMACANNON;
+				deutCost += army[i].size() * DEUTERIUM_COST_PLASMACANNON;
+				break;
+			}
+		}
+		
 	}
 	
 }
