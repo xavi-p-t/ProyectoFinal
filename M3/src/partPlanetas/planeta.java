@@ -163,6 +163,14 @@ public class planeta implements Variables{
 		this.technologyAtack = 0;
 		
 	}
+	public planeta() {
+		super();
+		this.metal = 100000;
+		this.deuterium = 50000;
+		this.technologyDefense = 0;
+		this.technologyAtack = 0;
+		
+	}
 	public void setArray() {
 		for (int i = 0;i<this.army.length;i++) {
 			this.army[i] = new ArrayList<MilitaryUnit>();
