@@ -50,7 +50,8 @@ public class Battle implements Variables {
 		this.enemyArmy = new ArrayList[7];
 		this.armies = new ArrayList[2][7];
 		this.wasteMetalDeuterium = new int[2];
-		this.resourcesLooses = new int[2][7];
+		this.resourcesLooses = new int[2][3];
+		this.initialCostFleet = new int[2][2];
 	}
 	public void setArBattles() {
 		if (this.arBattlesDevelopment.size() < 5) {
@@ -144,7 +145,28 @@ public class Battle implements Variables {
 				break;
 			}
 		}
+		if (army.length<7) {
+			this.initialCostFleet[1][0] = metalCost;
+			this.initialCostFleet[1][1] = deutCost;
+		}
+		else {
+			this.initialCostFleet[0][0] = metalCost;
+			this.initialCostFleet[0][1] = deutCost;
+		}
 		
+	}
+	
+	public void initialFleetNumber(ArrayList<MilitaryUnit>[] army) {
+		int totFlota = 0;
+		for (int i = 0;i<army.length;i++) {
+			totFlota += army[i].size();
+		}
+		if (army.length < 7) {
+			this.initialNumberUnitsEnemy = totFlota;
+		}
+		else{
+			this.initialNumberUnitsPlanet = totFlota;
+		}
 	}
 	
 }
