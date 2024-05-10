@@ -168,5 +168,23 @@ public class Battle implements Variables {
 			this.initialNumberUnitsPlanet = totFlota;
 		}
 	}
-	
+	//(total/100)*perdido, luego restarle a 100 el resultado para saber lo que queda
+	public int remainderPercentageFleet(ArrayList<MilitaryUnit>[] army) {
+		int flotaRestante = 0;
+		int res;
+		for (int i = 0;i<army.length;i++) {
+			flotaRestante += army[i].size();
+		}
+		if (army.length < 7) {
+			flotaRestante = this.initialNumberUnitsEnemy - flotaRestante;
+			res = (this.initialNumberUnitsEnemy/100) * flotaRestante;
+			res = 100-res;
+		}
+		else{
+			flotaRestante = this.initialNumberUnitsPlanet - flotaRestante;
+			res = (this.initialNumberUnitsPlanet/100) * flotaRestante;
+			res = 100-res;
+		}
+		return res; 
+	}
 }
