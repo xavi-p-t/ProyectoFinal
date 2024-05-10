@@ -1,7 +1,6 @@
 package batalla;
 
 import java.util.ArrayList;
-import java.util.Random;
 
 import interfacesProj.MilitaryUnit;
 import interfacesProj.Variables;
@@ -185,6 +184,37 @@ public class Battle implements Variables {
 			res = (this.initialNumberUnitsPlanet/100) * flotaRestante;
 			res = 100-res;
 		}
-		return res; 
+		return res;
+	}
+	//primero sacamos los porcentajes con 100*(Cantidad de cazadores ligeros ) / (total de unidades)
+	//luego los metemos un array y hacemos el algoritmo
+	//antes de sacarlo genero un numero aleatorio dependiendo de atake o defensa
+	
+	public int getGroupDefender(ArrayList<MilitaryUnit>[] army) {
+		int calcProb = 0;
+		int totalPorc = 0;
+		ArrayList arprob = new ArrayList();
+		for (int i = 0;i<army.length;i++) {
+			calcProb = army[i].size()*100;
+			if (army.length<7) {
+				calcProb = calcProb/this.initialNumberUnitsEnemy;
+			}
+			else {
+				calcProb = calcProb/this.initialNumberUnitsPlanet;
+			}
+			arprob.add(calcProb);
+			totalPorc += calcProb;
+		}
+		
+		int defRandom;
+		int selRandom = 0;
+		defRandom = (int) (Math.random()*totalPorc);
+		for (int i = 0;i<army.length;i++) {
+			selRandom += army[i].size();
+			if (selRandom>= defRandom) {
+				return i;
+			}				
+		}
+		return 0;
 	}
 }
