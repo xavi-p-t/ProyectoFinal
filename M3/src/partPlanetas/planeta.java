@@ -20,22 +20,23 @@ public class planeta implements Variables{
 	//metodos necesarios
 	//upgrade tecnologia defensa
 	public void upgradeTechnologyDefense() throws ResourceException {
-		this.upgradeDefenseTechnologyDeuteriumCost = (this.technologyDefense*UPGRADE_PLUS_DEFENSE_TECHNOLOGY_DEUTERIUM_COST)+UPGRADE_BASE_DEFENSE_TECHNOLOGY_DEUTERIUM_COST;
 		if (this.deuterium < this.upgradeDefenseTechnologyDeuteriumCost) {
 			throw new ResourceException("You need more deuterium to upgrade the defense technology");
 		}
 		else {
+			this.upgradeDefenseTechnologyDeuteriumCost += (this.upgradeDefenseTechnologyDeuteriumCost*UPGRADE_PLUS_DEFENSE_TECHNOLOGY_DEUTERIUM_COST)/100 ;
 			this.deuterium -= this.upgradeDefenseTechnologyDeuteriumCost;
 			this.technologyDefense += 1;
 		}
 	}
 	//upgrade tecnologia atake
 	public void upgradeTechnologyAttack() throws ResourceException {
-		this.upgradeAttackTechnologyDeuteriumCost = (this.technologyAtack*UPGRADE_PLUS_DEFENSE_TECHNOLOGY_DEUTERIUM_COST)+UPGRADE_BASE_DEFENSE_TECHNOLOGY_DEUTERIUM_COST;
+		
 		if (this.deuterium < this.upgradeAttackTechnologyDeuteriumCost) {
 			throw new ResourceException("You need more deuterium to upgrade the atack technology");
 		}
 		else {
+			this.upgradeAttackTechnologyDeuteriumCost += (this.upgradeAttackTechnologyDeuteriumCost*UPGRADE_PLUS_DEFENSE_TECHNOLOGY_DEUTERIUM_COST)/100;
 			this.deuterium -= this.upgradeAttackTechnologyDeuteriumCost;
 			this.technologyAtack += 1;
 		}
@@ -173,6 +174,7 @@ public class planeta implements Variables{
 		this.upgradeDefenseTechnologyDeuteriumCost = UPGRADE_BASE_ATTACK_TECHNOLOGY_DEUTERIUM_COST;
 		
 	}
+	
 	public void setArray() {
 		for (int i = 0;i<this.army.length;i++) {
 			this.army[i] = new ArrayList<MilitaryUnit>();
@@ -180,10 +182,16 @@ public class planeta implements Variables{
 	}
 	
 	//seters geters
+	
+	
 	public int getTechnologyDefense() {
 		return technologyDefense;
 	}
 
+	public ArrayList<MilitaryUnit>[] getArmy() {
+		return army;
+	}
+	
 	public void setTechnologyDefense(int technologyDefense) {
 		this.technologyDefense = technologyDefense;
 	}
