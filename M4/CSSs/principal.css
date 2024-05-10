@@ -16,7 +16,6 @@ body {
 main {
     display: flex;
     flex-direction: column;
-    background-color: var(--plata2);
 }
 
 /*Separador*/
@@ -30,8 +29,7 @@ main {
 
 /*Header*/
 header {
-    background-image: url("../Images/cielo_estrellado.webp");
-    /*background-color: black;*/
+    background-color: black;
     padding: 5px;
     padding-left: 100px;
     display: flex;
@@ -57,6 +55,12 @@ header {
     text-decoration: none;
     color: white;
     list-style: none;
+    color: white;
+    text-transform: uppercase;
+    font-family: "Freeman", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    text-shadow: 5px 2px 5px rgba(255, 255, 255, 0.4) ;
 }
 
 .header-links a {
@@ -69,85 +73,81 @@ header {
     margin-left: 0;
 }
 
+.header-links li {
+    transition: text-decoration 0.3s ease-in-out;
+}
+
 .header-links li:hover {
     text-decoration: underline overline;
     text-decoration-color: var(--azul1);
 }
 
 /*Main*/
-/* Parte del principio del principal*/
-.principal-text-image {
+
+.main-download {
     display: flex;
-    background-color: var(--purpura);
+    flex-direction: column;
+    align-items: center;
+    padding: 7%;
+    padding-top:10% ;
+    padding-bottom: 10%;
+    background-color: rgb(0, 0, 0);
 }
 
-.principal-text {
-    margin-left: 6%;
-    margin-right: 4.05%;
-    /*border: 1px solid red;*/
-    width: 50%;
-}
-
-h1 {
-    margin-top: 7%;
-    margin-bottom: 0;
+.main-download h1 {
     font-family: "Road Rage", sans-serif;
-    font-size: 100px;
-    color: var(--plata);
-}
-
-.principal-text p {
-    font-size: x-large;
     color: white;
-    font-family: "Poetsen One", sans-serif;
+    font-size: 120px;
+    margin: 0;
     text-transform: uppercase;
+    
 }
 
-.spacewar {
-    color: var(--plata);
-    font-family: "Road Rage", sans-serif;
-    font-size: xx-large;
+.main-download h2 {
+    font-family: "Freeman", sans-serif;
+    color: white;
 }
 
-.principal-image {
+/*Segunda seccion del main*/
+
+.explicacion {
     display: flex;
-   /* border: 1px solid orangered;*/
-    justify-content: center;
-    padding: 3%;
-    max-width: 50%;
-    padding-right: 0;
+    flex-direction:row;
+    margin: 10%;
+    margin-top: 5%;
+    justify-content: space-around;
 }
 
-.principal-image img{
-    width: 70%;
-    border: 1px solid black;
-    padding: 3%;
+.explicacion-imagen {
+    width: 30%;
 }
 
-.reves {
-    display: flex;
-    flex-direction: row-reverse !important;
-    background-color: transparent;
+.explicacion-texto {
+    width: 50%;
+
 }
+
+.explicacion-texto h1 {
+    margin-top: 0;
+    font-size: 60px;
+}
+
+.explicacion-texto p {
+    font-family: "Yanone Kaffeesatz", sans-serif;
+    font-size: 30px;
+}
+
+#img-explicacion {
+    width: 120%;
+    height: 120%;
+}
+
 
 /**Boton de descarga*/
 
-.download {
-    display: flex;
-    justify-content: left;
-    padding-top: 0;
-    padding-bottom: 2%;
-    align-items: center;
-    padding-left: 8%;
-    margin: 0;
-    background-color: var(--purpura);
-
-}
-
 .download-button {
     margin: 0;
-    margin-left: 4%;
-    transform: translate(-50%, -50%);
+    background-color: var(--purpura);
     width: fit-content;
     height:auto;
     width:200px;
@@ -160,7 +160,7 @@ h1 {
 }
 
 button{
-    background: linear-gradient(to left top, var(--azul1) 50%, var(--azul1) 50%);
+    background-color: var(--purpura);
     border-style: none;
     text-transform: uppercase;
     font-size: 50px;
@@ -270,7 +270,7 @@ button:hover span{
 /*Footer*/
 
 footer {
-    background-color: var(--purpura);
+    background-color: black;
     text-align: center;
     justify-content: center;
 }
@@ -279,5 +279,9 @@ footer p {
     padding: 1%;
     margin: 0;
     color: white;
-    background-image: url("../Images/cielo_estrellado.webp");
+    text-transform: uppercase;
+    font-family: "Freeman", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    text-shadow: 5px 2px 5px rgba(255, 255, 255, 0.4) ;
 }

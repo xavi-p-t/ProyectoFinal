@@ -1,7 +1,7 @@
 -- Crear la tabla de usuario
 CREATE TABLE Users (
     user_id NUMBER PRIMARY KEY NOT NULL,
-    username VARCHAR2(30) NOT ,
+    username VARCHAR2(30) NOT NULL,
     user_password RAW(200)
 );
 -- Crear la tabla Planet_stats
