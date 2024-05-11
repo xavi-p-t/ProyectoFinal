@@ -21,7 +21,7 @@ public class Main implements Variables{
 class juego implements Variables{
 	private boolean flag_0 = true;
 	private boolean flag_00 = true;
-	private boolean flag_00_atque = false;
+	private boolean ataque = false;
 	
 	private boolean flag_02 = false;
 	private boolean flag_021 = false;
@@ -50,12 +50,15 @@ class juego implements Variables{
     juego(){
     	startGame();
     	
-    	timer.schedule(task1, 180000,180000);
+    	timer.schedule(task1, 10000,180000);
 		timer.schedule(task2, 240000,240000);
 		
     	while(flag_0) {
-    		while (flag_00) {
+    		while (flag_00 & !ataque) {
     			menuInicial();
+    		}
+    		while (flag_00 & ataque) {
+    			menuAtaque();
     		}
     		while (flag_02) {
     			segundoMenu();
@@ -72,24 +75,24 @@ class juego implements Variables{
     	}
     	opc.close();
     }
-    
+    //necesario para iniciar los timers y el planeta
     private void startGame() {
     	miPlaneta.setArray();
         timer = new Timer();
         task1 = new TimerTask() {
             public void run() {
-                flag_00 = false;
+                ataque = true;
                 System.out.println("\n\nNEW THREAD IS COMMING\n\n");
             }
         };
         task2 = new TimerTask() {
             public void run() {
-                flag_00 = false;
+                ataque = false;
                 System.out.println("\n\nWE HAVE BEEN ATTACKED!!!\n\n");
             }
         };
     }
-    
+    //menu 00
     private void menuInicial() {
     	
     		System.out.println(menuPrinc);
@@ -128,7 +131,48 @@ class juego implements Variables{
 			}
     	
     }
-    
+    //menu 00 cuando hay ataque
+    private void menuAtaque() {
+    	System.out.println(menuPrincAtak);
+		while (!opc.hasNextInt()) {
+			System.out.println("Invalid Option");
+			opc.nextLine();
+		}
+		num = opc.nextInt();
+		
+		if (num == 1) {
+			miPlaneta.printStats();
+		}
+		else if (num == 2){
+			flag_00 = false;
+			flag_02 = true;
+			
+		}
+		else if (num == 3){
+			flag_00 = false;
+			flag_03 = true;	
+			
+		}
+		else if (num == 4){
+			flag_00 = false;
+			flag_04 = true;
+			
+		}
+		else if (num == 5) {
+			flag_00 = false;
+			flag_05 = true;
+		}
+		else if (num == 0){
+			flag_00 = false;
+			flag_0 = false;
+			timer.cancel();
+			
+		}
+		else {
+			System.out.println("Invalid Option");
+		}
+    }
+    //menu 02
     private void segundoMenu() {
     	System.out.println(menuBuild);
 		while (!opc.hasNextInt()) {
@@ -153,7 +197,7 @@ class juego implements Variables{
 			System.out.println("Invalid Option");
 		}
     }
-    
+    //menu 021
     private void menuShips(){
     	int amount = 0;
 		System.out.println(buildTroops);
@@ -222,7 +266,7 @@ class juego implements Variables{
 			System.out.println("Invalid Option");
 		}
     }
-    
+    //menu 022
     private void menuDefensas() {
     	int amount = 0;
 		System.out.println(buildDefenses);
@@ -279,7 +323,7 @@ class juego implements Variables{
 			System.out.println("Invalid Option");
 		}
     }
-    
+    //menu 03
     private void menuNivel() {
     	levelUp = String.format("Upgrade Technology\n%-40s%d\n%-40s%d\n\n%-30s%-10s%-10dDeuterium\n%-30s%-10s%-10dDeuterium\n3)Go Back\n\nDeuterium resources = %d\nOption:","Actual Defense Technology:",miPlaneta.getTechnologyDefense(),
 				"Actual Atack Technology:",miPlaneta.getTechnologyAtack(),"1)Upgrade Defense Technology.","Cost:",
@@ -402,7 +446,7 @@ class juego implements Variables{
 		}
 	}
 	
-
+    
     
 }
 
