@@ -1,6 +1,8 @@
 package main;
 
 import java.util.Scanner;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import Atack.*;
 import defensa.*;
@@ -10,7 +12,7 @@ import interfacesProj.*;
 
 
 public class Main implements Variables{
-
+	private static boolean ataque = false;
 	public static void main(String[] args) {
 		boolean flag_0 = true;
 		boolean flag_00 = true;
@@ -26,6 +28,7 @@ public class Main implements Variables{
 		int num = 0;
 		
 		String menuPrinc = "Main Menu\n\n1)View Planet Stats\n2)Build\n3)Upgrade Technology\n4)View Battle Reports\n0)Exit\n\nOption:";
+		String menuPrincAtak = "Main Menu\n\n1)View Planet Stats\n2)Build\n3)Upgrade Technology\n4)View Battle Reports\n5)View Thread Comming\n0)Exit\n\nOption:";
 		String menuBuild = "Build\n1)Build Troops\n2)Build Defenses\n3)Go Back\nOption:";
 		String buildTroops = "Menu Build Troops\n\n1)Build Light Hunter\n2)Build Heavy Hunter\n3)Build Battle Ship\n4)Build Armored Ship\n5)Go Back\nOption:";
 		String buildDefenses = "Menu Build Defenses\n\n1)Build Missile Launcher\n2)Build Ion Cannon\n3)Build Plasma Cannon\n4)Go Back\nOption:";
@@ -38,39 +41,106 @@ public class Main implements Variables{
 		planeta miPlaneta = new planeta(); 
 		
 		miPlaneta.setArray();
-		
-		
+		Timer timer = new Timer();
+		TimerTask task1 = new TimerTask() {
+			public void run() {
+				
+				ataque = true;
+				System.out.println("\n\nNEW THREAD IS COMMING\n\n");
+			}
+			};
+		TimerTask task2 = new TimerTask() {
+			public void run() {
+				ataque = false;
+				System.out.println("\n\nWE HAVE BEEN ATTACKED!!!\n\n");
+				
+			}
+			};
+			
+			
 		while (flag_0) {
+			timer.schedule(task1, 1000,180000);
+			timer.schedule(task2, 240000,240000);
 			while (flag_00) {
-				System.out.println(menuPrinc);
-				while (!opc.hasNextInt()) {
-					System.out.println("Invalid Option");
-					opc.nextLine();
+				while(!ataque){
+					System.out.println(menuPrinc);
+					while (!opc.hasNextInt()) {
+						System.out.println("Invalid Option");
+						opc.nextLine();
+					}
+					num = opc.nextInt();
+					if (num == 1) {
+						miPlaneta.printStats();
+					}
+					else if (num == 2){
+						flag_00 = false;
+						flag_02 = true;
+						break;
+					}
+					else if (num == 3){
+						flag_00 = false;
+						flag_03 = true;	
+						break;
+					}
+					else if (num == 4){
+						flag_00 = false;
+						flag_04 = true;
+						break;
+					}
+					else if (num == 0){
+						flag_00 = false;
+						flag_0 = false;
+						timer.cancel();
+						break;	
+					}
+					else {
+						System.out.println("Invalid Option");
+					}
+
 				}
-				num = opc.nextInt();
-				if (num == 1) {
-					miPlaneta.printStats();
-				}
-				else if (num == 2){
-					flag_00 = false;
-					flag_02 = true;
-				}
-				else if (num == 3){
-					flag_00 = false;
-					flag_03 = true;			
-				}
-				else if (num == 4){
-					flag_00 = false;
-					flag_04 = true;
-				}
-				else if (num == 0){
-					flag_00 = false;
-					flag_0 = false;
-				}
-				else {
-					System.out.println("Invalid Option");
+				while (ataque) {
+					System.out.println(menuPrincAtak);
+					while (!opc.hasNextInt()) {
+						System.out.println("Invalid Option");
+						opc.nextLine();
+					}
+					num = opc.nextInt();
+					if (num == 1) {
+						miPlaneta.printStats();
+					}
+					else if (num == 2){
+						flag_00 = false;
+						flag_02 = true;
+						break;
+					}
+					else if (num == 3){
+						flag_00 = false;
+						flag_03 = true;	
+						break;
+					}
+					else if (num == 4){
+						flag_00 = false;
+						flag_04 = true;
+						break;
+					}
+					else if (num == 5){
+						flag_00 = false;
+						flag_05 = true;
+						break;
+					}
+					else if (num == 0){
+						flag_00 = false;
+						flag_0 = false;
+						timer.cancel();
+						break;
+					}
+					else {
+						System.out.println("Invalid Option");
+					}
 				}
 			}
+			
+				
 			while (flag_02) {
 				System.out.println(menuBuild);
 				while (!opc.hasNextInt()) {
@@ -340,7 +410,10 @@ public class Main implements Variables{
 					System.out.println("Invalid Option");
 				}
 			}
+			
 		}
+	opc.close();
 	}
-
+	
+	
 }
