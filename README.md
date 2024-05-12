@@ -1,6 +1,6 @@
 # Space Wars
 
-![](https://github.com/xavi-p-t/ProyectoFinal/tree/mijail/logo.png)
+![logo](https://github.com/xavi-p-t/ProyectoFinal/assets/155578782/fb50eb4a-2480-4d30-b93a-3b6dafc85749)
 
 En el siguiente proyecto hemos desarrollado un videojuego: **Space Wars**. Este videojuego se desenvuelve de la siguiente manera: Nosotros tendremos un planeta el cual tendremos que defender de los ataques de otros planetas, para ello tendremos que construir las defensas las cuales tendran costos de recursos, estos recursos tendremos que aprender a gestionarlos para sobrellevar los ataques.
 
