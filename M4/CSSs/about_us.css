@@ -1,0 +1,131 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-image: url("../Images/cielo_estrellado.webp");
+    padding: 5px;
+    padding-left: 100px;
+    display: flex;
+    align-items: center;
+    position: sticky;
+}
+
+main {
+    background-color: #2E294E;
+    
+}
+.title {
+    text-align: center;
+    color: #B0C4DE;
+}
+
+h1 {
+    margin-top: 50px;
+    margin-bottom: 50px;
+    font-family: "Road Rage", sans-serif;
+    font-size: 100px;
+    color: var(--plata);
+}
+
+.all_workers {
+    display: flex;
+    justify-content: space-around;
+    padding: 20px;
+    flex-wrap: wrap;
+    margin-top: 8%;
+    margin-bottom: 8%;
+    background-color: var(--plata2);
+}
+
+.header-links {
+    width: 30%;
+}
+
+.header-links ul, .header-links a {
+    display: flex;
+    text-decoration: none;
+    color: white;
+    list-style: none;
+}
+
+.header-links a {
+    padding-right: 10%;
+
+}
+
+.header-links ul {
+    padding-left: 0;
+    margin-left: 0;
+}
+
+.header-links li:hover {
+    text-decoration: underline overline;
+    text-decoration-color: var(--azul1);
+}
+
+
+.worker {
+    border-radius: 15%;
+    margin-right: 20px;
+    margin-left: 20px;
+    text-align: center;
+    width: calc(10% - 40px);
+    height: 400px; 
+    margin-bottom: 20px;
+    flex: 1 0 auto;
+    box-sizing: border-box;
+    box-shadow: 0 10px 7px rgba(0, 31, 82, 0.3);
+    background-color: var(--plata2);
+}
+
+.worker:hover { 
+    transform: scale(1.05);
+    background: #B0C4DE;
+    transition: all .7s;
+    cursor: pointer;
+}
+
+.worker:hover h2, .worker:hover p{
+    color: black;
+}
+
+.worker img {
+    border-radius: 50%;
+    border: 2px solid black; /* Añadiendo borde a la imagen */
+    width: 150px;
+    height: 150px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.worker h2 {
+    font-family: "Road Rage", sans-serif;
+    font-size: 24px;
+    margin-bottom: 10px;
+    color:#B0C4DE;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.worker p {
+    font-family: "Poetsen One", sans-serif;
+    font-size: 16px;
+    color: white;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 20px;
+}
+
+footer {
+    text-align: center;
+    justify-content: center;
+}
+
+footer p {
+    padding: 1%;
+    margin: 0;
+    color: white;
+    background-image: url("../Images/cielo_estrellado.webp");
+}
