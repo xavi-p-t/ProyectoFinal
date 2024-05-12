@@ -44,7 +44,7 @@ header {
 }
 
 .header-links {
-    width: 30%;
+    width: 34%;
 }
 
 .header-links ul, .header-links a {
@@ -52,17 +52,11 @@ header {
     text-decoration: none;
     color: white;
     list-style: none;
-    color: white;
     text-transform: uppercase;
     font-family: "Freeman", sans-serif;
     font-weight: 400;
     font-style: normal;
     text-shadow: 5px 2px 5px rgba(255, 255, 255, 0.4) ;
-}
-
-.header-links a {
-    padding-right: 10%;
-
 }
 
 .header-links ul {
@@ -72,12 +66,15 @@ header {
 
 .header-links li {
     transition: text-decoration 0.3s ease-in-out;
+    padding-right: 10%;
 }
 
 .header-links li:hover {
     text-decoration: underline overline;
     text-decoration-color: var(--downloadd);
 }
+
+
  
 /*Main*/
 
@@ -92,11 +89,14 @@ header {
 }
 
 .main-download h1 {
-    font-family: "Road Rage", sans-serif;
     color: white;
-    font-size: 200px;
+    font-size: 150px;
     margin: 0;
     text-transform: uppercase;
+    font-family: "Freeman", sans-serif;
+    font-weight: 800;
+    font-style: normal;
+    text-shadow: 5px 2px 5px rgba(255, 255, 255, 0.4) ;
     
 }
 
@@ -160,6 +160,7 @@ header {
 .secciones {
     background-image: url(../Images/cielo_estrellado.png);
     padding: 10%;
+    padding-bottom: 11% ;
 }
 
 .tres-secciones {
@@ -171,7 +172,7 @@ header {
     position: relative;
     overflow: hidden; 
     border: 1px solid white;
-    padding: 5%;
+    padding: 4%;
     border-radius: 10%;
     transition: filter 0.3s ease;
     background-color: black;
@@ -184,6 +185,7 @@ header {
 }
 
 .seccion img {
+    border-radius: 10%;
     transition: transform 0.3s ease;
 }
 
@@ -355,3 +357,52 @@ footer p {
     text-shadow: 5px 2px 5px rgba(255, 255, 255, 0.4) ;
 }
 
+@media screen and (max-width: 768px) {
+    /*Header*/
+    .logo a{
+        display: flex;
+        justify-content: center;
+    }
+    
+    .logo img {
+        width: 30%;
+    }
+
+    .header-links {
+        display: none;
+    }
+    .mobile-menu {
+        display: flex;
+    }
+
+    .menu-icon {
+        color: white;
+        cursor: pointer;
+    }
+
+    #menu-desplegable {
+        position: fixed;
+        left: 10px;
+        bottom: 0;
+        top: 80px;
+        right: 15px;
+        display: grid;
+        background-color: black;
+        clip-path: circle(0% at top left);
+        transition: clip-path .4s;
+    }
+
+    #menu-desplegable  a{
+        color: white;
+        text-transform: uppercase;
+        font-family: "Freeman", sans-serif;
+        font-weight: 400;
+        font-style: normal;
+        text-shadow: 5px 2px 5px rgba(255, 255, 255, 0.4) ;
+        text-decoration: none;
+    }
+    
+    .menu-icon:target{
+        clip-path: circle(150% at top left);
+    }
+}

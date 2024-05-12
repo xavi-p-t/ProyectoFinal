@@ -1,0 +1,407 @@
+:root {
+    --downloadd: white;
+    --downloadd1: #00ffaa;
+  }
+  
+body {
+    margin: 0;
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    background-image: url(../Images/cielo_estrellado.png);
+}
+
+
+/*Header*/
+header {
+    background-color: black;
+    padding: 5px;
+    padding-left: 100px;
+    display: flex;
+    align-items: center;
+    position: sticky;
+    margin:0;
+}
+
+.logo {
+    width: 80%;
+}
+
+.logo img {
+    width: 5%;
+    margin-left:2%;
+}
+
+.header-links {
+    width: 34%;
+}
+
+.header-links ul, .header-links a {
+    display: flex;
+    text-decoration: none;
+    color: white;
+    list-style: none;
+    text-transform: uppercase;
+    font-family: "Freeman", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    text-shadow: 5px 2px 5px rgba(255, 255, 255, 0.4) ;
+}
+
+.header-links ul {
+    padding-left: 0;
+    margin-left: 0;
+}
+
+.header-links li {
+    transition: text-decoration 0.3s ease-in-out;
+    padding-right: 10%;
+}
+
+.header-links li:hover {
+    text-decoration: underline overline;
+    text-decoration-color: var(--downloadd);
+}
+
+
+
+ 
+/*Main*/
+.shop {
+    display: flex;
+    justify-content: space-evenly;
+    padding: 10%;
+    padding-top: 5%;
+}
+.articulo {
+    border: 1px solid black;
+    width: 300px;
+    background-color: white;
+    border-radius: 10%;
+    box-shadow: 5px 2px 5px rgba(255, 255, 255, 0.4) ;
+}
+
+
+
+.articulotexto h1 {
+    color: black;
+    text-transform: uppercase;
+    font-family: "Freeman", sans-serif;
+    margin: 0;
+    padding: 2%;
+    text-align: center;
+    text-shadow: 3px 1px 3px rgba(0, 0, 0, 0.4) ;
+}
+
+.articulotexto h2 {
+    color: black;
+    text-transform: uppercase;
+    font-family: "Freeman", sans-serif;
+    margin: 0;
+    padding: 2%;
+    padding-left: 4%;
+    text-shadow: 2px 1px 2px rgba(0, 0, 0, 0.4) ;
+
+}
+
+main > h1 {
+    color: white;
+    font-size: 60px;
+    text-transform: uppercase;
+    font-family: "Freeman", sans-serif;
+    margin: 0;
+    padding-top: 5% ;
+    text-align: center;
+    text-shadow: 4px 2px 3px rgba(255, 255, 255, 0.4) ;
+}
+
+.articuloimg {
+    border-bottom: 1px solid white;
+}
+
+.articulo img {
+    width: 290px;
+}
+
+.articuloimg {
+    position: relative;
+    width: 290px;
+  }
+  
+.hoverr {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  
+.articuloimg:hover .hoverr {
+    opacity: 1;
+  }
+
+.articuloimg:hover .nohoverr {
+    transition: opacity 0.3s ease;
+    opacity: 0;
+}
+
+#black {
+    background-color: black;
+}
+
+#black h1 {
+    color: white;
+    text-shadow: 2px 1px 2px rgba(255, 255, 255, 0.4) ;
+}
+
+#black h2 {
+    color: white;
+    text-shadow: 2px 1px 2px rgba(255, 255, 255, 0.4) ;
+}
+
+.precio {
+    display: flex;
+}
+
+#black button {
+    background-color: white;
+}
+
+#black a {
+    color: black;
+}
+
+#black span {
+    background-color: rgb(116, 116, 116);
+}
+
+.precio h2 {
+    padding-right: 35%;
+}
+
+
+.future-shop {
+    display: flex;
+    flex-direction: column;
+}
+
+
+.future-shop  > h1 {
+    color: white;
+    font-size: 60px;
+    text-transform: uppercase;
+    font-family: "Freeman", sans-serif;
+    margin: 0;
+    padding-top: 5% ;
+    text-align: center;
+    text-shadow: 4px 2px 3px rgba(255, 255, 255, 0.4) ;
+}
+
+.future-articles {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    padding: 10%;
+    padding-top: 5%;
+}
+
+
+
+
+
+/**Boton de descarga*/
+
+.download-button {
+    margin: 0;
+    width: fit-content;
+    height:auto;
+    width:100px;
+    height:35px;
+}
+
+.download-button a {
+    text-decoration: none;
+    color:#fff;
+}
+
+button{
+    background-color: black;
+    border-style: none;
+    text-transform: uppercase;
+    font-size: 20px;
+    letter-spacing: 3px;
+    font-family: "Road Rage";
+    font-weight: 200px;
+    outline: none;
+    cursor: pointer;
+    position: relative;
+    padding: 0px;
+    overflow: hidden;
+    transition: all .5s;
+    box-shadow: 0px 1px 2px rgba(0,0,0,.2);
+}
+button span{
+    position: absolute;
+    display: block;
+}
+button span:nth-child(1){
+    height: 3px;
+    width:100px;
+    top:0px;
+    left:-100px;
+    background: linear-gradient(to right, rgba(0,0,0,0), var(--downloadd));
+    border-top-right-radius: 1px;
+    border-bottom-right-radius: 1px;
+    animation: span1 2s linear infinite;
+    animation-delay: 1s;
+}
+
+@keyframes span1{
+    0%{
+        left:-100px
+    }
+    100%{
+        left:100px;
+    }
+}
+button span:nth-child(2){
+    height: 35px;
+    width: 3px;
+    top:-35px;
+    right:0px;
+    background: linear-gradient(to bottom, rgba(0,0,0,0),  var(--downloadd));
+    border-bottom-left-radius: 1px;
+    border-bottom-right-radius: 1px;
+    animation: span2 2s linear infinite;
+    animation-delay: 2s;
+}
+@keyframes span2{
+    0%{
+        top:-35px;
+    }
+    100%{
+        top:35px;
+    }
+}
+button span:nth-child(3){
+    height:3px;
+    width:100px;
+    right:-100px;
+    bottom: 0px;
+    background: linear-gradient(to left, rgba(0,0,0,0), var(--downloadd));
+    border-top-left-radius: 1px;
+    border-bottom-left-radius: 1px;
+    animation: span3 2s linear infinite;
+    animation-delay: 3s;
+}
+@keyframes span3{
+    0%{
+        right:-100px;
+    }
+    100%{
+        right: 100px;
+    }
+}
+
+button span:nth-child(4){
+    height:35px;
+    width:3px;
+    bottom:-35px;
+    left:0px;
+    background: linear-gradient(to top, rgba(0,0,0,0), var(--downloadd));
+    border-top-right-radius: 1px;
+    border-top-left-radius: 1px;
+    animation: span4 2s linear infinite;
+    animation-delay: 4s;
+}
+@keyframes span4{
+    0%{
+        bottom: -35px;
+    }
+    100%{
+        bottom:35px;
+    }
+}
+
+button:hover{
+    transition: all .5s;
+    box-shadow: 0px 5px 8px rgba(255, 255, 255, 0.4);
+}
+button:hover span{
+    animation-play-state: paused;
+}
+
+
+/*Footer*/
+
+footer {
+    background-color: black;
+    text-align: center;
+    justify-content: center;
+}
+
+footer p {
+    padding: 1%;
+    margin: 0;
+    color: white;
+    text-transform: uppercase;
+    font-family: "Freeman", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    text-shadow: 5px 2px 5px rgba(255, 255, 255, 0.4) ;
+}
+
+@media screen and (max-width: 768px) {
+    /*Header*/
+    .logo a{
+        display: flex;
+        justify-content: center;
+    }
+    
+    .logo img {
+        width: 30%;
+    }
+
+    .header-links {
+        display: none;
+    }
+    .mobile-menu {
+        display: flex;
+    }
+
+    .menu-icon {
+        color: white;
+        cursor: pointer;
+    }
+
+    #menu-desplegable {
+        position: fixed;
+        left: 10px;
+        bottom: 0;
+        top: 80px;
+        right: 15px;
+        display: grid;
+        background-color: black;
+        clip-path: circle(0% at top left);
+        transition: clip-path .4s;
+    }
+
+    #menu-desplegable  a{
+        color: white;
+        text-transform: uppercase;
+        font-family: "Freeman", sans-serif;
+        font-weight: 400;
+        font-style: normal;
+        text-shadow: 5px 2px 5px rgba(255, 255, 255, 0.4) ;
+        text-decoration: none;
+    }
+    
+    .menu-icon:target{
+        clip-path: circle(150% at top left);
+    }
+}
