@@ -58,6 +58,7 @@ public class planeta implements Variables{
 		}
 	}
 	//heavyhunter
+	//ARMOR_LIGTHHUNTER+(miPlaneta.getTechnologyDefense()*PLUS_ARMOR_LIGTHHUNTER_BY_TECHNOLOGY)*1000/100
 	public void newHeavyHunter(int n) throws ResourceException {
 		for (int i = 0;i<n;i++) {
 			if (this.metal < METAL_COST_HEAVYHUNTER | this.deuterium < DEUTERIUM_COST_HEAVYHUNTER) {
@@ -67,7 +68,7 @@ public class planeta implements Variables{
 			else {
 				this.deuterium -= METAL_COST_HEAVYHUNTER;
 				this.metal -= DEUTERIUM_COST_HEAVYHUNTER;
-				army[1].add(new HeavyHunter());
+				army[1].add(new HeavyHunter(ARMOR_HEAVYHUNTER+(this.technologyDefense*PLUS_ARMOR_HEAVYHUNTER_BY_TECHNOLOGY)*1000/100,BASE_DAMAGE_HEAVYHUNTER+(this.technologyAtack*PLUS_ATTACK_HEAVYHUNTER_BY_TECHNOLOGY)*1000/100));
 			}
 		}
 	}
@@ -81,7 +82,7 @@ public class planeta implements Variables{
 			else {
 				this.deuterium -= DEUTERIUM_COST_BATTLESHIP;
 				this.metal -= METAL_COST_BATTLESHIP;
-				army[2].add(new BattleShip());
+				army[2].add(new BattleShip(ARMOR_BATTLESHIP+(this.technologyDefense*PLUS_ARMOR_BATTLESHIP_BY_TECHNOLOGY)*1000/100,BASE_DAMAGE_BATTLESHIP+(this.technologyAtack*PLUS_ATTACK_BATTLESHIP_BY_TECHNOLOGY)*1000/100));
 			}
 		}
 	}
@@ -95,7 +96,7 @@ public class planeta implements Variables{
 			else {
 				this.deuterium -= DEUTERIUM_COST_ARMOREDSHIP;
 				this.metal -= METAL_COST_ARMOREDSHIP;
-				army[3].add(new ArmoredShip());
+				army[3].add(new ArmoredShip(ARMOR_ARMOREDSHIP+(this.technologyDefense*PLUS_ARMOR_ARMOREDSHIP_BY_TECHNOLOGY)*1000/100,BASE_DAMAGE_ARMOREDSHIP+(this.technologyAtack*PLUS_ATTACK_ARMOREDSHIP_BY_TECHNOLOGY)*1000/100));
 			}
 		}
 	}
@@ -109,7 +110,7 @@ public class planeta implements Variables{
 			else {
 				this.deuterium -= DEUTERIUM_COST_MISSILELAUNCHER;
 				this.metal -= METAL_COST_MISSILELAUNCHER;
-				army[4].add(new MissileLauncher());
+				army[4].add(new MissileLauncher(ARMOR_MISSILELAUNCHER+(this.technologyDefense*PLUS_ARMOR_MISSILELAUNCHER_BY_TECHNOLOGY)*1000/100,BASE_DAMAGE_MISSILELAUNCHER+(this.technologyAtack*PLUS_ATTACK_MISSILELAUNCHER_BY_TECHNOLOGY)*1000/100));
 			}
 		}
 	}
@@ -123,7 +124,7 @@ public class planeta implements Variables{
 			else {
 				this.deuterium -= DEUTERIUM_COST_IONCANNON;
 				this.metal -= METAL_COST_IONCANNON;
-				army[5].add(new IonCannon());
+				army[5].add(new IonCannon(ARMOR_IONCANNON+(this.technologyDefense*PLUS_ARMOR_IONCANNON_BY_TECHNOLOGY)*1000/100,BASE_DAMAGE_IONCANNON+(this.technologyAtack*PLUS_ATTACK_IONCANNON_BY_TECHNOLOGY)*1000/100));
 			}
 		}
 	}
@@ -137,7 +138,7 @@ public class planeta implements Variables{
 			else {
 				this.deuterium -= DEUTERIUM_COST_PLASMACANNON;
 				this.metal -= METAL_COST_PLASMACANNON;
-				army[6].add(new PlasmaCannon());
+				army[6].add(new PlasmaCannon(ARMOR_PLASMACANNON+(this.technologyDefense*PLUS_ARMOR_PLASMACANNON_BY_TECHNOLOGY)*1000/100,BASE_DAMAGE_PLASMACANNON+(this.technologyAtack*PLUS_ATTACK_PLASMACANNON_BY_TECHNOLOGY)*1000/100));
 			}
 		}
 	}

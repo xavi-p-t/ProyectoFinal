@@ -40,18 +40,26 @@ public class Battle implements Variables {
 	private int[] actualNumberUnitsPlaneta,actualNumberUnitsEnemy;
 	
 	private ArrayList<String> arBattles;
+	
 	private ArrayList<String> arBattlesDevelopment;
 	
-	public void iniciarArays() {
+	public Battle() {
+		super();
 		this.arBattles = new ArrayList<String>();
 		this.arBattlesDevelopment = new ArrayList<String>();
 		this.planetArmy = new ArrayList[7];
 		this.enemyArmy = new ArrayList[7];
 		this.armies = new ArrayList[2][7];
-		this.wasteMetalDeuterium = new int[2];
-		this.resourcesLooses = new int[2][3];
 		this.initialCostFleet = new int[2][2];
+		this.wasteMetalDeuterium = new int[2];
+		this.enemyDrops = new int[4];
+		this.planetDrops = new int[7];
+		this.resourcesLooses = new int[2][3];
+		this.initialArmys = new int[2][7];
+		this.actualNumberUnitsPlaneta = new int[7];
+		this.actualNumberUnitsEnemy = new int[4];
 	}
+	
 	public void setArBattles() {
 		if (this.arBattlesDevelopment.size() < 5) {
 			this.arBattlesDevelopment.add(getBattleDevelopment());
@@ -61,6 +69,7 @@ public class Battle implements Variables {
 			this.arBattlesDevelopment.add(getBattleDevelopment());
 		}
 	}
+	
 	public void setArBattlesDevelopment() {
 		if (this.arBattles.size() < 5) {
 			this.arBattles.add(getBattleDevelopment());
@@ -70,6 +79,7 @@ public class Battle implements Variables {
 			this.arBattles.add(getBattleDevelopment());
 		}
 	}
+	
 	public String getBattleDevelopment() {
 		return battleDevelopment;
 	}
@@ -214,4 +224,26 @@ public class Battle implements Variables {
 		}
 		return 0;
 	}
+
+	
+	public ArrayList<MilitaryUnit>[] getPlanetArmy() {
+		return planetArmy;
+	}
+
+	
+	public void setPlanetArmy(ArrayList<MilitaryUnit>[] planetArmy) {
+		this.planetArmy = planetArmy;
+	}
+
+	
+	public ArrayList<MilitaryUnit>[] getEnemyArmy() {
+		return enemyArmy;
+	}
+
+	
+	public void setEnemyArmy(ArrayList<MilitaryUnit>[] enemyArmy) {
+		this.enemyArmy = enemyArmy;
+	}
+
+	
 }

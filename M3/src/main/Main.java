@@ -1,5 +1,6 @@
 package main;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -11,7 +12,7 @@ import partPlanetas.*;
 import interfacesProj.*;
 
 
-public class Main implements Variables{
+public class Main{
 	
 	public static void main(String[] args) {
 		new juego();
@@ -45,12 +46,19 @@ class juego implements Variables{
     private String levelUp = "";
     
     private int num = 0;
-    planeta miPlaneta = new planeta();
+    private int enemyMetal = METAL_BASE_ENEMY_ARMY;
+    private int enemyDeut = DEUTERIUM_BASE_ENEMY_ARMY;
+    private int enemyLevel = 0;
+    private ArrayList<MilitaryUnit>[] enemyArmie = new ArrayList[4];
     
+    planeta miPlaneta = new planeta();
+    Battle pelea = new Battle();
+    
+    //juego principal
     juego(){
     	startGame();
     	
-    	timer.schedule(task1, 10000,180000);
+    	timer.schedule(task1, 180000,180000);
 		timer.schedule(task2, 240000,240000);
 		
     	while(flag_0) {
@@ -83,6 +91,7 @@ class juego implements Variables{
             public void run() {
                 ataque = true;
                 System.out.println("\n\nNEW THREAD IS COMMING\n\n");
+                
             }
         };
         task2 = new TimerTask() {
@@ -218,6 +227,7 @@ class juego implements Variables{
 			} catch (ResourceException e) {
 				System.out.println(e.getMessage());
 			}
+			pelea.setPlanetArmy(miPlaneta.getArmy());
 		}
 		else if (num == 2){
 			System.out.println(building);
@@ -231,6 +241,7 @@ class juego implements Variables{
 			} catch (ResourceException e) {
 				System.out.println(e.getMessage());
 			}
+			pelea.setPlanetArmy(miPlaneta.getArmy());
 		}
 		else if (num == 3){
 			System.out.println(building);
@@ -244,6 +255,7 @@ class juego implements Variables{
 			} catch (ResourceException e) {
 				System.out.println(e.getMessage());
 			}
+			pelea.setPlanetArmy(miPlaneta.getArmy());
 		}
 		else if (num == 4){
 			System.out.println(building);
@@ -257,6 +269,7 @@ class juego implements Variables{
 			} catch (ResourceException e) {
 				System.out.println(e.getMessage());
 			}
+			pelea.setPlanetArmy(miPlaneta.getArmy());
 		}
 		else if (num == 5){
 			flag_02 = true;
@@ -287,6 +300,7 @@ class juego implements Variables{
 			} catch (ResourceException e) {
 				System.out.println(e.getMessage());
 			}
+			pelea.setPlanetArmy(miPlaneta.getArmy());
 		}
 		else if (num == 2){
 			System.out.println(building);
@@ -300,6 +314,7 @@ class juego implements Variables{
 			} catch (ResourceException e) {
 				System.out.println(e.getMessage());
 			}
+			pelea.setPlanetArmy(miPlaneta.getArmy());
 		}
 		else if (num == 3){
 			System.out.println(building);
@@ -312,7 +327,8 @@ class juego implements Variables{
 				miPlaneta.newPlasmaCannon(amount);
 			} catch (ResourceException e) {
 				System.out.println(e.getMessage());
-			}			
+			}
+			pelea.setPlanetArmy(miPlaneta.getArmy());
 		}
 		else if (num == 4){
 			flag_02 = true;
@@ -381,6 +397,7 @@ class juego implements Variables{
 										miPlaneta.getArmy()[i].get(j).attack()));
 						break;
 					}
+					pelea.setPlanetArmy(miPlaneta.getArmy());
 					
 				}
 				
@@ -445,7 +462,67 @@ class juego implements Variables{
 			System.out.println("Invalid Option");
 		}
 	}
-	
+    //generar enemigos
+    private void createEnemyArmy() {
+    	int[] enemyProb = new int[4];
+    	enemyProb[0] = 35;
+    	enemyProb[1] = 25;
+    	enemyProb[2] = 20;
+    	enemyProb[3] = 20;
+    	int metal = enemyMetal;
+    	int deuterium = enemyDeut;
+    	for (int i = 0;i<enemyArmie.length;i++) {
+			enemyArmie[i] = new ArrayList<MilitaryUnit>();
+		}
+    	int numRandom;
+    	int selected = 0;
+    	while (enemyMetal >= METAL_COST_LIGTHHUNTER | enemyDeut >=DEUTERIUM_COST_LIGTHHUNTER) {
+    		numRandom = (int) (Math.random()*100);
+    		for (int i = 0;i< enemyProb.length;i++) {
+				selected += enemyProb[i];
+				if (selected>=numRandom ) {
+					switch (i) {
+					case 0:
+						if (enemyMetal >= METAL_COST_LIGTHHUNTER & enemyDeut >=DEUTERIUM_COST_LIGTHHUNTER) {
+							enemyArmie[i].add(new LigthHunter(ARMOR_LIGTHHUNTER+(enemyLevel*PLUS_ARMOR_LIGTHHUNTER_BY_TECHNOLOGY)*1000/100,
+									BASE_DAMAGE_LIGTHHUNTER+(enemyLevel*PLUS_ATTACK_LIGTHHUNTER_BY_TECHNOLOGY)*1000/100));
+						}
+						enemyMetal -= METAL_COST_LIGTHHUNTER;
+						enemyDeut -=DEUTERIUM_COST_LIGTHHUNTER;
+						break;
+					case 1:
+						if (enemyMetal >= METAL_COST_HEAVYHUNTER & enemyDeut >=DEUTERIUM_COST_HEAVYHUNTER) {
+							enemyArmie[i].add(new LigthHunter(ARMOR_HEAVYHUNTER+(enemyLevel*PLUS_ARMOR_HEAVYHUNTER_BY_TECHNOLOGY)*1000/100,
+									BASE_DAMAGE_HEAVYHUNTER+(enemyLevel*PLUS_ATTACK_HEAVYHUNTER_BY_TECHNOLOGY)*1000/100));
+						}
+						enemyMetal -= METAL_COST_HEAVYHUNTER;
+						enemyDeut -=DEUTERIUM_COST_HEAVYHUNTER;
+						break;
+					case 2:
+						if (enemyMetal >= METAL_COST_BATTLESHIP & enemyDeut >=DEUTERIUM_COST_BATTLESHIP) {
+							enemyArmie[i].add(new LigthHunter(ARMOR_BATTLESHIP+(enemyLevel*PLUS_ARMOR_BATTLESHIP_BY_TECHNOLOGY)*1000/100,
+									BASE_DAMAGE_BATTLESHIP+(enemyLevel*PLUS_ATTACK_BATTLESHIP_BY_TECHNOLOGY)*1000/100));
+						}
+						enemyMetal -= METAL_COST_BATTLESHIP;
+						enemyDeut -=DEUTERIUM_COST_BATTLESHIP;
+						break;
+					case 3:
+						if (enemyMetal >= METAL_COST_ARMOREDSHIP & enemyDeut >=DEUTERIUM_COST_ARMOREDSHIP) {
+							enemyArmie[i].add(new LigthHunter(ARMOR_ARMOREDSHIP+(enemyLevel*PLUS_ARMOR_ARMOREDSHIP_BY_TECHNOLOGY)*1000/100,
+									BASE_DAMAGE_ARMOREDSHIP+(enemyLevel*PLUS_ATTACK_ARMOREDSHIP_BY_TECHNOLOGY)*1000/100));
+						}
+						enemyMetal -= METAL_COST_ARMOREDSHIP;
+						enemyDeut -= DEUTERIUM_COST_ARMOREDSHIP;
+						break;
+					}
+				}
+			}
+    	}
+    	enemyMetal = metal + 50000;
+    	enemyDeut = deuterium+ 25000;
+    	enemyLevel +=1;
+    	pelea.setEnemyArmy(enemyArmie);
+    }
     
     
 }
