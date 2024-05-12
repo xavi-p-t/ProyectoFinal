@@ -58,7 +58,7 @@ class juego implements Variables{
     juego(){
     	startGame();
     	
-    	timer.schedule(task1, 180000,180000);
+    	timer.schedule(task1, 1000,180000);
 		timer.schedule(task2, 240000,240000);
 		
     	while(flag_0) {
@@ -80,6 +80,7 @@ class juego implements Variables{
     		while (flag_03) {
     			menuNivel();
     		}
+    		
     	}
     	opc.close();
     }
@@ -91,7 +92,7 @@ class juego implements Variables{
             public void run() {
                 ataque = true;
                 System.out.println("\n\nNEW THREAD IS COMMING\n\n");
-                
+                createEnemyArmy();
             }
         };
         task2 = new TimerTask() {
@@ -130,10 +131,11 @@ class juego implements Variables{
 				
 			}
 			else if (num == 0){
+				
 				flag_00 = false;
 				flag_0 = false;
 				timer.cancel();
-				
+
 			}
 			else {
 				System.out.println("Invalid Option");
@@ -168,10 +170,10 @@ class juego implements Variables{
 			
 		}
 		else if (num == 5) {
-			flag_00 = false;
-			flag_05 = true;
+			viewThreat();
 		}
 		else if (num == 0){
+			
 			flag_00 = false;
 			flag_0 = false;
 			timer.cancel();
@@ -476,7 +478,7 @@ class juego implements Variables{
 		}
     	int numRandom;
     	int selected = 0;
-    	while (enemyMetal >= METAL_COST_LIGTHHUNTER | enemyDeut >=DEUTERIUM_COST_LIGTHHUNTER) {
+    	while (enemyMetal >= METAL_COST_LIGTHHUNTER & enemyDeut >=DEUTERIUM_COST_LIGTHHUNTER) {
     		numRandom = (int) (Math.random()*100);
     		for (int i = 0;i< enemyProb.length;i++) {
 				selected += enemyProb[i];
@@ -484,46 +486,60 @@ class juego implements Variables{
 					switch (i) {
 					case 0:
 						if (enemyMetal >= METAL_COST_LIGTHHUNTER & enemyDeut >=DEUTERIUM_COST_LIGTHHUNTER) {
-							enemyArmie[i].add(new LigthHunter(ARMOR_LIGTHHUNTER+(enemyLevel*PLUS_ARMOR_LIGTHHUNTER_BY_TECHNOLOGY)*1000/100,
+							enemyArmie[0].add(new LigthHunter(ARMOR_LIGTHHUNTER+(enemyLevel*PLUS_ARMOR_LIGTHHUNTER_BY_TECHNOLOGY)*1000/100,
 									BASE_DAMAGE_LIGTHHUNTER+(enemyLevel*PLUS_ATTACK_LIGTHHUNTER_BY_TECHNOLOGY)*1000/100));
+							enemyMetal -= METAL_COST_LIGTHHUNTER;
+							enemyDeut -=DEUTERIUM_COST_LIGTHHUNTER;
+							//System.out.println("1 ligth hunter");
 						}
-						enemyMetal -= METAL_COST_LIGTHHUNTER;
-						enemyDeut -=DEUTERIUM_COST_LIGTHHUNTER;
 						break;
 					case 1:
 						if (enemyMetal >= METAL_COST_HEAVYHUNTER & enemyDeut >=DEUTERIUM_COST_HEAVYHUNTER) {
-							enemyArmie[i].add(new LigthHunter(ARMOR_HEAVYHUNTER+(enemyLevel*PLUS_ARMOR_HEAVYHUNTER_BY_TECHNOLOGY)*1000/100,
+							enemyArmie[1].add(new HeavyHunter(ARMOR_HEAVYHUNTER+(enemyLevel*PLUS_ARMOR_HEAVYHUNTER_BY_TECHNOLOGY)*1000/100,
 									BASE_DAMAGE_HEAVYHUNTER+(enemyLevel*PLUS_ATTACK_HEAVYHUNTER_BY_TECHNOLOGY)*1000/100));
+							enemyMetal -= METAL_COST_HEAVYHUNTER;
+							enemyDeut -=DEUTERIUM_COST_HEAVYHUNTER;
+							//System.out.println("1 Heavy hunter");
 						}
-						enemyMetal -= METAL_COST_HEAVYHUNTER;
-						enemyDeut -=DEUTERIUM_COST_HEAVYHUNTER;
+
 						break;
 					case 2:
 						if (enemyMetal >= METAL_COST_BATTLESHIP & enemyDeut >=DEUTERIUM_COST_BATTLESHIP) {
-							enemyArmie[i].add(new LigthHunter(ARMOR_BATTLESHIP+(enemyLevel*PLUS_ARMOR_BATTLESHIP_BY_TECHNOLOGY)*1000/100,
+							enemyArmie[2].add(new BattleShip(ARMOR_BATTLESHIP+(enemyLevel*PLUS_ARMOR_BATTLESHIP_BY_TECHNOLOGY)*1000/100,
 									BASE_DAMAGE_BATTLESHIP+(enemyLevel*PLUS_ATTACK_BATTLESHIP_BY_TECHNOLOGY)*1000/100));
+							enemyMetal -= METAL_COST_BATTLESHIP;
+							enemyDeut -=DEUTERIUM_COST_BATTLESHIP;
+							//System.out.println("1 Battle ship");
 						}
-						enemyMetal -= METAL_COST_BATTLESHIP;
-						enemyDeut -=DEUTERIUM_COST_BATTLESHIP;
 						break;
 					case 3:
 						if (enemyMetal >= METAL_COST_ARMOREDSHIP & enemyDeut >=DEUTERIUM_COST_ARMOREDSHIP) {
-							enemyArmie[i].add(new LigthHunter(ARMOR_ARMOREDSHIP+(enemyLevel*PLUS_ARMOR_ARMOREDSHIP_BY_TECHNOLOGY)*1000/100,
+							enemyArmie[3].add(new ArmoredShip(ARMOR_ARMOREDSHIP+(enemyLevel*PLUS_ARMOR_ARMOREDSHIP_BY_TECHNOLOGY)*1000/100,
 									BASE_DAMAGE_ARMOREDSHIP+(enemyLevel*PLUS_ATTACK_ARMOREDSHIP_BY_TECHNOLOGY)*1000/100));
+							enemyMetal -= METAL_COST_ARMOREDSHIP;
+							enemyDeut -= DEUTERIUM_COST_ARMOREDSHIP;
+							//System.out.println("1 armored ship");
 						}
-						enemyMetal -= METAL_COST_ARMOREDSHIP;
-						enemyDeut -= DEUTERIUM_COST_ARMOREDSHIP;
 						break;
 					}
 				}
 			}
     	}
+    	
     	enemyMetal = metal + 50000;
     	enemyDeut = deuterium+ 25000;
     	enemyLevel +=1;
     	pelea.setEnemyArmy(enemyArmie);
+    	
     }
-    
+    //la tormenta que se acerca
+    private void viewThreat() {
+    	String mens = String.format("NEW THREAT COMING\n\n%-30s%d\n\n%-30s%d\n\n%-30s%d\n\n%-30s%d",
+    			"Ligth Hunter",enemyArmie[0].size(),"Heavy Hunter",enemyArmie[1].size(),"Battle Ship",enemyArmie[2].size(),
+    			"Armored Ship",enemyArmie[3].size());
+    	System.out.println(mens);
+    	
+    }
     
 }
 
