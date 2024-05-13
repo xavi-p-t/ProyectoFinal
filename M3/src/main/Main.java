@@ -37,6 +37,7 @@ class juego implements Variables{
     private TimerTask task1;
     private TimerTask task2;
     
+    private String menuMostr = "Main Menu\n\n1)View Planet Stats\n2)Build\n3)Upgrade Technology\n4)View Battle Reports\n0)Exit\n\nOption:";
     private String menuPrinc = "Main Menu\n\n1)View Planet Stats\n2)Build\n3)Upgrade Technology\n4)View Battle Reports\n0)Exit\n\nOption:";
     private String menuPrincAtak = "Main Menu\n\n1)View Planet Stats\n2)Build\n3)Upgrade Technology\n4)View Battle Reports\n5)View Thread Comming\n0)Exit\n\nOption:";
     private String menuBuild = "Build\n1)Build Troops\n2)Build Defenses\n3)Go Back\nOption:";
@@ -58,15 +59,12 @@ class juego implements Variables{
     juego(){
     	startGame();
     	
-    	timer.schedule(task1, 1000,180000);
+    	timer.schedule(task1, 180000,180000);
 		timer.schedule(task2, 240000,240000);
 		
     	while(flag_0) {
-    		while (flag_00 & !ataque) {
+    		while (flag_00) {
     			menuInicial();
-    		}
-    		while (flag_00 & ataque) {
-    			menuAtaque();
     		}
     		while (flag_02) {
     			segundoMenu();
@@ -91,13 +89,19 @@ class juego implements Variables{
         task1 = new TimerTask() {
             public void run() {
                 ataque = true;
+                menuMostr = menuPrincAtak;
                 System.out.println("\n\nNEW THREAD IS COMMING\n\n");
                 createEnemyArmy();
+                if (flag_00) {
+                	System.out.println(menuMostr);
+                }
+                
             }
         };
         task2 = new TimerTask() {
             public void run() {
                 ataque = false;
+                menuMostr = menuPrinc;
                 System.out.println("\n\nWE HAVE BEEN ATTACKED!!!\n\n");
             }
         };
@@ -105,7 +109,7 @@ class juego implements Variables{
     //menu 00
     private void menuInicial() {
     	
-    		System.out.println(menuPrinc);
+    		System.out.println(menuMostr);
 			while (!opc.hasNextInt()) {
 				System.out.println("Invalid Option");
 				opc.nextLine();
@@ -130,6 +134,14 @@ class juego implements Variables{
 				flag_04 = true;
 				
 			}
+			else if (num == 5) {
+				if (ataque) {
+					viewThreat();
+				}
+				else {
+					System.out.println("Invalid Option");
+				}
+			}
 			else if (num == 0){
 				
 				flag_00 = false;
@@ -142,47 +154,7 @@ class juego implements Variables{
 			}
     	
     }
-    //menu 00 cuando hay ataque
-    private void menuAtaque() {
-    	System.out.println(menuPrincAtak);
-		while (!opc.hasNextInt()) {
-			System.out.println("Invalid Option");
-			opc.nextLine();
-		}
-		num = opc.nextInt();
-		
-		if (num == 1) {
-			miPlaneta.printStats();
-		}
-		else if (num == 2){
-			flag_00 = false;
-			flag_02 = true;
-			
-		}
-		else if (num == 3){
-			flag_00 = false;
-			flag_03 = true;	
-			
-		}
-		else if (num == 4){
-			flag_00 = false;
-			flag_04 = true;
-			
-		}
-		else if (num == 5) {
-			viewThreat();
-		}
-		else if (num == 0){
-			
-			flag_00 = false;
-			flag_0 = false;
-			timer.cancel();
-			
-		}
-		else {
-			System.out.println("Invalid Option");
-		}
-    }
+    
     //menu 02
     private void segundoMenu() {
     	System.out.println(menuBuild);
@@ -466,11 +438,11 @@ class juego implements Variables{
 	}
     //generar enemigos
     private void createEnemyArmy() {
-    	int[] enemyProb = new int[4];
-    	enemyProb[0] = 35;
-    	enemyProb[1] = 25;
-    	enemyProb[2] = 20;
-    	enemyProb[3] = 20;
+    	ArrayList enemyProb = new ArrayList();
+    	enemyProb.add(35);
+    	enemyProb.add(25);
+    	enemyProb.add(20);
+    	enemyProb.add(20);
     	int metal = enemyMetal;
     	int deuterium = enemyDeut;
     	for (int i = 0;i<enemyArmie.length;i++) {
@@ -480,51 +452,60 @@ class juego implements Variables{
     	int selected = 0;
     	while (enemyMetal >= METAL_COST_LIGTHHUNTER & enemyDeut >=DEUTERIUM_COST_LIGTHHUNTER) {
     		numRandom = (int) (Math.random()*100);
-    		for (int i = 0;i< enemyProb.length;i++) {
-				selected += enemyProb[i];
+    		//System.out.println(numRandom);
+    		boolean select = false;
+    		selected = 0;
+    		for (int i = 0;i< enemyProb.size();i++) {
+				selected = selected + (int) enemyProb.get(i);
+				//System.out.println(selected);
 				if (selected>=numRandom ) {
-					switch (i) {
-					case 0:
+					
+					if (i == 0 & !select) {
 						if (enemyMetal >= METAL_COST_LIGTHHUNTER & enemyDeut >=DEUTERIUM_COST_LIGTHHUNTER) {
 							enemyArmie[0].add(new LigthHunter(ARMOR_LIGTHHUNTER+(enemyLevel*PLUS_ARMOR_LIGTHHUNTER_BY_TECHNOLOGY)*1000/100,
 									BASE_DAMAGE_LIGTHHUNTER+(enemyLevel*PLUS_ATTACK_LIGTHHUNTER_BY_TECHNOLOGY)*1000/100));
 							enemyMetal -= METAL_COST_LIGTHHUNTER;
 							enemyDeut -=DEUTERIUM_COST_LIGTHHUNTER;
 							//System.out.println("1 ligth hunter");
+							select = true;
 						}
-						break;
-					case 1:
+					}
+					else if(i == 1 & !select) {
 						if (enemyMetal >= METAL_COST_HEAVYHUNTER & enemyDeut >=DEUTERIUM_COST_HEAVYHUNTER) {
 							enemyArmie[1].add(new HeavyHunter(ARMOR_HEAVYHUNTER+(enemyLevel*PLUS_ARMOR_HEAVYHUNTER_BY_TECHNOLOGY)*1000/100,
 									BASE_DAMAGE_HEAVYHUNTER+(enemyLevel*PLUS_ATTACK_HEAVYHUNTER_BY_TECHNOLOGY)*1000/100));
 							enemyMetal -= METAL_COST_HEAVYHUNTER;
 							enemyDeut -=DEUTERIUM_COST_HEAVYHUNTER;
 							//System.out.println("1 Heavy hunter");
+							select = true;
 						}
-
-						break;
-					case 2:
+					}
+						
+					else if(i == 2 & !select) {
 						if (enemyMetal >= METAL_COST_BATTLESHIP & enemyDeut >=DEUTERIUM_COST_BATTLESHIP) {
 							enemyArmie[2].add(new BattleShip(ARMOR_BATTLESHIP+(enemyLevel*PLUS_ARMOR_BATTLESHIP_BY_TECHNOLOGY)*1000/100,
 									BASE_DAMAGE_BATTLESHIP+(enemyLevel*PLUS_ATTACK_BATTLESHIP_BY_TECHNOLOGY)*1000/100));
 							enemyMetal -= METAL_COST_BATTLESHIP;
 							enemyDeut -=DEUTERIUM_COST_BATTLESHIP;
 							//System.out.println("1 Battle ship");
+							select = true;
 						}
-						break;
-					case 3:
+					}
+					else if(i == 3 & !select) {
 						if (enemyMetal >= METAL_COST_ARMOREDSHIP & enemyDeut >=DEUTERIUM_COST_ARMOREDSHIP) {
 							enemyArmie[3].add(new ArmoredShip(ARMOR_ARMOREDSHIP+(enemyLevel*PLUS_ARMOR_ARMOREDSHIP_BY_TECHNOLOGY)*1000/100,
 									BASE_DAMAGE_ARMOREDSHIP+(enemyLevel*PLUS_ATTACK_ARMOREDSHIP_BY_TECHNOLOGY)*1000/100));
 							enemyMetal -= METAL_COST_ARMOREDSHIP;
 							enemyDeut -= DEUTERIUM_COST_ARMOREDSHIP;
 							//System.out.println("1 armored ship");
+							select = true;
 						}
-						break;
+					}
+					
 					}
 				}
 			}
-    	}
+    	
     	
     	enemyMetal = metal + 50000;
     	enemyDeut = deuterium+ 25000;
