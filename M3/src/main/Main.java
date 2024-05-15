@@ -59,6 +59,28 @@ class juego implements Variables{
     juego(){
     	startGame();
     	
+    	try {
+			miPlaneta.newBattleShip(5);
+			miPlaneta.newArmoredShip(2);
+			miPlaneta.newHeavyHunter(4);
+			miPlaneta.newIonCannon(1);
+			miPlaneta.newLigthHunter(10);
+			miPlaneta.newMissileLauncher(5);
+			miPlaneta.newPlasmaCannon(1);
+		} catch (ResourceException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	
+    	createEnemyArmy();
+    	pelea.setPlanetArmy(miPlaneta.getArmy().clone());
+        pelea.fleetResourceCost(miPlaneta.getArmy());
+        pelea.fleetResourceCost(enemyArmie);
+        pelea.initialFleetNumber(miPlaneta.getArmy());
+        pelea.initialFleetNumber(enemyArmie);
+        pelea.setArmies();
+    	lucha();
+    	
     	timer.schedule(task1, 180000,180000);
 		timer.schedule(task2, 240000,240000);
 		
@@ -77,6 +99,12 @@ class juego implements Variables{
     		}
     		while (flag_03) {
     			menuNivel();
+    		}
+    		while (flag_04) {
+    			pelea.updateResourcesLooses();
+    			System.out.println("En construccion");	
+    			flag_04 = false;
+    			flag_00 = true;
     		}
     		
     	}
@@ -103,6 +131,15 @@ class juego implements Variables{
                 ataque = false;
                 menuMostr = menuPrinc;
                 System.out.println("\n\nWE HAVE BEEN ATTACKED!!!\n\n");
+                pelea.setPlanetArmy(miPlaneta.getArmy().clone());
+                pelea.initInitialArmies();
+                pelea.fleetResourceCost(miPlaneta.getArmy());
+                pelea.fleetResourceCost(enemyArmie);
+                pelea.initialFleetNumber(miPlaneta.getArmy());
+                pelea.initialFleetNumber(enemyArmie);
+                if (flag_00) {
+                	System.out.println(menuMostr);
+                }
             }
         };
     }
@@ -154,7 +191,6 @@ class juego implements Variables{
 			}
     	
     }
-    
     //menu 02
     private void segundoMenu() {
     	System.out.println(menuBuild);
@@ -332,50 +368,7 @@ class juego implements Variables{
 				// TODO Auto-generated catch block
 				System.out.println(e.getMessage());
 			}
-			for (int i = 0;i<miPlaneta.getArmy().length;i++) {
-				for (int j = 0;j<miPlaneta.getArmy()[i].size();j++) {
-					switch (i) {
-					case 0:
-						miPlaneta.getArmy()[i].set(j, 
-								new LigthHunter(ARMOR_LIGTHHUNTER+(miPlaneta.getTechnologyDefense()*PLUS_ARMOR_LIGTHHUNTER_BY_TECHNOLOGY)*1000/100,
-								miPlaneta.getArmy()[i].get(j).attack()));
-						break;
-					case 1:
-						miPlaneta.getArmy()[i].set(j, 
-								new HeavyHunter(ARMOR_HEAVYHUNTER+(miPlaneta.getTechnologyDefense()*PLUS_ARMOR_HEAVYHUNTER_BY_TECHNOLOGY)*1000/100,
-										miPlaneta.getArmy()[i].get(j).attack()));
-						break;
-					case 2:
-						miPlaneta.getArmy()[i].set(j, 
-								new BattleShip(ARMOR_BATTLESHIP+(miPlaneta.getTechnologyDefense()*PLUS_ARMOR_BATTLESHIP_BY_TECHNOLOGY)*1000/100,
-										miPlaneta.getArmy()[i].get(j).attack()));
-						break;
-					case 3:
-						miPlaneta.getArmy()[i].set(j, 
-								new ArmoredShip(ARMOR_ARMOREDSHIP+(miPlaneta.getTechnologyDefense()*PLUS_ARMOR_ARMOREDSHIP_BY_TECHNOLOGY)*1000/100,
-										miPlaneta.getArmy()[i].get(j).attack()));
-						break;
-					case 4:
-						miPlaneta.getArmy()[i].set(j, 
-								new MissileLauncher(ARMOR_MISSILELAUNCHER+(miPlaneta.getTechnologyDefense()*PLUS_ARMOR_MISSILELAUNCHER_BY_TECHNOLOGY)*1000/100,
-										miPlaneta.getArmy()[i].get(j).attack()));
-						break;
-					case 5:
-						miPlaneta.getArmy()[i].set(j, 
-								new IonCannon(ARMOR_IONCANNON+(miPlaneta.getTechnologyDefense()*PLUS_ARMOR_IONCANNON_BY_TECHNOLOGY)*1000/100,
-										miPlaneta.getArmy()[i].get(j).attack()));
-						break;
-					case 6:
-						miPlaneta.getArmy()[i].set(j, 
-								new PlasmaCannon(ARMOR_PLASMACANNON+(miPlaneta.getTechnologyDefense()*PLUS_ARMOR_PLASMACANNON_BY_TECHNOLOGY)*1000/100,
-										miPlaneta.getArmy()[i].get(j).attack()));
-						break;
-					}
-					pelea.setPlanetArmy(miPlaneta.getArmy());
-					
-				}
-				
-			}
+			
 		}
 		else if(num == 2) {
 			try {
@@ -384,49 +377,7 @@ class juego implements Variables{
 				// TODO Auto-generated catch block
 				System.out.println(e.getMessage());
 			}
-			for (int i = 0;i<miPlaneta.getArmy().length;i++) {
-				for (int j = 0;j<miPlaneta.getArmy()[i].size();j++) {
-					switch (i) {
-					case 0:
-						miPlaneta.getArmy()[i].set(j, 
-								new LigthHunter(miPlaneta.getArmy()[i].get(j).getActualArmor(),
-								BASE_DAMAGE_LIGTHHUNTER+(miPlaneta.getTechnologyAtack()*PLUS_ATTACK_LIGTHHUNTER_BY_TECHNOLOGY)*1000/100));
-						break;
-					case 1:
-						miPlaneta.getArmy()[i].set(j, 
-								new HeavyHunter(miPlaneta.getArmy()[i].get(j).getActualArmor(),
-								BASE_DAMAGE_HEAVYHUNTER+(miPlaneta.getTechnologyAtack()*PLUS_ATTACK_HEAVYHUNTER_BY_TECHNOLOGY)*1000/100));
-						break;
-					case 2:
-						miPlaneta.getArmy()[i].set(j, 
-								new BattleShip(miPlaneta.getArmy()[i].get(j).getActualArmor(),
-								BASE_DAMAGE_BATTLESHIP+(miPlaneta.getTechnologyAtack()*PLUS_ATTACK_BATTLESHIP_BY_TECHNOLOGY)*1000/100));
-						break;
-					case 3:
-						miPlaneta.getArmy()[i].set(j, 
-								new ArmoredShip(miPlaneta.getArmy()[i].get(j).getActualArmor(),
-								BASE_DAMAGE_ARMOREDSHIP+(miPlaneta.getTechnologyAtack()*PLUS_ATTACK_ARMOREDSHIP_BY_TECHNOLOGY)*1000/100));
-						break;
-					case 4:
-						miPlaneta.getArmy()[i].set(j, 
-								new MissileLauncher(miPlaneta.getArmy()[i].get(j).getActualArmor(),
-								BASE_DAMAGE_MISSILELAUNCHER+(miPlaneta.getTechnologyAtack()*PLUS_ATTACK_MISSILELAUNCHER_BY_TECHNOLOGY)*1000/100));
-						break;
-					case 5:
-						miPlaneta.getArmy()[i].set(j, 
-								new IonCannon(miPlaneta.getArmy()[i].get(j).getActualArmor(),
-								BASE_DAMAGE_HEAVYHUNTER+(miPlaneta.getTechnologyAtack()*PLUS_ATTACK_HEAVYHUNTER_BY_TECHNOLOGY)*1000/100));
-						break;
-					case 6:
-						miPlaneta.getArmy()[i].set(j, 
-								new PlasmaCannon(miPlaneta.getArmy()[i].get(j).getActualArmor(),
-								BASE_DAMAGE_PLASMACANNON+(miPlaneta.getTechnologyAtack()*PLUS_ATTACK_PLASMACANNON_BY_TECHNOLOGY)*1000/100));
-						break;
-					}
-					
-				}
-				
-			}
+			
 		}
 		else if (num == 3) {
 			flag_03 = false;
@@ -510,10 +461,10 @@ class juego implements Variables{
     	enemyMetal = metal + 50000;
     	enemyDeut = deuterium+ 25000;
     	enemyLevel +=1;
-    	pelea.setEnemyArmy(enemyArmie);
+    	pelea.setEnemyArmy(enemyArmie.clone());
     	
     }
-    //la tormenta que se acerca
+    //ver enemigo
     private void viewThreat() {
     	String mens = String.format("NEW THREAT COMING\n\n%-30s%d\n\n%-30s%d\n\n%-30s%d\n\n%-30s%d",
     			"Ligth Hunter",enemyArmie[0].size(),"Heavy Hunter",enemyArmie[1].size(),"Battle Ship",enemyArmie[2].size(),
@@ -521,6 +472,94 @@ class juego implements Variables{
     	System.out.println(mens);
     	
     }
+    //pelearse
+    private void lucha() {
+    	int condicionPerdidaPlaneta = (int) (pelea.getInitialNumberUnitsPlanet()*0.2*10);
+    	int condicionPerdidaEnemy = (int) (pelea.getInitialNumberUnitsEnemy()*0.2*10);
+    	boolean salir = false;
+    	int gruAtacante = 0;
+    	int gruDefensor = 0;
+    	int atacante = 0;
+    	int defensor = 0;
+    	boolean pelear = true;
+    	int atacar;
+    	int empieza = (int) (Math.random()*2+1);
+    	int contEmpieza = 0;
+		boolean eliminado = false;
+    	
+    	while(!salir) {
+    		pelear = true;
+    		eliminado = false;
+    		if (empieza%2 == 0) {
+    			gruAtacante = pelea.getEnemyGroupAttacker();
+    			contEmpieza = 1;
+    		}
+    		else {
+    			gruAtacante = pelea.getPlanetGroupAttacker();
+    			contEmpieza = 0;
+    		}
+    		System.out.println(contEmpieza);
+    		System.out.println(empieza%2);
+    		System.out.println("Grupo atacante"+gruAtacante);
+    		gruDefensor = pelea.getGroupDefender(pelea.getArmies()[empieza%2]);
+    		System.out.println("Grupo defensor"+ gruDefensor);
+    		//seleccionamos quien es el tacante del grupo y quien se defiende
+    		atacante = (int) (Math.random()*pelea.getArmies()[contEmpieza][gruAtacante].size());
+    		defensor = (int) (Math.random()*pelea.getArmies()[empieza%2][gruDefensor].size());
+    		
+    		
+			System.out.println("llega a pegarle");
+			//pillamos el enemy armie en la posicion defensor, luego tenemos que hacer el .get, luego take damage
+    		// y por ultimo lo mismo con planeta pero usamos la funcion attak
+			System.out.println(pelea.getArmies()[empieza%2][gruDefensor].get(defensor));
+			((MilitaryUnit) pelea.getArmies()[empieza%2][gruDefensor].get(defensor)).tekeDamage(((MilitaryUnit) pelea.getArmies()[contEmpieza][gruAtacante].get(atacante)).attack());
+    		while (pelear) {
+    			
+    			//paExcep = true;
+    			//System.out.println("entra en el while de pelea");
+    			atacar = (int) (Math.random()*100);
+    			if (((MilitaryUnit) pelea.getArmies()[empieza%2][gruDefensor].get(defensor)).getActualArmor() <= 0) {
+    				pelea.getArmies()[empieza%2][gruDefensor].remove(defensor);
+					defensor = (int) (Math.random()*pelea.getEnemyArmy()[gruDefensor].size());
+					System.out.println("1 enemigo eliminado");
+					eliminado = true;
+				}
+    			if (empieza%2 == 0) {
+    				if (CHANCE_ATTACK_ENEMY_UNITS[gruAtacante]<=atacar) {
+    					((MilitaryUnit) pelea.getArmies()[empieza%2][gruDefensor].get(defensor)).tekeDamage(((MilitaryUnit) pelea.getArmies()[contEmpieza][gruAtacante].get(atacante)).attack());
+	    				System.out.println("Vuelves a pegar");
+	    			}
+	    			else {
+	    				pelear = false;
+	    			}
+    			}
+    			else {
+    				if (CHANCE_ATTACK_PLANET_UNITS[gruAtacante]<=atacar) {
+    					((MilitaryUnit) pelea.getArmies()[empieza%2][gruDefensor].get(defensor)).tekeDamage(((MilitaryUnit) pelea.getArmies()[contEmpieza][gruAtacante].get(atacante)).attack());
+	    				System.out.println("Vuelves a pegar");
+	    			}
+	    			else {
+	    				pelear = false;
+	    			}
+    			}
+	    			
+    			
+    			
+    			}
+    		if (eliminado) {
+    			System.out.println("porcentaje enemigo:");
+        		System.out.println(pelea.remainderPercentageFleet(pelea.getArmies()[1]));
+        		System.out.println("Porcentaje aliado");
+        		System.out.println(pelea.remainderPercentageFleet(pelea.getArmies()[0]));
+        		System.out.println("El enemigo no puede lleger a "+condicionPerdidaEnemy+" y el planeta "+condicionPerdidaPlaneta);
+	    		if (pelea.remainderPercentageFleet(pelea.getArmies()[1])<= condicionPerdidaEnemy | pelea.remainderPercentageFleet(pelea.getArmies()[0])<= condicionPerdidaPlaneta) {
+	    			salir = true;
+	    			System.out.println("Saliendo");
+	    		}
+    		}
+    		empieza += 1;
+    	
     
+    	}
+    }
 }
-

@@ -167,8 +167,8 @@ public class planeta implements Variables{
 	}
 	public planeta() {
 		super();
-		this.metal = 50000;
-		this.deuterium = 25000;
+		this.metal = 500000000;
+		this.deuterium = 250000000;
 		this.technologyDefense = 0;
 		this.technologyAtack = 0;
 		this.upgradeAttackTechnologyDeuteriumCost = UPGRADE_BASE_DEFENSE_TECHNOLOGY_DEUTERIUM_COST;
