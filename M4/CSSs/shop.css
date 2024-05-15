@@ -1,6 +1,5 @@
 :root {
-    --downloadd: white;
-    --downloadd1: #00ffaa;
+    --downloadd: #00ffaa;
   }
   
 body {
@@ -181,7 +180,7 @@ main > h1 {
 }
 
 .precio h2 {
-    padding-right: 35%;
+    padding-right: 25%;
 }
 
 
@@ -210,130 +209,26 @@ main > h1 {
     padding-top: 5%;
 }
 
+/* Purchase button*/
 
-
-
-
-/**Boton de descarga*/
-
-.download-button {
-    margin: 0;
-    width: fit-content;
-    height:auto;
-    width:100px;
-    height:35px;
+.precio a {
+    color: black;
+    font-family: "Freeman",sans-serif;
+    font-weight: 400;
+    font-size: 30px;
+    text-decoration: underline;
+    transition: text-decoration 0.3s ease-in-out;
+    
 }
 
-.download-button a {
-    text-decoration: none;
-    color:#fff;
+#black a {
+    color: white;
+    transition: text-decoration 0.3s ease-in-out;
 }
 
-button{
-    background-color: black;
-    border-style: none;
-    text-transform: uppercase;
-    font-size: 20px;
-    letter-spacing: 3px;
-    font-family: "Road Rage";
-    font-weight: 200px;
-    outline: none;
-    cursor: pointer;
-    position: relative;
-    padding: 0px;
-    overflow: hidden;
-    transition: all .5s;
-    box-shadow: 0px 1px 2px rgba(0,0,0,.2);
-}
-button span{
-    position: absolute;
-    display: block;
-}
-button span:nth-child(1){
-    height: 3px;
-    width:100px;
-    top:0px;
-    left:-100px;
-    background: linear-gradient(to right, rgba(0,0,0,0), var(--downloadd));
-    border-top-right-radius: 1px;
-    border-bottom-right-radius: 1px;
-    animation: span1 2s linear infinite;
-    animation-delay: 1s;
-}
-
-@keyframes span1{
-    0%{
-        left:-100px
-    }
-    100%{
-        left:100px;
-    }
-}
-button span:nth-child(2){
-    height: 35px;
-    width: 3px;
-    top:-35px;
-    right:0px;
-    background: linear-gradient(to bottom, rgba(0,0,0,0),  var(--downloadd));
-    border-bottom-left-radius: 1px;
-    border-bottom-right-radius: 1px;
-    animation: span2 2s linear infinite;
-    animation-delay: 2s;
-}
-@keyframes span2{
-    0%{
-        top:-35px;
-    }
-    100%{
-        top:35px;
-    }
-}
-button span:nth-child(3){
-    height:3px;
-    width:100px;
-    right:-100px;
-    bottom: 0px;
-    background: linear-gradient(to left, rgba(0,0,0,0), var(--downloadd));
-    border-top-left-radius: 1px;
-    border-bottom-left-radius: 1px;
-    animation: span3 2s linear infinite;
-    animation-delay: 3s;
-}
-@keyframes span3{
-    0%{
-        right:-100px;
-    }
-    100%{
-        right: 100px;
-    }
-}
-
-button span:nth-child(4){
-    height:35px;
-    width:3px;
-    bottom:-35px;
-    left:0px;
-    background: linear-gradient(to top, rgba(0,0,0,0), var(--downloadd));
-    border-top-right-radius: 1px;
-    border-top-left-radius: 1px;
-    animation: span4 2s linear infinite;
-    animation-delay: 4s;
-}
-@keyframes span4{
-    0%{
-        bottom: -35px;
-    }
-    100%{
-        bottom:35px;
-    }
-}
-
-button:hover{
-    transition: all .5s;
-    box-shadow: 0px 5px 8px rgba(255, 255, 255, 0.4);
-}
-button:hover span{
-    animation-play-state: paused;
+.precio a:hover {
+    text-decoration: underline overline;
+    text-decoration-color: var(--downloadd);
 }
 
 
