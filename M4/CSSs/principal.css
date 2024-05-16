@@ -209,6 +209,9 @@ header {
     font-family: "Freeman", sans-serif;
 }
 
+.texto-seccion-movile {
+    display: none;
+}
 
 /**Boton de descarga*/
 
@@ -362,11 +365,14 @@ footer p {
 
     .logo {
         width: 50%;
+        margin-left: 20%;
     }
 
     .logo a{
         display: flex;
-        justify-content: center;    }
+        justify-content: center;
+        min-width: 150px;
+        }
     
     .logo img {
         width: 30%;
@@ -388,21 +394,66 @@ footer p {
     .header-links-movile {
         display: block;
         position:relative;
+        margin-left: 7%;
     }
 
     .header-links-movile p {
         color: white;
     }
 
-    .header-links-movile li {
+    .header-links-movile p:active {
+        color: var(--downloadd)
+    }
+    
+    .navlinks.show {
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        top: 6%;
+        bottom: 0; 
+        left: 0; 
+        right: 0; 
+        background-image: url(../Images/cielo_estrellado.png);       
+        box-sizing: border-box;
+    }
+    .navlinks li {
         display: none;
     }
+    .navlinks.show li {
+        display: block;
+        list-style: none;
+    }
+
+    .navlinks.show a {
+        color: white;
+        z-index: 10;
+        position: static;
+        float: left;
+        text-decoration: none;
+        font-size: 35px;
+        text-transform: uppercase;
+        font-family: "Freeman", sans-serif;
+        margin-top: 1em;
+        text-shadow: 5px 2px 5px rgba(255, 255, 255, 0.4) ;
+    }
+    
 
 /*Primera seccion*/
     .main-download {
-        padding: -140px;
         padding-top:10% ;
         padding-bottom: 14%;
+    }
+
+    .main-download.nonedisplay{
+        display: none;
+    }
+
+    .explicacion.nonedisplay{
+        display: none;
+    }
+
+    .secciones.nonedisplay{
+        display: none;
     }
 
     .main-download h1 {
@@ -410,6 +461,7 @@ footer p {
         padding-bottom: 5%;
     }
 
+    /*Parte de explicacion*/
     .explicacion {
         display: flex;
         flex-direction:column;
@@ -443,14 +495,16 @@ footer p {
     .explicacion-texto p {
         font-family: "Yanone Kaffeesatz", sans-serif;
         font-size: 15px;
-        padding-right: 30%;
+        padding-right: 0;
         color: white;
     }
     
     #img-explicacion {
-        width: 120%;
+        width: 30.2em;
         height: 120%;
     }
+
+    /*Secciones*/
 
     .tres-secciones {
         display: flex;
@@ -468,15 +522,30 @@ footer p {
     }
 
     .texto-seccion {
+        display: none;
+    }
+
+    .texto-seccion-movile {
+        display: block;
         position:absolute;
+        writing-mode: vertical-lr;
         text-orientation: upright;
+        font-size: 12px;
+        font-family: "Freeman", sans-serif;
+        color: white;
+        text-transform: uppercase;
+        padding-left: 19em;
+        z-index: 5;
+
     }
 
     .seccion img {
-        width: 70%;
-        height: 70%;
+        width: 14em;
+        height: 13em;
+        z-index: 6;
     }
     .main-download h2 {
         display: none;
     }
 }
+

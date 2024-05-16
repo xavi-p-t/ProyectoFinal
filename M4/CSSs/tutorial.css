@@ -7,12 +7,17 @@ body {
     max-width: 100%;
     display: flex;
     flex-direction: column;
+    background-image: url(../Images/cielo_estrellado.png);
+    background-position:center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
 }
 
 main {
     display: flex;
     flex-direction: column;
-    background-image: url(../Images/cielo_estrellado.png);
+
 }
 
 
@@ -71,173 +76,6 @@ header {
     display: none;
 }
 
- 
-/*Main*/
-.shop {
-    display: flex;
-    justify-content: space-evenly;
-    padding: 10%;
-    padding-top: 5%;
-}
-.articulo {
-    border: 1px solid black;
-    width: 300px;
-    background-color: white;
-    border-radius: 10%;
-    box-shadow: 5px 2px 5px rgba(255, 255, 255, 0.4) ;
-}
-
-
-
-.articulotexto h1 {
-    color: black;
-    text-transform: uppercase;
-    font-family: "Freeman", sans-serif;
-    margin: 0;
-    padding: 2%;
-    text-align: center;
-    text-shadow: 3px 1px 3px rgba(0, 0, 0, 0.4) ;
-}
-
-.articulotexto h2 {
-    color: black;
-    text-transform: uppercase;
-    font-family: "Freeman", sans-serif;
-    margin: 0;
-    padding: 2%;
-    padding-left: 4%;
-    text-shadow: 2px 1px 2px rgba(0, 0, 0, 0.4) ;
-
-}
-
-main > h1 {
-    color: white;
-    font-size: 60px;
-    text-transform: uppercase;
-    font-family: "Freeman", sans-serif;
-    margin: 0;
-    padding-top: 5% ;
-    text-align: center;
-    text-shadow: 4px 2px 3px rgba(255, 255, 255, 0.4) ;
-}
-
-.articulo {
-    margin-bottom: 3em;
-}
-
-.articuloimg {
-    border-bottom: 1px solid white;
-}
-
-.articulo img {
-    width: 290px;
-}
-
-.articuloimg {
-    position: relative;
-    width: 290px;
-  }
-  
-.hoverr {
-    position: absolute;
-    top: 0;
-    left: 0;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-  }
-  
-.articuloimg:hover .hoverr {
-    opacity: 1;
-  }
-
-.articuloimg:hover .nohoverr {
-    transition: opacity 0.3s ease;
-    opacity: 0;
-}
-
-#black {
-    background-color: black;
-}
-
-#black h1 {
-    color: white;
-    text-shadow: 2px 1px 2px rgba(255, 255, 255, 0.4) ;
-}
-
-#black h2 {
-    color: white;
-    text-shadow: 2px 1px 2px rgba(255, 255, 255, 0.4) ;
-}
-
-.precio {
-    display: flex;
-}
-
-#black button {
-    background-color: white;
-}
-
-#black a {
-    color: black;
-}
-
-#black span {
-    background-color: rgb(116, 116, 116);
-}
-
-.precio h2 {
-    padding-right: 25%;
-}
-
-
-.future-shop {
-    display: flex;
-    flex-direction: column;
-}
-
-
-.future-shop  > h1 {
-    color: white;
-    font-size: 60px;
-    text-transform: uppercase;
-    font-family: "Freeman", sans-serif;
-    margin: 0;
-    padding-top: 5% ;
-    text-align: center;
-    text-shadow: 4px 2px 3px rgba(255, 255, 255, 0.4) ;
-}
-
-.future-articles {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    padding: 10%;
-    padding-top: 5%;
-}
-
-/* Purchase button*/
-
-.precio a {
-    color: black;
-    font-family: "Freeman",sans-serif;
-    font-weight: 400;
-    font-size: 30px;
-    text-decoration: underline;
-    transition: text-decoration 0.3s ease-in-out;
-    
-}
-
-#black a {
-    color: white;
-    transition: text-decoration 0.3s ease-in-out;
-}
-
-.precio a:hover {
-    text-decoration: underline overline;
-    text-decoration-color: var(--downloadd);
-}
-
-
 /*Footer*/
 
 footer {
@@ -256,14 +94,121 @@ footer p {
     font-style: normal;
     text-shadow: 5px 2px 5px rgba(255, 255, 255, 0.4) ;
 }
-
-.shop.nonedisplay {
-    display: none;
+/*Seccion welcome*/
+.welcome {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 7%;
+    padding-top:10% ;
+    padding-bottom: 14%;
 }
 
-.future-shop.nonedisplay{
-    display: none;
+.welcome h1 {
+    color: white;
+    font-size: 150px;
+    margin: 0;
+    text-transform: uppercase;
+    font-family: "Freeman", sans-serif;
+    font-weight: 800;
+    font-style: normal;
+    text-shadow: 5px 2px 5px rgba(255, 255, 255, 0.4) ;
+    text-align: center;
+    
 }
+
+/*seccion gamemechanics*/
+
+.gamemechanics {
+    color: white;
+    background-color: black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    text-transform: uppercase;
+    padding: 3em;
+    padding-top: 5em;
+    padding-bottom: 12em;
+}
+
+.secciones {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.seccion {
+    border: 1px solid white;
+    width: 20em;
+    height: 20em;
+    padding-top: 0;
+    color: black;
+    background-color: white;
+    border-radius: 10%;
+    box-shadow: 5px 2px 5px rgba(255, 255, 255, 0.4) ;
+}
+/*seccion objective*/
+
+.objective {
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    text-transform: uppercase;
+    padding: 3em;
+    padding-top: 5em;
+    padding-bottom: 12em;
+}
+
+/*Seccion menu*/
+
+.opcmenu {
+    color: white;
+    background-color: black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    text-transform: uppercase;
+    padding: 3em;
+    padding-top: 5em;
+    padding-bottom: 12em;
+}
+
+/*seccion tips*/
+
+.tips {
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    text-transform: uppercase;
+    padding: 3em;
+    padding-top: 5em;
+    padding-bottom: 12em;
+} 
+
+
+/*Seccion FAQ*/
+
+.FAQ {
+    color: white;
+    background-color: black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    text-transform: uppercase;
+    padding: 3em;
+    padding-top: 5em;
+    padding-bottom: 12em;
+}
+
+
+
 
 @media screen and (max-width: 768px) {
     /*Header*/
@@ -344,28 +289,5 @@ footer p {
         font-family: "Freeman", sans-serif;
         margin-top: 1em;
         text-shadow: 5px 2px 5px rgba(255, 255, 255, 0.4) ;
-    }
-    
-    /*Shop part*/
-
-    .shop {
-        display: flex;
-        flex-direction: column;
-        padding: 10%;
-        padding-top: 5%;
-        align-items: center;
-    }
-
-    /*future shop*/
-    .future-articles {
-        display: flex;
-        flex-direction: column;
-        padding: 10%;
-        padding-top: 5%; 
-        align-items: center;
-    }
-
-    main > h1 {
-        font-size: 50px;
     }
 }
