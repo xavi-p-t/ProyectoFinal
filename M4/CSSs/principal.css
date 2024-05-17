@@ -180,6 +180,7 @@ header {
 }
 
 .seccion img {
+    width: 20em;
     border-radius: 10%;
     transition: transform 0.3s ease;
 }
@@ -402,7 +403,7 @@ footer p {
     }
 
     .header-links-movile p:active {
-        color: var(--downloadd)
+        color: var(--downloadd);
     }
     
     .navlinks.show {
