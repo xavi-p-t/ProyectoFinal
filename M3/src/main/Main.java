@@ -58,31 +58,24 @@ class juego implements Variables{
     //juego principal
     juego(){
     	startGame();
-    	
     	try {
-			miPlaneta.newBattleShip(5);
-			miPlaneta.newArmoredShip(2);
-			miPlaneta.newHeavyHunter(4);
-			miPlaneta.newIonCannon(1);
 			miPlaneta.newLigthHunter(10);
-			miPlaneta.newMissileLauncher(5);
-			miPlaneta.newPlasmaCannon(1);
 		} catch (ResourceException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		}
-    	
     	createEnemyArmy();
     	pelea.setPlanetArmy(miPlaneta.getArmy().clone());
         pelea.fleetResourceCost(miPlaneta.getArmy());
         pelea.fleetResourceCost(enemyArmie);
         pelea.initialFleetNumber(miPlaneta.getArmy());
         pelea.initialFleetNumber(enemyArmie);
+        pelea.initInitialArmies();
         pelea.setArmies();
-    	lucha();
-    	
-    	timer.schedule(task1, 180000,180000);
-		timer.schedule(task2, 240000,240000);
+        lucha();
+        System.out.println("a");
+        pelea.updateResourcesLooses();
+    	timer.schedule(task1, 120000,180000);
+		timer.schedule(task2, 180000,180000);
 		
     	while(flag_0) {
     		while (flag_00) {
@@ -131,12 +124,15 @@ class juego implements Variables{
                 ataque = false;
                 menuMostr = menuPrinc;
                 System.out.println("\n\nWE HAVE BEEN ATTACKED!!!\n\n");
-                pelea.setPlanetArmy(miPlaneta.getArmy().clone());
-                pelea.initInitialArmies();
+                
+            	pelea.setPlanetArmy(miPlaneta.getArmy().clone());
                 pelea.fleetResourceCost(miPlaneta.getArmy());
                 pelea.fleetResourceCost(enemyArmie);
                 pelea.initialFleetNumber(miPlaneta.getArmy());
                 pelea.initialFleetNumber(enemyArmie);
+                pelea.initInitialArmies();
+                pelea.setArmies();
+            	lucha();
                 if (flag_00) {
                 	System.out.println(menuMostr);
                 }
@@ -474,8 +470,8 @@ class juego implements Variables{
     }
     //pelearse
     private void lucha() {
-    	int condicionPerdidaPlaneta = (int) (pelea.getInitialNumberUnitsPlanet()*0.2*10);
-    	int condicionPerdidaEnemy = (int) (pelea.getInitialNumberUnitsEnemy()*0.2*10);
+//    	int condicionPerdidaPlaneta = (int) (pelea.getInitialNumberUnitsPlanet()*20/100);
+//    	int condicionPerdidaEnemy = (int) (pelea.getInitialNumberUnitsEnemy()*20/100);
     	boolean salir = false;
     	int gruAtacante = 0;
     	int gruDefensor = 0;
@@ -504,23 +500,37 @@ class juego implements Variables{
     		gruDefensor = pelea.getGroupDefender(pelea.getArmies()[empieza%2]);
     		System.out.println("Grupo defensor"+ gruDefensor);
     		//seleccionamos quien es el tacante del grupo y quien se defiende
+    		
     		atacante = (int) (Math.random()*pelea.getArmies()[contEmpieza][gruAtacante].size());
+    		//System.out.println("Ataca : "+pelea.getArmies()[contEmpieza][gruAtacante].get(atacante));
     		defensor = (int) (Math.random()*pelea.getArmies()[empieza%2][gruDefensor].size());
-    		
-    		
 			System.out.println("llega a pegarle");
+			System.out.println("atacante,grupo atacante = "+atacante+"- "+gruAtacante);
+			System.out.println("defensor,grupo grupo defensor = "+defensor+"- "+gruDefensor);
 			//pillamos el enemy armie en la posicion defensor, luego tenemos que hacer el .get, luego take damage
     		// y por ultimo lo mismo con planeta pero usamos la funcion attak
 			System.out.println(pelea.getArmies()[empieza%2][gruDefensor].get(defensor));
 			((MilitaryUnit) pelea.getArmies()[empieza%2][gruDefensor].get(defensor)).tekeDamage(((MilitaryUnit) pelea.getArmies()[contEmpieza][gruAtacante].get(atacante)).attack());
     		while (pelear) {
-    			
     			//paExcep = true;
-    			//System.out.println("entra en el while de pelea");
+    			System.out.println("entra en el while de pelea");
     			atacar = (int) (Math.random()*100);
     			if (((MilitaryUnit) pelea.getArmies()[empieza%2][gruDefensor].get(defensor)).getActualArmor() <= 0) {
     				pelea.getArmies()[empieza%2][gruDefensor].remove(defensor);
-					defensor = (int) (Math.random()*pelea.getEnemyArmy()[gruDefensor].size());
+    				
+    				if (pelea.getArmies()[empieza%2][gruDefensor].isEmpty()) {
+    					if (pelea.remainderPercentageFleet(pelea.getArmies()[1])<= 20 | pelea.remainderPercentageFleet(pelea.getArmies()[0])<= 20) {
+    		    			salir = true;
+    		    			pelear = false;
+    		    			break;
+    		    			//System.out.println("Saliendo");
+    		    		}
+    					
+    					
+    					gruDefensor = pelea.getGroupDefender(pelea.getArmies()[empieza%2]);
+    					System.out.println("Aqui no");
+    				}
+					defensor = (int) (Math.random()*pelea.getArmies()[empieza%2][gruDefensor].size());				
 					System.out.println("1 enemigo eliminado");
 					eliminado = true;
 				}
@@ -542,24 +552,20 @@ class juego implements Variables{
 	    				pelear = false;
 	    			}
     			}
-	    			
-    			
-    			
-    			}
+			}
     		if (eliminado) {
     			System.out.println("porcentaje enemigo:");
         		System.out.println(pelea.remainderPercentageFleet(pelea.getArmies()[1]));
         		System.out.println("Porcentaje aliado");
         		System.out.println(pelea.remainderPercentageFleet(pelea.getArmies()[0]));
-        		System.out.println("El enemigo no puede lleger a "+condicionPerdidaEnemy+" y el planeta "+condicionPerdidaPlaneta);
-	    		if (pelea.remainderPercentageFleet(pelea.getArmies()[1])<= condicionPerdidaEnemy | pelea.remainderPercentageFleet(pelea.getArmies()[0])<= condicionPerdidaPlaneta) {
+        		System.out.println("El enemigo no puede lleger a "+20+" y el planeta "+20);
+	    		if (pelea.remainderPercentageFleet(pelea.getArmies()[1])<= 20 | pelea.remainderPercentageFleet(pelea.getArmies()[0])<= 20) {
 	    			salir = true;
 	    			System.out.println("Saliendo");
 	    		}
     		}
     		empieza += 1;
-    	
-    
     	}
+    	
     }
 }
