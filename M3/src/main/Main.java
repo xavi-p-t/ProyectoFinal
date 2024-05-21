@@ -45,12 +45,15 @@ class juego implements Variables{
     private String buildDefenses = "Menu Build Defenses\n\n1)Build Missile Launcher\n2)Build Ion Cannon\n3)Build Plasma Cannon\n4)Go Back\nOption:";
     private String building = "Amount of Units\nAmount:";
     private String levelUp = "";
+    private String report = "Battle Reports\nThere is not reports to read\nPress enter to go back";
     
     private int num = 0;
     private int enemyMetal = METAL_BASE_ENEMY_ARMY;
     private int enemyDeut = DEUTERIUM_BASE_ENEMY_ARMY;
     private int enemyLevel = 0;
     private ArrayList<MilitaryUnit>[] enemyArmie = new ArrayList[4];
+    private ArrayList reportes = new ArrayList();
+    private ArrayList peleas = new ArrayList();
     
     planeta miPlaneta = new planeta();
     Battle pelea = new Battle();
@@ -72,8 +75,8 @@ class juego implements Variables{
         pelea.initInitialArmies();
         pelea.setArmies();
         lucha();
-        System.out.println("a");
-        pelea.updateResourcesLooses();
+//        System.out.println("a");
+//        pelea.updateResourcesLooses();
     	timer.schedule(task1, 120000,180000);
 		timer.schedule(task2, 180000,180000);
 		
@@ -94,10 +97,7 @@ class juego implements Variables{
     			menuNivel();
     		}
     		while (flag_04) {
-    			pelea.updateResourcesLooses();
-    			System.out.println("En construccion");	
-    			flag_04 = false;
-    			flag_00 = true;
+    			menuReporte();
     		}
     		
     	}
@@ -383,6 +383,56 @@ class juego implements Variables{
 			System.out.println("Invalid Option");
 		}
 	}
+    //menu 04
+    private void menuReporte() {
+    	boolean salir = false;
+    	String verPelea;
+    	if (reportes.size() == 0) {
+    		System.out.println(report);
+    		
+    	}
+    	else {
+    		if (reportes.size() > 5) {
+				reportes.remove(0);
+				peleas.remove(0);
+    		}
+    		if (reportes.size() == 1) {
+    			report = "Battle Reports\nSelect Report Read (0 go back): (1)";
+    		}
+    		else {
+    			report = "Battle Reports\nSelect Report Read (0 go back): (1-"+reportes.size()+")\nOption >";
+    		}
+			
+    	}
+    	while (!salir) {
+    		System.out.println(report);
+	    	while (!opc.hasNextInt()) {
+				System.out.println("Invalid Option");
+				opc.nextLine();
+			}
+			num = opc.nextInt();
+			if (num == 0) {
+				salir = true;
+				flag_04 = false;
+				flag_00 = true;
+			}
+			else if (num > 0 & num < reportes.size()) {
+				System.out.println(reportes.get(num-1));
+				System.out.println("\n\n"+"#".repeat(70)+"\n\nView Battle development? (S/N)\n");
+				while (!opc.hasNext()) {
+					System.out.println("Invalid Option");
+					opc.nextLine();
+				}
+				verPelea = opc.next();
+				if (verPelea.equals("s") | verPelea.equals("S")) {
+					peleas.get(num-1);
+				}
+			}
+			else {
+				System.out.println("Invalid Option");
+			}
+    	}
+    }
     //generar enemigos
     private void createEnemyArmy() {
     	ArrayList enemyProb = new ArrayList();
@@ -482,40 +532,53 @@ class juego implements Variables{
     	int empieza = (int) (Math.random()*2+1);
     	int contEmpieza = 0;
 		boolean eliminado = false;
-    	
+    	String mensaje = "";
     	while(!salir) {
+    		mensaje += "\n"+"*".repeat(20)+"CHANGE ATTACKER"+"*".repeat(20)+"\n";
     		pelear = true;
     		eliminado = false;
     		if (empieza%2 == 0) {
     			gruAtacante = pelea.getEnemyGroupAttacker();
     			contEmpieza = 1;
+    			mensaje += "Attacks fleet enemy: ";
     		}
     		else {
     			gruAtacante = pelea.getPlanetGroupAttacker();
     			contEmpieza = 0;
+    			mensaje += "Attacks Planet: ";
     		}
-    		System.out.println(contEmpieza);
-    		System.out.println(empieza%2);
-    		System.out.println("Grupo atacante"+gruAtacante);
+//    		System.out.println(contEmpieza);
+//    		System.out.println(empieza%2);
+//    		System.out.println("Grupo atacante"+gruAtacante);
     		gruDefensor = pelea.getGroupDefender(pelea.getArmies()[empieza%2]);
-    		System.out.println("Grupo defensor"+ gruDefensor);
+//    		System.out.println("Grupo defensor"+ gruDefensor);
     		//seleccionamos quien es el tacante del grupo y quien se defiende
     		
     		atacante = (int) (Math.random()*pelea.getArmies()[contEmpieza][gruAtacante].size());
+    		//para ver al atacante
+    		mensaje += pelea.getArmies()[contEmpieza][gruAtacante].get(atacante).getClass().getName().substring(pelea.getArmies()[contEmpieza][gruAtacante].get(atacante).getClass().getName().lastIndexOf(".")+1)+" attacks ";
     		//System.out.println("Ataca : "+pelea.getArmies()[contEmpieza][gruAtacante].get(atacante));
     		defensor = (int) (Math.random()*pelea.getArmies()[empieza%2][gruDefensor].size());
-			System.out.println("llega a pegarle");
-			System.out.println("atacante,grupo atacante = "+atacante+"- "+gruAtacante);
-			System.out.println("defensor,grupo grupo defensor = "+defensor+"- "+gruDefensor);
+    		//mas el defensor
+    		mensaje += pelea.getArmies()[contEmpieza][gruAtacante].get(atacante).getClass().getName().substring(pelea.getArmies()[contEmpieza][gruAtacante].get(atacante).getClass().getName().lastIndexOf(".")+1)+"\n";
+    		
+    		//			System.out.println("llega a pegarle");
+//			System.out.println("atacante,grupo atacante = "+atacante+"- "+gruAtacante);
+//			System.out.println("defensor,grupo grupo defensor = "+defensor+"- "+gruDefensor);
 			//pillamos el enemy armie en la posicion defensor, luego tenemos que hacer el .get, luego take damage
     		// y por ultimo lo mismo con planeta pero usamos la funcion attak
-			System.out.println(pelea.getArmies()[empieza%2][gruDefensor].get(defensor));
+//			System.out.println(pelea.getArmies()[empieza%2][gruDefensor].get(defensor));
 			((MilitaryUnit) pelea.getArmies()[empieza%2][gruDefensor].get(defensor)).tekeDamage(((MilitaryUnit) pelea.getArmies()[contEmpieza][gruAtacante].get(atacante)).attack());
     		while (pelear) {
+    			mensaje += pelea.getArmies()[contEmpieza][gruAtacante].get(atacante).getClass().getName().substring(pelea.getArmies()[contEmpieza][gruAtacante].get(atacante).getClass().getName().lastIndexOf(".")+1)+" generates the damage = "+
+    					((MilitaryUnit) pelea.getArmies()[contEmpieza][gruAtacante].get(atacante)).attack()+"\n"+
+    					pelea.getArmies()[contEmpieza][gruAtacante].get(atacante).getClass().getName().substring(pelea.getArmies()[contEmpieza][gruAtacante].get(atacante).getClass().getName().lastIndexOf(".")+1)+" stays with armor = "+
+    					((MilitaryUnit) pelea.getArmies()[empieza%2][gruDefensor].get(defensor)).getActualArmor()+"\n";
     			//paExcep = true;
-    			System.out.println("entra en el while de pelea");
+//    			System.out.println("entra en el while de pelea");
     			atacar = (int) (Math.random()*100);
     			if (((MilitaryUnit) pelea.getArmies()[empieza%2][gruDefensor].get(defensor)).getActualArmor() <= 0) {
+    				mensaje += "We eliminate "+pelea.getArmies()[contEmpieza][gruAtacante].get(atacante).getClass().getName().substring(pelea.getArmies()[contEmpieza][gruAtacante].get(atacante).getClass().getName().lastIndexOf(".")+1)+"\n";
     				pelea.getArmies()[empieza%2][gruDefensor].remove(defensor);
     				
     				if (pelea.getArmies()[empieza%2][gruDefensor].isEmpty()) {
@@ -528,16 +591,16 @@ class juego implements Variables{
     					
     					
     					gruDefensor = pelea.getGroupDefender(pelea.getArmies()[empieza%2]);
-    					System.out.println("Aqui no");
+//    					System.out.println("Aqui no");
     				}
 					defensor = (int) (Math.random()*pelea.getArmies()[empieza%2][gruDefensor].size());				
-					System.out.println("1 enemigo eliminado");
+//					System.out.println("1 enemigo eliminado");
 					eliminado = true;
 				}
     			if (empieza%2 == 0) {
     				if (CHANCE_ATTACK_ENEMY_UNITS[gruAtacante]<=atacar) {
     					((MilitaryUnit) pelea.getArmies()[empieza%2][gruDefensor].get(defensor)).tekeDamage(((MilitaryUnit) pelea.getArmies()[contEmpieza][gruAtacante].get(atacante)).attack());
-	    				System.out.println("Vuelves a pegar");
+//	    				System.out.println("Vuelves a pegar");
 	    			}
 	    			else {
 	    				pelear = false;
@@ -546,7 +609,7 @@ class juego implements Variables{
     			else {
     				if (CHANCE_ATTACK_PLANET_UNITS[gruAtacante]<=atacar) {
     					((MilitaryUnit) pelea.getArmies()[empieza%2][gruDefensor].get(defensor)).tekeDamage(((MilitaryUnit) pelea.getArmies()[contEmpieza][gruAtacante].get(atacante)).attack());
-	    				System.out.println("Vuelves a pegar");
+//	    				System.out.println("Vuelves a pegar");
 	    			}
 	    			else {
 	    				pelear = false;
@@ -554,18 +617,30 @@ class juego implements Variables{
     			}
 			}
     		if (eliminado) {
-    			System.out.println("porcentaje enemigo:");
-        		System.out.println(pelea.remainderPercentageFleet(pelea.getArmies()[1]));
-        		System.out.println("Porcentaje aliado");
-        		System.out.println(pelea.remainderPercentageFleet(pelea.getArmies()[0]));
-        		System.out.println("El enemigo no puede lleger a "+20+" y el planeta "+20);
+//    			System.out.println("porcentaje enemigo:");
+//        		System.out.println(pelea.remainderPercentageFleet(pelea.getArmies()[1]));
+//        		System.out.println("Porcentaje aliado");
+//        		System.out.println(pelea.remainderPercentageFleet(pelea.getArmies()[0]));
+//        		System.out.println("El enemigo no puede lleger a "+20+" y el planeta "+20);
 	    		if (pelea.remainderPercentageFleet(pelea.getArmies()[1])<= 20 | pelea.remainderPercentageFleet(pelea.getArmies()[0])<= 20) {
 	    			salir = true;
-	    			System.out.println("Saliendo");
+	    			//System.out.println("Saliendo");
 	    		}
     		}
     		empieza += 1;
     	}
-    	
+    //System.out.println(mensaje);
+    pelea.resto();
+    if (pelea.getResourcesLooses()[0][2]>pelea.getResourcesLooses()[1][2]) {
+    	pelea.generateWaste();
+    	miPlaneta.setMetal(miPlaneta.getMetal()+pelea.getWasteMetalDeuterium()[0]);
+    	miPlaneta.setDeuterium(miPlaneta.getDeuterium()+pelea.getWasteMetalDeuterium()[1]);
+    }
+    else {
+    	pelea.generateWaste();
+    }
+    pelea.updateResourcesLooses();
+    peleas.add(mensaje);
+    reportes.add(pelea.getBattleDevelopment());
     }
 }
