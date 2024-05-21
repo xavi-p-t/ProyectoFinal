@@ -66,15 +66,15 @@ class juego implements Variables{
 		} catch (ResourceException e) {
 			System.out.println(e.getMessage());
 		}
-    	createEnemyArmy();
-    	pelea.setPlanetArmy(miPlaneta.getArmy().clone());
-        pelea.fleetResourceCost(miPlaneta.getArmy());
-        pelea.fleetResourceCost(enemyArmie);
-        pelea.initialFleetNumber(miPlaneta.getArmy());
-        pelea.initialFleetNumber(enemyArmie);
-        pelea.initInitialArmies();
-        pelea.setArmies();
-        lucha();
+//    	createEnemyArmy();
+//    	pelea.setPlanetArmy(miPlaneta.getArmy().clone());
+//        pelea.fleetResourceCost(miPlaneta.getArmy());
+//        pelea.fleetResourceCost(enemyArmie);
+//        pelea.initialFleetNumber(miPlaneta.getArmy());
+//        pelea.initialFleetNumber(enemyArmie);
+//        pelea.initInitialArmies();
+//        pelea.setArmies();
+//        lucha();
 //        System.out.println("a");
 //        pelea.updateResourcesLooses();
     	timer.schedule(task1, 120000,180000);
@@ -388,7 +388,7 @@ class juego implements Variables{
     	boolean salir = false;
     	String verPelea;
     	if (reportes.size() == 0) {
-    		System.out.println(report);
+    		report = "Battle Reports\nThere is not reports to read\nPress enter to go back";
     		
     	}
     	else {
@@ -416,16 +416,17 @@ class juego implements Variables{
 				flag_04 = false;
 				flag_00 = true;
 			}
-			else if (num > 0 & num < reportes.size()) {
+			else if (num > 0 & num <= reportes.size()) {
 				System.out.println(reportes.get(num-1));
-				System.out.println("\n\n"+"#".repeat(70)+"\n\nView Battle development? (S/N)\n");
+				System.out.println("\n\n"+"#".repeat(70)+"\n\nView Battle development? (S/N)");
 				while (!opc.hasNext()) {
 					System.out.println("Invalid Option");
 					opc.nextLine();
 				}
 				verPelea = opc.next();
 				if (verPelea.equals("s") | verPelea.equals("S")) {
-					peleas.get(num-1);
+					System.out.println(peleas.get(num-1));
+					
 				}
 			}
 			else {
