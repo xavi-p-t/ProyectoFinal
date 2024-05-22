@@ -1,31 +1,9 @@
-:root {
-    --purpura: #2E294E;
-    --azul1: #1679e3;
-    --azul2: #034c96;
-    --plata: #B0C4DE;
-    --plata2: #8f9cad;
-    --blanco: #d5dfe7;
-    --downloadd: #00ffaa;
-  }
-  
+/* Background general */
 body {
     margin: 0;
-    max-width: 100%;
-}
-
-main {
-    display: flex;
-    flex-direction: column;
-}
-
-/*Separador*/
-#linea {
-    border-top: 1px solid black;
-    height: 2px;
-    max-width: 100%;
     padding: 0;
-    margin: 20px auto 0 auto;
-  }
+    background-image:url(../Images/cielo_estrellado.png);
+}   
 
 /*Header*/
 header {
@@ -35,6 +13,8 @@ header {
     display: flex;
     align-items: center;
     position: sticky;
+    margin:0;
+    border-bottom: 1px solid white;
 }
 
 .logo {
@@ -47,7 +27,7 @@ header {
 }
 
 .header-links {
-    width: 30%;
+    width: 34%;
 }
 
 .header-links ul, .header-links a {
@@ -55,17 +35,11 @@ header {
     text-decoration: none;
     color: white;
     list-style: none;
-    color: white;
     text-transform: uppercase;
     font-family: "Freeman", sans-serif;
     font-weight: 400;
     font-style: normal;
     text-shadow: 5px 2px 5px rgba(255, 255, 255, 0.4) ;
-}
-
-.header-links a {
-    padding-right: 10%;
-
 }
 
 .header-links ul {
@@ -75,9 +49,359 @@ header {
 
 .header-links li {
     transition: text-decoration 0.3s ease-in-out;
+    padding-right: 10%;
 }
 
 .header-links li:hover {
     text-decoration: underline overline;
-    text-decoration-color: var(--azul1);
+    text-decoration-color: var(--downloadd);
+}
+
+.header-links-movile {
+    display: none;
+}
+
+/* TITULO MEET THE TEAM */
+.title {
+    text-align: center;
+    color: white;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+h1 {
+    font-family: "Freeman", sans-serif;
+    font-size: 100px;
+    text-shadow: 5px 2px 5px rgba(255, 255, 255, 0.4) ;
+    animation: newanim 2s ease infinite;
+    
+}
+
+/* #########################################################################*/
+
+/* Ajustes de la caja de los trabajadores*/
+.all_workers {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly   ; 
+    background-color: transparent; 
+    padding: 20px; 
+}
+
+/* Ajustes del cada apartado de los trabajadores*/
+.worker {
+width: 20%;
+border-radius: 15px;
+text-align: center;
+padding: 10px;
+box-sizing: border-box;
+box-shadow: 3px 6px 7px rgba(255, 255, 255, 0.3);
+background-color: black;
+margin-bottom: 50px;
+margin-right: 20px;
+}
+
+
+.worker:hover .press {
+display: flex;
+justify-content: center;
+align-items: center;
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+background-color: transparent;
+z-index: 2;
+}
+
+.worker:hover .press button {
+font-family: "Road Rage", sans-serif;
+display: block;
+background-color: #1679e3;
+color: white;
+z-index: 2; 
+font-size: 30px;
+}
+
+.worker img {
+position: relative;
+border-radius: 50%;
+border: 2px solid black;
+width: 50%;
+height: 50%;
+z-index: 0;
+}
+
+.worker {
+position: relative;
+}
+
+.worker::before {
+content: "";
+position: absolute;
+border-radius: 15px;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background-color: rgba(255, 255, 255, 0.3); /* Negro semi-transparente */
+opacity: 0;
+transition: opacity 0.1s;
+z-index: 1;
+}
+
+.worker:hover::before {
+opacity: 1;
+}
+
+/* Nombre de los trabajadores*/
+.worker h2 {
+font-family: "Road Rage", sans-serif;
+font-size: 36px;
+margin-bottom: 10px;
+color: #B0C4DE;
+}
+
+/* Descripcion de los trabajadores*/
+.worker p {
+font-family: "Poetsen One", sans-serif;
+font-size: 16px;
+color: white;
+}
+/*#############################################################*/
+
+
+/* Estilo del boton*/
+.press button {
+font-family: "Road Rage", sans-serif;
+display: none;
+border: 2px solid #a3f3f3;
+border-radius: 15px;
+color: white;
+padding: 10px 20px;
+animation: wiggle 0.4s ease-in-out;
+cursor: pointer;
+transition: 0.1s;
+}
+
+/* Boton al pasar el cursor */
+
+.press button:hover {
+color: black;
+box-shadow: inset 400px 50px 0 0 rgb(16, 20, 255);
+display: block;
+-webkit-transition: ease-out 0.4s;
+transition: ease-out 1s;
+}
+
+@keyframes wiggle {
+0%,
+100% {
+transform: translate(0,0);
+}
+25%,
+75% {
+transform: translate(10px,0);
+}
+50% {
+transform: translate(-10px,0);
+}
+}
+
+/*#############################################################*/
+
+.press {
+position: relative;
+z-index: 1;
+}
+
+/*#############################################################################################*/
+/* Propiedades worker 1, 2 y 3 */
+.worker1,
+.worker2,
+.worker3 {
+    margin-left: 5%;
+    max-width: 90%;
+    margin-bottom: 5%;
+    font-family: "Freeman", sans-serif;
+    display: none;
+    background-color: rgba(32, 32, 32, 0.7);
+    color: white;
+    width: 100%; /* Ajustar el ancho */
+    height: 100%;
+    padding: 20px; /* Añadir relleno */
+    box-sizing: border-box; /* Incluir relleno en el ancho total */
+    border: 10px solid;
+    border-image:  radial-gradient(circle, white, #2E294E) 2;
+    animation: presentacion 3s ;
+}
+
+/* Propiedades imagenes de perfil */
+.worker1 .secc1 img,
+.worker2 .secc1 img,
+.worker3 .secc1 img {
+    flex: 0 0 25%;
+    border-radius: 50%;
+    border: 2px solid black;
+    width: 25%; /* Ajustar el ancho */
+    height: 25%; /* Ajustar la altura */
+    z-index: 0;
+    align-items: center;
+    margin-left: 10%;
+}
+
+/* Propiedades de los nombres */
+.worker1 .secc1 h2,
+.worker2 .secc1 h2,
+.worker3 .secc1 h2 {
+    font-size: 100px; 
+    flex: 0 0 60%; 
+    text-align: center; 
+}
+
+/* Propiedades de las descripciones */
+.worker1 .secc2 p,
+.worker2 .secc2 p,
+.worker3 .secc2 p {
+    top: 10%;
+    margin: 20px;
+    font-size: 40px;
+
+}
+
+/* Distribución de img y p en secc1 */
+.worker1 .secc1,
+.worker2 .secc1,
+.worker3 .secc1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+/* BOTONES DE RETORNO */
+.volver button {
+    font-family: "Freeman", sans-serif;
+    top: 0%;
+    position: relative;
+    color: white;
+    cursor: pointer;
+    background-color: transparent;
+    margin-left: 95%;
+    border: 0;
+    font-size: 40px;
+}
+
+/* Animaciones para ocultar y mostrar elementos */
+@keyframes compress {
+    0% { transform: scale(1); opacity: 1; }
+    100% { transform: scale(0); opacity: 0; }
+}
+
+@keyframes expand {
+    0% { transform: scale(0); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+/* Clase para ocultar */
+.compress {
+    animation: compress 0.5s forwards;
+}
+
+/* Clase para mostrar */
+.expand {
+animation: expand 0.5s forwards;
+}
+
+/* Ocultar elementos*/
+.hide {
+display: none;
+}
+
+/* Mostrar elementos */
+.show {
+display: block;
+}
+/*###################################################################################*/
+
+footer {
+    background-color: black;
+    text-align: center;
+    justify-content: center;
+    border-top: 1px solid white;
+}
+
+footer p {
+    padding: 1%;
+    margin: 0;
+    color: white;
+    text-transform: uppercase;
+    font-family: "Freeman", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    text-shadow: 5px 2px 5px rgba(255, 255, 255, 0.4) ;
+}
+
+
+/*############################################################################ */
+
+/* Pantalla de movil */
+@media screen and (max-width: 768px) {
+.all_workers {
+    display: block;
+    justify-content: center;
+}
+
+.worker {
+    width: 100%;
+}
+
+.worker1,
+.worker2,
+.worker3 {
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+}
+
+.volver button {
+    font-family: "Freeman", sans-serif;
+    top: 0%;
+    margin-left: 80%;
+    border: 0;
+    font-size: 40px;
+}
+
+.worker1 .secc1,
+.worker2 .secc1,
+.worker3 .secc1 {
+    display: block;
+    align-items: center;
+}
+
+.worker1 .secc1 img,
+.worker2 .secc1 img,
+.worker3 .secc1 img {
+    width: 100%;
+    margin: 0;
+}
+
+.worker1 .secc1 h2,
+.worker2 .secc1 h2,
+.worker3 .secc1 h2 {
+    margin: 2px;
+    font-size: 60px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.worker1 .secc2 p,
+.worker2 .secc2 p,
+.worker3 .secc2 p {
+    font-size: 28px;
+    margin-bottom: 5%;
+    margin: 5px;
+}
+
+
 }

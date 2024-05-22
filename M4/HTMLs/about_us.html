@@ -8,139 +8,104 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Road+Rage&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poetsen+One&family=Road+Rage&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Freeman&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Freeman&family=Road+Rage&family=Yanone+Kaffeesatz:wght@200..700&display=swap" rel="stylesheet">
+    <link rel="icon" href="../Images/logo.png" type="image/x-icon">
     <title>About Us</title>
 </head>
 <body>
     <header>
+        <div class="logo">
+            <a href="principal.html"><img src="../Images/logo.png" alt="logo"></a>
+        </div>
         <div class="header-links">
             <ul>
-                <li><a href="principal.html">Principal</a></li>
+                <li><a href="principal.html">Home</a></li>
                 <li><a href="tutorial.html">Tutorial</a></li>
+                <li><a href="shop.html">Merchandesing</a></li>
+                <li><a href="about_us.html">About Us</a></li>
+            </ul>
+        </div>
+        <div class="header-links-movile">
+            <p>&#9776;</p>
+            <ul class="navlinks">
+                <li><a href="principal.html">Home</a></li>
+                <li><a href="tutorial.html">Tutorial</a></li>
+                <li><a href="shop.html">Merchandesing</a></li>
                 <li><a href="about_us.html">About Us</a></li>
             </ul>
         </div>
     </header>
     <main>
-        <div class="title">
-            <h1>MEET TO THE TEAM</h1>
+        <div class="about">
+            <div class="title"><h1>ABOUT US</h1></div>
+            <div class="text">
+
+            </div>
+            <div class="imagen"></div>
         </div>
-        <div id="ID1" class="all_workers">
-            <div class="worker">
-                <div onclick="verTrabajador1()" class="press"><a href="#worker1"><button>More</button></a></div>
-                <img src="../Images/perfil.png" alt="Trabajador 1">
-                <h2>Xavier</h2>
-                <p>Developer Java / PLSQL</p>
+        <div class="meet">
+            <div class="title">
+                <h1>MEET THE TEAM</h1>
             </div>
-            <div class="worker">
-                <div onclick="verTrabajador2()" class="press"><a href="#worker2"><button>More</button></a></div>
-                <img src="../Images/perfil.png" alt="Trabajador 2">
-                <h2>Jonathan Rueda</h2>
-                <p>Developer, HTML / Java / PLSQL</p>
+            <div id="ID1" class="all_workers">
+                <div class="worker">
+                    <div onclick="verTrabajador1()" class="press"><a href="#worker1"><button>More</button></a></div>
+                    <img src="../Images/perfil.png" alt="Trabajador 1">
+                    <h2>Xavier</h2>
+                    <p>Developer Java / PLSQL</p>
+                </div>
+                <div class="worker">
+                    <div onclick="verTrabajador2()" class="press"><a href="#worker2"><button>More</button></a></div>
+                    <img src="../Images/perfil.png" alt="Trabajador 2">
+                    <h2>Jonathan Rueda</h2>
+                    <p>Developer, HTML / Java / PLSQL</p>
+                </div>
+                <div class="worker">
+                    <div onclick="verTrabajador3()" class="press"><a href="#worker3"><button>More</button></a></div>
+                    <img src="../Images/perfil.png" alt="Trabajador 3">
+                    <h2>Mijail</h2>
+                    <p>Developer HTML / Java</p>
+                </div>
             </div>
-            <div class="worker">
-                <div onclick="verTrabajador3()" class="press"><a href="#worker3"><button>More</button></a></div>
-                <img src="../Images/perfil.png" alt="Trabajador 3">
-                <h2>Mijail</h2>
-                <p>Developer HTML / Java</p>
+            <div class="worker1">
+                <div onclick="volver1()" class="volver"><button>Back</button></div>
+                <div class="secc1">
+                    <img src="../Images/perfil.png" alt="Trabajador 1">
+                    <h2>Xavier</h2>
+                </div>
+                <div class="secc2">
+                    <p>He is responsible for the development of Space Wars using Java. He has developed all the mechanics and the majority of the classes of the main program. Additionally, he has worked on the design of the graphical interface and its implementation. He has also been involved in database development.
+                    </p>
+                </div>
+            </div>
+            <div class="worker2">
+                <div onclick="volver2()" class="volver"><button>Back</button></div>
+                <div class="secc1">
+                    <img src="../Images/perfil.png" alt="Trabajador 2">
+                    <h2>Jonathan Rueda</h2>
+                </div>
+                <div class="secc2">
+                    <p>He is responsible for the design and programming of the main website and the store, as well as developing scripts for the creation of the database. He has also contributed to a portion of the code in the main program.
+                </div>
+    
+            </div>
+            <div class="worker3">
+                <div onclick="volver3()" class="volver"><button>Back</button></div>
+                <div class="secc1">
+                    <img src="../Images/perfil.png" alt="Trabajador 3">
+                    <h2>Mijail</h2>
+                </div>
+                <div class="secc2">
+                    <p> He is responsible for designing the class diagram of the main program. He has also developed a part of the website and contributed to the development of part of the main code.</p>
+                </div>
             </div>
         </div>
-
-        <div class="worker1">
-            <div onclick="volver1()" class="volver"><button>Back</button></div>
-            <div class="secc1">
-                <img src="../Images/perfil.png" alt="Trabajador 1">
-                <h2>Xavier</h2>
-            </div>
-            <div class="secc2">
-                <p>He is responsible for the development of Space Wars using Java. He has developed all the mechanics and the majority of the classes of the main program. Additionally, he has worked on the design of the graphical interface and its implementation. He has also been involved in database development.
-                </p>
-            </div>
-        </div>
-        <div class="worker2">
-            <div onclick="volver2()" class="volver"><button>Back</button></div>
-            <div class="secc1">
-                <img src="../Images/perfil.png" alt="Trabajador 2">
-                <h2>Jonathan Rueda</h2>
-            </div>
-            <div class="secc2">
-                <p>He is responsible for the design and programming of the main website and the store, as well as developing scripts for the creation of the database. He has also contributed to a portion of the code in the main program.
-            </div>
-
-        </div>
-        <div class="worker3">
-            <div onclick="volver3()" class="volver"><button>Back</button></div>
-            <div class="secc1">
-                <img src="../Images/perfil.png" alt="Trabajador 3">
-                <h2>Mijail</h2>
-            </div>
-            <div class="secc2">
-                <p> He is responsible for designing the class diagram of the main program. He has also developed a part of the website and contributed to the development of part of the main code.</p>
-            </div>
-        </div>
-
-        <script>
-            document.addEventListener("DOMContentLoaded", function() {
-                function applyAnimation(element, animationClass, callback) {
-                    element.classList.add(animationClass);
-                    element.addEventListener('animationend', function handler() {
-                        element.classList.remove(animationClass);
-                        element.removeEventListener('animationend', handler);
-                        if (callback) callback();
-                    });
-                }
-
-                function verTrabajador(workerClass) {
-                    const allWorkers = document.querySelector('.all_workers');
-                    applyAnimation(allWorkers, 'compress', () => {
-                        allWorkers.style.display = 'none';
-                        const worker = document.querySelector(workerClass);
-                        worker.style.display = 'block';
-                        applyAnimation(worker, 'expand');
-                    });
-                }
-
-                function volver(workerClass) {
-                    const worker = document.querySelector(workerClass);
-                    applyAnimation(worker, 'compress', () => {
-                        worker.style.display = 'none';
-                        const allWorkers = document.querySelector('.all_workers');
-                        allWorkers.style.display = 'flex';
-                        applyAnimation(allWorkers, 'expand');
-                    });
-                }
-
-                document.querySelector('.press a[href="#worker1"]').addEventListener('click', function(event) {
-                    event.preventDefault();
-                    verTrabajador('.worker1');
-                });
-
-                document.querySelector('.press a[href="#worker2"]').addEventListener('click', function(event) {
-                    event.preventDefault();
-                    verTrabajador('.worker2');
-                });
-
-                document.querySelector('.press a[href="#worker3"]').addEventListener('click', function(event) {
-                    event.preventDefault();
-                    verTrabajador('.worker3');
-                });
-
-                document.querySelector('.worker1 .volver button').addEventListener('click', function() {
-                    volver('.worker1');
-                });
-
-                document.querySelector('.worker2 .volver button').addEventListener('click', function() {
-                    volver('.worker2');
-                });
-
-                document.querySelector('.worker3 .volver button').addEventListener('click', function() {
-                    volver('.worker3');
-                });
-            });
-        </script>
-        
+        <footer>
+            <p>©2024 Space War. All rights reserved</p>
+        </footer>
+        <script src="../scripts/header-menu.js"></script>
+        <script src="../scripts/about-script.js"></script>
     </main>
-    <footer>
-        <p>©Copyright</p>
-    </footer>
 </body>
 </html>

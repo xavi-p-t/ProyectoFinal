@@ -25,6 +25,7 @@ header {
     align-items: center;
     position: sticky;
     margin:0;
+    border-bottom: 1px solid white;
 }
 
 .logo {
@@ -244,6 +245,7 @@ footer {
     background-color: black;
     text-align: center;
     justify-content: center;
+    border-top: 1px solid white;
 }
 
 footer p {
