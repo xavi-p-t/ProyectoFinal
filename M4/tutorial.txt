@@ -1,0 +1,22 @@
+Main menu options:
+
+1. View Planet Stats: En este apartado aparecen las estadisticas de nuestro planeta. las estadisticas normalmente son:
+- Tecnologia: Aqui aparecerá el nivel de tecnologia de ataque y de defensa.
+- Defensa: Aqui apareceran la cantidad de defensas que tienes, por ejemplo Missile Launcher, Ion cannon, y plasma cannon. Cuanto mas cantidad, mas defensas tendras
+- Flota: Aqui aparecerá la flota que tienes, tendrás el Light Hunter, heavy hunter, battle ship y armored ship.
+- Recursos: Hay dos tipos de recursos, el metal y el deuterium.
+
+2. Build: Esta opción sirve para construir diferentes tropas o defensas.
+2.1 La opción de Build trops podrás creas diferente tropas para hacer el ataque como Light Hunter, heavy hunter, battle ship y armored ship.
+- Una vez creada las tropas, si no tienes recursos suficientes se crearan los que puedas crear y te saldrá un mensaje "You need more resources to create {Lo que quieras contruir}"
+2.2 En el apartado de Build Defenses se podrá construir diferentes defensas como:
+Missile Launcher, Ion cannon, y plasma cannon.
+- Lo mismo que en build trops, si  no tienes los recursos suficiente te aparece el mensaje y los que se han construido.
+
+3. En este apartado es la mejora de la tecnologia. La mejora de la tecnologia puede ser muy util, porque puedes aumentar el daño y la defensa de tus defensas y de las armas.
+- Tendras dos apartados, el de subir la tecnlogia de defensa y la de ataque. Cada vez que subes un nivel, el siguiente nivel te va a costar mas deuterium subirlo.
+
+4. En el apartado de "View Battle reports" puedes ver las batallas que han ido pasando, con las estadisticas de armas y defensas del planeta y de enemigo.
+- Aparte aparece el coste de metal y deuterium que ha gastado ambos y la cantidad perdida de ambos. Ademas, te aparece cuanto "waste generated" has ganadado. Además de estos datos puedes ver el desarrollo de la batalla donde aparece el daño causado, las tropas eliminadas y muchos mas detalles.
+
+0. Opcion 0: sales del juego.

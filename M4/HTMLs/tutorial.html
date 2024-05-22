@@ -39,35 +39,65 @@
     <main>
         <div class="welcome">
             <h1>Welcome to the tutorial</h1>
-            <p>Explicacion del tuto</p>
+            <p>Here, you will learn how to withstand enemy attacks for as long as possible. Throughout the game, we will guide you on how to maximize the available technologies and build a variety of troops and defenses</p>
         </div>
         <div class="gamemechanics">
-            <h1>Seccions</h1>
+            <h1>SECTIONS</h1>
             <div class="secciones">
-                <div class="seccion">
+                <div class="seccion" onclick="scrollToObjective()">
                     <h2>Objective</h2>
+                    <p>Explore this section to understand the main goal of the game.</p>
                 </div>
-                <div class="seccion">
-                    <h2>Menu seccions</h2>
+                <div class="seccion" onclick="scrollToTuto()">
+                    <h2>Tutorial</h2>
+                    <p>Explore this section to discover how to play and explanations of the sections.</p>
                 </div>
-                <div class="seccion">
+                <div class="seccion" onclick="scrollToTips()">
                     <h2>Tips</h2>
+                    <p>Explore this section to discover little tips that can make a big difference.</p>
                 </div>
-                <div class="seccion">
+                <div class="seccion" onclick="scrollTofq()">
                     <h2>FAQ</h2>
+                    <p>Explore this section to resolve questions that people normally ask.</p>
                 </div>
             </div>
         </div>
-        <div class="objective">
+        <div class="objective" id="obj">
             <h1>Objective</h1>
-            <p>The goal of the game is to defend your planet against constant attacks from enemy fleets. To achieve this, you must manage resources such as Metal and Deuterium, build and upgrade defenses, and develop defense and attack technologies. Additionally, you need to form and maintain a powerful fleet, collect debris from won battles, and quickly replace lost units. The key is to make strategic decisions to optimize the effectiveness of your army and ensure the protection of your planet.</p>
+            <p>The goal of the game is to withstand enemy attacks for as long as possible. Throughout the game, you must upgrade the available technologies to their maximum level and build a variety of troops and defenses. These upgrades and constructions will allow you to face enemy attacks more effectively and increase your chances of victory. As you progress, the key will be to balance your investment in technology and the construction of defensive units to facilitate battles and ensure the survival of your planet.</p>
             <div><button class="howtoplay"> How to play</button></div>
 
         </div>
-        <div class="opcmenu">
-
+        <div class="opcmenu" id="tuto">
+            <div class="tutor">
+                <section class="imge"><img src="../Images/logo.png" alt=""></section>
+                <section class="texto">View Planet Stats: In this section, the statistics of our planet are displayed. The statistics usually include:
+                    <ul>
+                        <li>Technology: Here, the level of attack and defense technology will be shown.</li>
+                        <li>Defense: Here, the number of defenses you have will be displayed, such as Missile Launcher, Ion Cannon, and Plasma Cannon. The more you have, the stronger your defenses will be.</li>
+                        <li>Fleet: Here, the fleet you possess will be shown, including the Light Hunter, Heavy Hunter, Battle Ship, and Armored Ship.</li>
+                        <li>Resources: There are two types of resources, metal and deuterium.</li>
+                    </ul>
+                </section>
+            </div>
+            <div class="tutor reves">
+                <section class="imge"><img src="../Images/logo.png" alt=""></section>
+                <section class="texto">texto texto texto aaaa texto textoaaaaaaaa aaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaa aaaaaaaaaaaaaaaaaa aaaaaaaaaaa aaaaaaaaaaaa</section>
+            </div>
+            <div class="tutor">
+                <section class="imge"><img src="../Images/logo.png" alt=""></section>
+                <section class="texto">texto</section>
+            </div>
+            <div class="tutor reves">
+                <section class="imge"><img src="../Images/logo.png" alt=""></section>
+                <section class="texto">texto</section>
+            </div>
+            <div class="tutor">
+                <section class="imge"><img src="../Images/logo.png" alt=""></section>
+                <section class="texto">texto</section>
+            </div>
         </div>
-        <div class="tips">
+        <div class="tips" id="tip">
             <h1>Tips</h1>
             <div class="secciones">
                 <div class="seccion">
@@ -84,15 +114,15 @@
                 </div>
             </div>
         </div>
-        <div class="FAQ">
+        <div class="FAQ" id="fq">
             <h1>frequently asked question</h1>
             <div class="seccion_faq">
                 <div class="seccion-final-faq">
                     <div class="pregunta">
-                        <h2>PREGUNTA</h2>
+                        <h2>Why does an attack message appear every 3 minutes?</h2>
                         <p class="boton">&#9660;</p>
                     </div>
-                    <p class="respuesta">RESPUESTA</p>
+                    <p class="respuesta">The game is designed so that the enemy attacks the planet every 3 minutes.</p>
                 </div>
                 <div class="seccion-final-faq">
                     <div class="pregunta">
@@ -130,5 +160,6 @@
     </footer>
     <script src="../scripts/header-menu.js"></script>
     <script src="../scripts/faq-script.js"></script>
+    <script src="../scripts/scroll.js"></script>
 </body>
 </html>

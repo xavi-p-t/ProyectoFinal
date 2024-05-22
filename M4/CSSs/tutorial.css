@@ -12,6 +12,7 @@ body {
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
+    font-family: "Freeman", sans-serif;
 }
 
 main {
@@ -108,7 +109,7 @@ footer p {
 
 .welcome h1 {
     color: white;
-    font-size: 9.5em;
+    font-size: 9.0em;
     margin: 0;
     text-transform: uppercase;
     font-family: "Freeman", sans-serif;
@@ -120,10 +121,11 @@ footer p {
 
 .welcome p {
     color: white;
-    font-size: 2em;
+    font-size: 1.8em;
     margin: 0;
     font-family: "Freeman", sans-serif;
     font-style: normal;
+    text-align: center;
 }
 
 /*seccion gamemechanics*/
@@ -141,6 +143,10 @@ footer p {
     padding-bottom: 12em;
 }
 
+.gamemechanics h1 {
+    font-size: 52px;
+}
+
 .secciones {
     display: flex;
     flex-direction: row;
@@ -156,7 +162,16 @@ footer p {
     background-color: white;
     border-radius: 10%;
     box-shadow: 5px 2px 5px rgba(255, 255, 255, 0.4) ;
+    cursor: pointer;
 }
+
+.seccion h2 {
+    font-size: 50px;
+}
+.seccion p {
+    font-size: 25px;
+}
+
 /*seccion objective*/
 
 .objective {
@@ -216,10 +231,47 @@ footer p {
     justify-content: center;
     text-align: center;
     text-transform: uppercase;
-    padding: 3em;
+    padding: 10em;
     padding-top: 5em;
     padding-bottom: 12em;
 }
+
+.tutor {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 2em;
+    background-color: rgb(7, 7, 7);
+    box-shadow: 5px 2px 5px rgba(255, 255, 255, 0.4) ;
+    border-radius: 20px;
+}
+
+.reves {
+    flex-direction: row-reverse;
+}
+
+.reves .imge {
+    margin-right: 0;
+    margin-left: 5em;
+}
+
+.tutor .imge img {
+    width: 30em;
+    margin: 2em;
+    margin-right: 5em;
+    border-radius: 5%;
+}
+
+.tutor .texto {
+    text-align: left;
+    margin: 3em;
+    font-size: 20px;    
+}
+
+
+
+
+
+
 
 /*seccion tips*/
 
@@ -287,6 +339,7 @@ footer p {
     margin:0;
 
 }
+
 
 
 @media screen and (max-width: 768px) {
