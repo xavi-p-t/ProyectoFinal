@@ -89,4 +89,53 @@ CREATE TABLE Enemy_army (
     armored_ship_threat NUMBER,
     armored_ship_destroyed NUMBER
 );
-
+--tablas para las naves
+CREATE TABLE LIGHT_HUNTERS (
+    id NUMBER  NOT NULL,
+    planet_id NUMBER NOT NULL,
+    armour NUMBER,
+    atack NUMBER,
+    FOREIGN KEY (planet_id) REFERENCES planet_stats(planet_id)
+);
+CREATE TABLE HEAVY_HUNTERS (
+    id NUMBER  NOT NULL,
+    planet_id NUMBER NOT NULL,
+    armour NUMBER,
+    atack NUMBER,
+    FOREIGN KEY (planet_id) REFERENCES planet_stats(planet_id)
+);
+CREATE TABLE BATTLE_SHIPS (
+    id NUMBER  NOT NULL,
+    planet_id NUMBER NOT NULL,
+    armour NUMBER,
+    atack NUMBER,
+    FOREIGN KEY (planet_id) REFERENCES planet_stats(planet_id)
+);
+CREATE TABLE ARMORED_SHIPS (
+    id NUMBER  NOT NULL,
+    planet_id NUMBER NOT NULL,
+    armour NUMBER,
+    atack NUMBER,
+    FOREIGN KEY (planet_id) REFERENCES planet_stats(planet_id)
+);
+CREATE TABLE MISSILE_LAUNCHER (
+    id NUMBER  NOT NULL,
+    planet_id NUMBER NOT NULL,
+    armour NUMBER,
+    atack NUMBER,
+    FOREIGN KEY (planet_id) REFERENCES planet_stats(planet_id)
+);
+CREATE TABLE ION_CANNON(
+    id NUMBER  NOT NULL,
+    planet_id NUMBER NOT NULL,
+    armour NUMBER,
+    atack NUMBER,
+    FOREIGN KEY (planet_id) REFERENCES planet_stats(planet_id)
+);
+CREATE TABLE PLASMA_CANNON (
+    id NUMBER  NOT NULL,
+    planet_id NUMBER NOT NULL,
+    armour NUMBER,
+    atack NUMBER,
+    FOREIGN KEY (planet_id) REFERENCES planet_stats(planet_id)
+);
