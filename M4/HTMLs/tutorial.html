@@ -3,23 +3,197 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../CSSs/principal.css">
-    <title>Principal</title>
+    <link rel="stylesheet" href="../CSSs/tutorial.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Road+Rage&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poetsen+One&family=Road+Rage&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Freeman&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Freeman&family=Road+Rage&family=Yanone+Kaffeesatz:wght@200..700&display=swap" rel="stylesheet">
+    <link rel="icon" href="../Images/logo.png" type="image/x-icon">
+    <title>TUTORIAL</title>
 </head>
 <body>
     <header>
-        <ul>
-            <a href="principal.html"><li>Principal</li></a>
-            <a href="tutorial.html"><li>tutorial</li></a>
-            <a href="about_us.html"><li>about_us</li></a>
-        </ul>
+        <div class="logo">
+            <a href="principal.html"><img src="../Images/logo.png" alt="logo"></a>
+        </div>
+        <div class="header-links">
+            <ul>
+                <li><a href="principal.html">Home</a></li>
+                <li><a href="tutorial.html">Tutorial</a></li>
+                <li><a href="shop.html">Merchandesing</a></li>
+                <li><a href="about_us.html">About Us</a></li>
+            </ul>
+        </div>
+        <div class="header-links-movile">
+            <p>&#9776;</p>
+            <ul class="navlinks">
+                <li><a href="principal.html">Home</a></li>
+                <li><a href="tutorial.html">Tutorial</a></li>
+                <li><a href="shop.html">Merchandesing</a></li>
+                <li><a href="about_us.html">About Us</a></li>
+            </ul>
+        </div>
     </header>
     <main>
+        <div class="welcome">
+            <h1>Welcome to the tutorial</h1>
+            <p>Here, you will learn how to withstand enemy attacks for as long as possible. Throughout the game, we will guide you on how to maximize the available technologies and build a variety of troops and defenses</p>
+        </div>
+        <div class="gamemechanics">
+            <h1>SECTIONS</h1>
+            <div class="secciones">
+                <div class="seccion" onclick="scrollToObjective()">
+                    <h2>Objective</h2>
+                    <p>Explore this section to understand the main goal of the game.</p>
+                </div>
+                <div class="seccion" onclick="scrollToTuto()">
+                    <h2>Tutorial</h2>
+                    <p>Explore this section to discover how to play and explanations of the sections.</p>
+                </div>
+                <div class="seccion" onclick="scrollToTips()">
+                    <h2>Tips</h2>
+                    <p>Explore this section to discover little tips that can make a big difference.</p>
+                </div>
+                <div class="seccion" onclick="scrollTofq()">
+                    <h2>FAQ</h2>
+                    <p>Explore this section to resolve questions that people normally ask.</p>
+                </div>
+            </div>
+        </div>
+        <div class="objective" id="obj">
+            <h1>Objective</h1>
+            <p>The goal of the game is to withstand enemy attacks for as long as possible. Throughout the game, you must upgrade the available technologies to their maximum level and build a variety of troops and defenses. These upgrades and constructions will allow you to face enemy attacks more effectively and increase your chances of victory. As you progress, the key will be to balance your investment in technology and the construction of defensive units to facilitate battles and ensure the survival of your planet.</p>
+            <div><button class="howtoplay"> How to play</button></div>
 
+        </div>
+        <div class="opcmenu" id="tuto">
+            <h1>Main Menu</h1>
+            <div class="tutor">
+                <div class="tuto_sect">
+                    <section class="imge"><img src="../Images/tutorial/mainmenu.png" alt=""></section>
+                    <section class="texto">Here is the main section, where you can choose the option you need. You can view the planet's statistics, upgrade its technology, build defenses and spaceships for attacks, and see a report on the battles that have taken place since you started the game.</section>
+                </div>
+            </div>
+            <h1>View Stats</h1>
+            <div class="tutor">
+                <div class="tuto_sect sect_reves">
+                    <section class="imge"><img src="../Images/tutorial/stats.png" alt=""></section>
+                    <section class="texto">View Planet Stats: In this section, the statistics of our planet are displayed. The statistics usually include:
+                    <ul>
+                        <li>Technology: Here, the level of attack and defense technology will be shown.</li>
+                        <li>Defense: Here, the number of defenses you have will be displayed, such as Missile Launcher, Ion Cannon, and Plasma Cannon. The more you have, the stronger your defenses will be.</li>
+                        <li>Fleet: Here, the fleet you possess will be shown, including the Light Hunter, Heavy Hunter, Battle Ship, and Armored Ship.</li>
+                        <li>Resources: There are two types of resources, metal and deuterium.</li>
+                    </ul>
+                </section>
+                </div>
+            </div>
+            <h1>Build Options</h1>
+            <div class="tutor">
+                <div class="tuto_sect">
+                    <section class="imge"><img src="../Images/tutorial/menubuild.png" alt=""></section>
+                    <section class="texto">This section allows you to build various troops and defenses.</section>
+                </div>
+                <div class="tuto_sect sect_reves">
+                    <section class="imge"><img src="../Images/tutorial/menubuildtrops.png" alt=""> </section>
+                    <section class="texto">Once you choose what you want to construct, whether it's a defense or an attack unit, a menu will appear where you can select what you want to build. For example, all the available troops you can construct are shown here.</section>
+                </div>
+                <div class="tuto_sect">
+                    <section class="imge"><img src="../Images/tutorial/cantidadunits.png" alt=""></section>
+                    <section class="texto">After selecting the troop or defense, you will be asked to specify the quantity.</section>
+                </div>
+            </div>
+            <h1>Upgrade Technology</h1>
+            <div class="tutor">
+                <div class="tuto_sect sect_reves">
+                    <section class="imge"><img src="../Images/tutorial/mejoratecno.png" alt=""></section>
+                    <section class="texto">This section is for upgrading technology. Upgrading technology can be very useful, as it allows you to increase the damage and defense of your defenses and weapons.</section>
+                </div>
+                <div class="tuto_sect"> 
+                <section class="imge"><img src="../Images/tutorial/mejoradatecno.png" alt=""></section>
+                <section class="texto">You will have two sections: one for upgrading defense technology and another for upgrading attack technology. Each time you level up, the next level will cost more deuterium.</section>
+                </div>
+            </div>
+            <h1>Battle Reports</h1>
+            <div class="tutor">
+                <div class="tuto_sect">
+                    <section class="imge"><img src="../Images/tutorial/battlereports.png" alt=""></section>
+                    <section class="texto">In the "View Battle Reports" section, you can review the battles that have occurred. You need to select the battle whose data you want to display. The higher the number, the more recent the battle. </section>
+                </div>
+                <div class="tuto_sect sect_reves">
+                    <section class="imge"><img src="../Images/tutorial/battlereportlog.png" alt=""></section>
+                    <section class="texto">Once the battle is selected, the statistics of the planet's and enemy's weapons and defenses, along with the cost of damages and waste generated, will be displayed.</section>
+                </div>
+                <div class="tuto_sect">
+                    <section class="imge"><img src="../Images/tutorial/battlereportlog2.png" alt=""></section>
+                    <section class="texto">If you choose to view more details of the battle, information such as damage inflicted, remaining defense, and whether the troop was eliminated will appear. Additionally, it will show when the attacker changes and many more details.</section>
+                </div>
+            </div>
+            <h1>New  thread is comming</h1>
+            <div class="tutor">
+                <div class="tuto_sect sect_reves">
+                    <section class="imge"><img src="../Images/tutorial/newthreadiscomming.png" alt=""></section>
+                    <section class="texto">Once the message "New Thread is Coming" appears, the menu will change, and a new option called "View Thread Comming" will appear, displaying the thread's data. </section>
+                </div>
+                <div class="tuto_sect">
+                    <section class="imge"><img src="../Images/tutorial/newthreatcomingnaves.png" alt=""></section>
+                    <section class="texto">The data shown in the new thread includes the number of ships that are going to attack you.</section>
+                </div>
+            </div>
+        </div>
+        <div class="tips" id="tip">
+            <h1>Tips</h1>
+            <div class="secciones">
+                <div class="seccion">
+                    <h2>Tip 1</h2>
+                    <p>You can use a very large number when creating troops or defenses to build as many as you can.</p>
+                </div>
+                <div class="seccion">
+                    <h2>Tip 2</h2>
+                    <p>Periodically, check the planet's statistics to monitor the amount of defenses, fleet, and resources you have.</p>
+                </div>
+                <div class="seccion">
+                    <h2>Tips 3</h2>
+                    <p>Upgrade your technology as soon as possible to defend and attack more effectively.</p>
+                </div>
+
+            </div>
+        </div>
+        <div class="FAQ" id="fq">
+            <h1 class="normal">frequently asked question</h1>
+            <h1 class="movil">FAQ</h1>
+            <div class="seccion_faq">
+                <div class="seccion-final-faq">
+                    <div class="pregunta">
+                        <h2>Why does an attack message appear every 3 minutes?</h2>
+                        <p class="boton">&#9660;</p>
+                    </div>
+                    <p class="respuesta">The game is designed so that the enemy attacks the planet every 3 minutes.</p>
+                </div>
+                <div class="seccion-final-faq">
+                    <div class="pregunta">
+                        <h2>What should you create first, defenses or fleet?</h2>
+                        <p class="boton">&#9660;</p>
+                    </div>
+                    <p class="respuesta">You should create both in a balanced way to have strong defense and offense.</p>
+                </div>
+                <div class="seccion-final-faq">
+                    <div class="pregunta">
+                        <h2>What technology should we focus on improving first?</h2>
+                        <p class="boton">&#9660;</p>
+                    </div>
+                    <p class="respuesta">We should strive for balanced improvement in both our defense and offense to achieve an optimal level.</p>
+                </div>
+            </div>
+        </div>
     </main>
     <footer>
-
+        <p>©2024 Space War. All rights reserved</p>
     </footer>
-    
+    <script src="../scripts/header-menu.js"></script>
+    <script src="../scripts/faq-script.js"></script>
+    <script src="../scripts/scroll.js"></script>
 </body>
 </html>

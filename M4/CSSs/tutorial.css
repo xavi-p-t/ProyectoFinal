@@ -1,0 +1,564 @@
+:root {
+    --download: #00ffaa;
+  }
+  
+body {
+    margin: 0;
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    background-image: url(../Images/cielo_estrellado.png);
+    background-position:center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    font-family: "Freeman", sans-serif;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+
+}
+
+h1 {
+    font-size: 60px;
+}
+/*Header*/
+header {
+    background-color: black;
+    padding: 5px;
+    padding-left: 100px;
+    display: flex;
+    align-items: center;
+    position: sticky;
+    margin:0;
+    border-bottom: 1px solid white;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo {
+    width: 80%;
+}
+
+.logo img {
+    width: 5%;
+    margin-left:2%;
+}
+
+.header-links {
+    width: 34%;
+}
+
+.header-links ul, .header-links a {
+    display: flex;
+    text-decoration: none;
+    color: white;
+    list-style: none;
+    text-transform: uppercase;
+    font-family: "Freeman", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    text-shadow: 5px 2px 5px rgba(255, 255, 255, 0.4) ;
+}
+
+.header-links ul {
+    padding-left: 0;
+    margin-left: 0;
+}
+
+.header-links li {
+    transition: text-decoration 0.3s ease-in-out;
+    padding-right: 10%;
+}
+
+.header-links li:hover {
+    text-decoration: underline overline;
+    text-decoration-color: var(--download);
+}
+
+.header-links-movile {
+    display: none;
+}
+
+/*Footer*/
+
+footer {
+    background-color: black;
+    text-align: center;
+    justify-content: center;
+    border-top: 1px solid white;
+}
+
+footer p {
+    padding: 1%;
+    margin: 0;
+    color: white;
+    text-transform: uppercase;
+    font-family: "Freeman", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    text-shadow: 5px 2px 5px rgba(255, 255, 255, 0.4) ;
+}
+/*Seccion welcome*/
+.welcome {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 7%;
+    padding-top:10% ;
+    padding-bottom: 14%;
+}
+
+.welcome h1 {
+    color: white;
+    font-size: 9.0em;
+    margin: 0;
+    text-transform: uppercase;
+    font-family: "Freeman", sans-serif;
+    font-weight: 800;
+    font-style: normal;
+    text-shadow: 5px 2px 5px rgba(255, 255, 255, 0.4) ;
+    text-align: center;
+}
+
+.welcome p {
+    color: white;
+    font-size: 1.8em;
+    margin: 0;
+    font-family: "Freeman", sans-serif;
+    font-style: normal;
+    text-align: center;
+}
+
+/*seccion gamemechanics*/
+
+.gamemechanics {
+    color: white;
+    background-color: black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    text-transform: uppercase;
+    padding: 3em;
+    padding-top: 5em;
+    padding-bottom: 12em;
+}
+
+.gamemechanics h1 {
+    font-size: 52px;
+}
+
+.secciones {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.seccion {
+    border: 1px solid white;
+    width: 20em;
+    height: 20em;
+    padding-top: 0;
+    color: black;
+    background-color: white;
+    border-radius: 10%;
+    box-shadow: 5px 2px 5px rgba(255, 255, 255, 0.4) ;
+    cursor: pointer;
+}
+
+.seccion h2 {
+    font-size: 50px;
+    margin-bottom: 0;
+}
+.seccion p {
+    font-size: 25px;
+}
+
+/*seccion objective*/
+
+.objective {
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    text-transform: uppercase;
+    padding: 16em;
+    padding-top: 5em;
+    padding-bottom: 12em;
+    font-family: "Freeman", sans-serif;
+}
+
+.objective h1 {
+    color: white;
+    font-size: 5em;
+    margin: 0;
+    text-transform: uppercase;
+    font-family: "Freeman", sans-serif;
+    font-weight: 800;
+    font-style: normal;
+    text-shadow: 5px 2px 5px rgba(255, 255, 255, 0.4) ;
+    text-align: center;
+}
+
+.objective p {
+    text-align: left;
+    text-transform:none;
+    font-family: "Freeman", sans-serif;
+    font-size: 1.5em;
+}
+
+.objective button {
+    width: 13em;
+    height: 4em;
+    font-family: "Freeman", sans-serif;
+    font-size: 20px;
+    background-color: black;
+    color: white;
+    text-transform: uppercase;
+    box-shadow: 5px 2px 5px rgba(255, 255, 255, 0.4) ;
+}
+
+.objective button:hover {
+    cursor: pointer;
+}
+
+/*Seccion menu*/
+
+.opcmenu {
+    color: white;
+    background-color: black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    text-transform: uppercase;
+    padding: 10em;
+    padding-top: 5em;
+    padding-bottom: 12em;
+}
+
+.opcmenu h1 {
+    font-size: 40px;
+}
+
+.tutor {
+    display: flex;
+    flex-direction: column ;
+    margin-bottom: 2em;
+    background-color: rgb(7, 7, 7);
+    box-shadow: 5px 2px 5px rgba(255, 255, 255, 0.4) ;
+    border-radius: 20px;
+}
+
+.tutor .imge img {
+    width: 30em;
+    margin: 2em;
+    margin-right: 5em;
+    margin-left: 5em;
+    border-radius: 5%;
+    box-shadow: 5px 2px 5px rgba(255, 255, 255, 0.4) ;
+}
+
+.tutor .texto {
+    text-align: left;
+    margin: 3em;
+    font-size: 25px;
+    width: 30em;    
+    text-transform: none;
+}
+
+.tuto_sect {
+    display: flex;
+    flex-direction: row;
+}
+
+.sect_reves {
+    flex-direction: row-reverse;
+}
+
+.sect_reves .texto {
+    margin-right: 10em;
+}
+.sect_reves .imge {
+    margin-right: 5em;
+}
+
+
+
+
+
+/*seccion tips*/
+
+.tips {
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    text-transform: uppercase;
+    padding: 3em;
+    padding-top: 5em;
+    padding-bottom: 12em;
+} 
+
+
+/*Seccion FAQ*/
+
+.FAQ {
+    color: white;
+    background-color: black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    text-transform: uppercase;
+    padding: 5em 3em 5em;
+}
+
+.seccion_faq {
+    padding-left: 25em;
+    padding-right: 25em;
+}
+
+.pregunta {
+    display: flex;
+    flex-direction: row;
+    color: black;
+    justify-content: space-between;
+    padding-left: 2em;
+    padding-right: 2em ;
+    border-bottom: 1px solid gray;
+}
+
+.pregunta p {
+    margin-top: 1.5em;
+    margin-left: 4em;
+    color: black;
+    cursor: pointer;
+}
+
+.seccion-final-faq {
+    background-color: white;
+}
+
+.respuesta {
+    display: none;
+    border: 1px solid black;
+    color: black;
+    text-align: left;
+    padding: 2em;
+}
+
+.respuesta.open {
+    display: block;
+    margin:0;
+
+}
+
+.movil {
+    display: none;
+}
+
+
+
+
+@media screen and (max-width: 768px) {
+    h1 {
+        font-size: 3.5em;
+    }
+    /*Header*/
+    .articulo.nonedisplay {
+        display: none;
+    }
+
+    .logo {
+        width: 50%;
+        margin-left: 20%;
+    }
+
+    .logo a{
+        display: flex;
+        justify-content: center;
+        min-width: 150px;
+        }
+    
+    .logo img {
+        width: 30%;
+    }
+
+    header {
+        background-color: black;
+        padding: 5px;
+        align-items: center;
+        position: sticky;
+        margin:0;
+        justify-content: center;
+    }
+
+    .header-links {
+        display: none;
+    }
+
+    .header-links-movile {
+        display: block;
+        position:relative;
+        margin-left: 7%;
+    }
+
+    .header-links-movile p {
+        color: white;
+    }
+
+    .header-links-movile p:active {
+        color: var(--download)
+    }
+    
+    .navlinks.show {
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        top: 6%;
+        bottom: 0; 
+        left: 0; 
+        right: 0; 
+        background-image: url(../Images/cielo_estrellado.png);       
+        box-sizing: border-box;
+    }
+    .navlinks li {
+        display: none;
+    }
+    .navlinks.show li {
+        display: block;
+        list-style: none;
+    }
+
+    .navlinks.show a {
+        color: white;
+        z-index: 10;
+        position: static;
+        float: left;
+        text-decoration: none;
+        font-size: 35px;
+        text-transform: uppercase;
+        font-family: "Freeman", sans-serif;
+        margin-top: 1em;
+        text-shadow: 5px 2px 5px rgba(255, 255, 255, 0.4) ;
+    }
+/*welcome*/
+    .welcome h1 {
+        color: white;
+        font-size: 5em;
+    }
+
+    .welcome p {
+        display: none;
+    }
+
+/*objective*/
+    .objective {
+        padding: 0;
+        padding-left: 0.5em;
+    }
+
+    .objective button {
+        margin-bottom: 3em;
+    }
+/*secciones*/
+    .secciones {
+        flex-direction: column;
+        padding: 0;
+        align-items: center;
+    }
+
+    .seccion {
+        margin-bottom: 3em;
+    }
+
+/*FAQ*/
+    .FAQ {
+        padding-top: 0;
+    }
+
+    .seccion_faq {
+        padding: 0;
+    }
+
+    .pregunta h2 {
+        font-size: 1em;
+    }
+
+    .normal {
+        display: none;
+    }
+
+    .movil {
+        display: block;
+    }
+
+/*Tutorial*/
+
+    .opcmenu {
+        padding: 0;
+    }
+
+    .tutor {
+        background-color: transparent;
+        box-shadow: none;
+    }
+
+    .tuto_sect {
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .tutor .imge img {
+        width: 20em;
+        margin: 0;
+        border-radius: 5%;
+        box-shadow: 5px 2px 5px rgba(255, 255, 255, 0.4) ;
+        margin-bottom: 1em;
+    }
+    
+    .tutor .texto {
+        text-align: left;
+        margin: 0.5em;
+        font-size: 1em;
+        width: 26em;    
+        text-transform: none;
+    }
+    
+    .sect_reves .texto {
+        margin-right: 0;
+    }
+    .sect_reves .imge {
+        margin-right: 0;
+    }
+
+    .welcome.nonedisplay {
+        display: none;
+    }
+    
+    .gamemechanics.nonedisplay {
+        display: none;
+    }
+    
+    .objective.nonedisplay {
+        display: none;
+    }
+    
+    .opcmenu.nonedisplay {
+        display: none;
+    }
+    
+    .tips.nonedisplay {
+        display: none;
+    }
+    
+    .FAQ.nonedisplay {
+        display: none;
+    }
+}

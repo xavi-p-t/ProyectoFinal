@@ -1,0 +1,646 @@
+/* Background general */
+body {
+    margin: 0;
+    padding: 0;
+    background-image: url(../Images/cielo_estrellado.png);
+    background-position:center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    font-family: "Freeman", sans-serif;
+}   
+
+/*Header*/
+header {
+    background-color: black;
+    padding: 5px;
+    padding-left: 100px;
+    display: flex;
+    align-items: center;
+    position: sticky;
+    margin:0;
+    border-bottom: 1px solid white;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo {
+    width: 80%;
+}
+
+.logo img {
+    width: 5%;
+    margin-left:2%;
+}
+
+.header-links {
+    width: 34%;
+}
+
+.header-links ul, .header-links a {
+    display: flex;
+    text-decoration: none;
+    color: white;
+    list-style: none;
+    text-transform: uppercase;
+    font-family: "Freeman", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    text-shadow: 5px 2px 5px rgba(255, 255, 255, 0.4) ;
+}
+
+.header-links ul {
+    padding-left: 0;
+    margin-left: 0;
+}
+
+.header-links li {
+    transition: text-decoration 0.3s ease-in-out;
+    padding-right: 10%;
+}
+
+.header-links li:hover {
+    text-decoration: underline overline;
+    text-decoration-color: var(--downloadd);
+}
+
+.header-links-movile {
+    display: none;
+}
+
+
+.text {
+    color: white;
+    width: 50em;
+    font-family: "Freeman", sans-serif;
+    font-size: 20px;
+}
+
+.text {
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.info {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.imagen img{
+    width: 30em;
+}
+
+.icon {
+    background-color: white;
+    width: 10em;
+    border-radius: 15px;
+    display: flex;
+}
+
+.icon:hover {
+    cursor: pointer;
+    background-color: #9927a8;
+}
+
+.icon img {
+    width: 10em;
+}
+
+.icon img:hover {
+    filter: invert(100%);
+}
+
+.about {
+    padding: 10em ;
+    padding-top: 0;
+}
+/* TITULO MEET THE TEAM */
+.title {
+    text-align: center;
+    color: white;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+h1 {
+    font-family: "Freeman", sans-serif;
+    font-size: 100px;
+    text-shadow: 5px 2px 5px rgba(255, 255, 255, 0.4) ;
+    animation: newanim 2s ease infinite;
+    
+}
+
+/* #########################################################################*/
+
+/* Ajustes de la caja de los trabajadores*/
+.all_workers {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly   ; 
+    background-color: transparent; 
+    padding: 20px; 
+}
+
+/* Ajustes del cada apartado de los trabajadores*/
+.worker {
+width: 20%;
+border-radius: 15px;
+text-align: center;
+padding: 10px;
+box-sizing: border-box;
+box-shadow: 3px 6px 7px rgba(255, 255, 255, 0.3);
+background-color: black;
+margin-bottom: 50px;
+margin-right: 20px;
+}
+
+
+.worker:hover .press {
+display: flex;
+justify-content: center;
+align-items: center;
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+background-color: transparent;
+z-index: 2;
+}
+
+.worker:hover .press button {
+font-family: "Road Rage", sans-serif;
+display: block;
+background-color: #1679e3;
+color: white;
+z-index: 2; 
+font-size: 30px;
+}
+
+.worker img {
+position: relative;
+border-radius: 50%;
+border: 2px solid black;
+width: 50%;
+height: 50%;
+z-index: 0;
+}
+
+.worker {
+position: relative;
+}
+
+.worker::before {
+content: "";
+position: absolute;
+border-radius: 15px;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background-color: rgba(255, 255, 255, 0.3); /* Negro semi-transparente */
+opacity: 0;
+transition: opacity 0.1s;
+z-index: 1;
+}
+
+.worker:hover::before {
+opacity: 1;
+}
+
+/* Nombre de los trabajadores*/
+.worker h2 {
+font-family: "Road Rage", sans-serif;
+font-size: 36px;
+margin-bottom: 10px;
+color: #B0C4DE;
+}
+
+/* Descripcion de los trabajadores*/
+.worker p {
+font-family: "Poetsen One", sans-serif;
+font-size: 16px;
+color: white;
+}
+/*#############################################################*/
+
+
+/* Estilo del boton*/
+.press button {
+font-family: "Road Rage", sans-serif;
+display: none;
+border: 2px solid #a3f3f3;
+border-radius: 15px;
+color: white;
+padding: 10px 20px;
+animation: wiggle 0.4s ease-in-out;
+cursor: pointer;
+transition: 0.1s;
+}
+
+/* Boton al pasar el cursor */
+
+.press button:hover {
+color: black;
+box-shadow: inset 400px 50px 0 0 rgb(16, 20, 255);
+display: block;
+-webkit-transition: ease-out 0.4s;
+transition: ease-out 1s;
+}
+
+@keyframes wiggle {
+0%,
+100% {
+transform: translate(0,0);
+}
+25%,
+75% {
+transform: translate(10px,0);
+}
+50% {
+transform: translate(-10px,0);
+}
+}
+
+/*#############################################################*/
+
+.press {
+position: relative;
+z-index: 1;
+}
+
+/*#############################################################################################*/
+/* Propiedades worker 1, 2 y 3 */
+.worker1,
+.worker2,
+.worker3 {
+    margin-left: 5%;
+    max-width: 90%;
+    margin-bottom: 5%;
+    font-family: "Freeman", sans-serif;
+    display: none;
+    background-color: rgba(32, 32, 32, 0.7);
+    color: white;
+    width: 100%; /* Ajustar el ancho */
+    height: 100%;
+    padding: 20px; /* Añadir relleno */
+    box-sizing: border-box; /* Incluir relleno en el ancho total */
+    border: 10px solid;
+    border-image:  radial-gradient(circle, white, #2E294E) 2;
+    animation: presentacion 3s ;
+}
+
+/* Propiedades imagenes de perfil */
+.worker1 .secc1 img,
+.worker2 .secc1 img,
+.worker3 .secc1 img {
+    flex: 0 0 25%;
+    border-radius: 50%;
+    border: 2px solid black;
+    width: 25%; /* Ajustar el ancho */
+    height: 25%; /* Ajustar la altura */
+    z-index: 0;
+    align-items: center;
+    margin-left: 10%;
+}
+
+/* Propiedades de los nombres */
+.worker1 .secc1 h2,
+.worker2 .secc1 h2,
+.worker3 .secc1 h2 {
+    font-size: 100px; 
+    flex: 0 0 60%; 
+    text-align: center; 
+}
+
+/* Propiedades de las descripciones */
+.worker1 .secc2 p,
+.worker2 .secc2 p,
+.worker3 .secc2 p {
+    top: 10%;
+    margin: 20px;
+    font-size: 40px;
+
+}
+
+/* Distribución de img y p en secc1 */
+.worker1 .secc1,
+.worker2 .secc1,
+.worker3 .secc1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+/* BOTONES DE RETORNO */
+.volver button {
+    font-family: "Freeman", sans-serif;
+    top: 0%;
+    position: relative;
+    color: white;
+    cursor: pointer;
+    background-color: transparent;
+    margin-left: 95%;
+    border: 0;
+    font-size: 40px;
+}
+
+/* Animaciones para ocultar y mostrar elementos */
+@keyframes compress {
+    0% { transform: scale(1); opacity: 1; }
+    100% { transform: scale(0); opacity: 0; }
+}
+
+@keyframes expand {
+    0% { transform: scale(0); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+/* Clase para ocultar */
+.compress {
+    animation: compress 0.5s forwards;
+}
+
+/* Clase para mostrar */
+.expand {
+animation: expand 0.5s forwards;
+}
+
+/* Ocultar elementos*/
+.hide {
+display: none;
+}
+
+/* Mostrar elementos */
+.show {
+display: block;
+}
+/*###################################################################################*/
+
+footer {
+    background-color: black;
+    text-align: center;
+    justify-content: center;
+    border-top: 1px solid white;
+}
+
+footer p {
+    padding: 1%;
+    margin: 0;
+    color: white;
+    text-transform: uppercase;
+    font-family: "Freeman", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    text-shadow: 5px 2px 5px rgba(255, 255, 255, 0.4) ;
+}
+
+/*############################################################################ */
+
+.join {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+    background-color: black;
+    text-transform: uppercase;
+    text-shadow: 5px 2px 5px rgba(255, 255, 255, 0.4) ;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    width: 30em;   
+    padding: 2em;
+    background-color: #1d1d1d;
+    border-radius: 8px;
+    box-shadow: 5px 2px 5px rgba(255, 255, 255, 0.4) ;
+    margin-bottom: 5em;
+}
+
+label {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+input[type="text"],
+input[type="email"],
+textarea {
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+button[type="submit"] {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+
+/* Pantalla de movil */
+@media screen and (max-width: 768px) {
+.all_workers {
+    display: block;
+    justify-content: center;
+}
+
+.worker {
+    width: 100%;
+}
+
+.worker1,
+.worker2,
+.worker3 {
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+}
+
+.volver button {
+    font-family: "Freeman", sans-serif;
+    top: 0%;
+    margin-left: 80%;
+    border: 0;
+    font-size: 40px;
+}
+
+.worker1 .secc1,
+.worker2 .secc1,
+.worker3 .secc1 {
+    display: block;
+    align-items: center;
+}
+
+.worker1 .secc1 img,
+.worker2 .secc1 img,
+.worker3 .secc1 img {
+    width: 100%;
+    margin: 0;
+}
+
+.worker1 .secc1 h2,
+.worker2 .secc1 h2,
+.worker3 .secc1 h2 {
+    margin: 2px;
+    font-size: 60px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.worker1 .secc2 p,
+.worker2 .secc2 p,
+.worker3 .secc2 p {
+    font-size: 28px;
+    margin-bottom: 5%;
+    margin: 5px;
+}
+
+.logo {
+    width: 50%;
+    margin-left: 20%;
+}
+
+.logo a{
+    display: flex;
+    justify-content: center;
+    min-width: 150px;
+    }
+
+.logo img {
+    width: 30%;
+}
+
+header {
+    background-color: black;
+    padding: 5px;
+    align-items: center;
+    position: sticky;
+    margin:0;
+    justify-content: center;
+}
+
+.header-links {
+    display: none;
+}
+
+.header-links-movile {
+    display: block;
+    position:relative;
+    margin-left: 7%;
+}
+
+.header-links-movile p {
+    color: white;
+}
+
+.header-links-movile p:active {
+    color: var(--downloadd);
+}
+
+.navlinks.show {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 6%;
+    bottom: 0; 
+    left: 0; 
+    right: 0; 
+    background-image: url(../Images/cielo_estrellado.png);       
+    box-sizing: border-box;
+}
+.navlinks li {
+    display: none;
+}
+.navlinks.show li {
+    display: block;
+    list-style: none;
+}
+
+.navlinks.show a {
+    color: white;
+    z-index: 10;
+    position: static;
+    float: left;
+    text-decoration: none;
+    font-size: 35px;
+    text-transform: uppercase;
+    font-family: "Freeman", sans-serif;
+    margin-top: 1em;
+    text-shadow: 5px 2px 5px rgba(255, 255, 255, 0.4) ;
+}
+
+.about {
+    padding: 0;
+}
+.title h1{
+    font-size: 5em;
+}
+
+.info {
+    flex-direction: column-reverse;
+}
+
+.imagen {
+    display: none;
+}
+
+.text {
+    width: 20em;
+}
+
+
+.join {
+    padding: 0;
+    margin: 0;
+}
+
+.join h1 {
+    font-size: 5em;
+    text-align: center;
+}
+
+.join form {
+    display: flex;
+    flex-direction: column;
+    width: 20em;   
+    padding: 2em;
+    background-color: #1d1d1d;
+    border-radius: 8px;
+    box-shadow: 5px 2px 5px rgba(255, 255, 255, 0.4) ;
+    margin-bottom: 5em;
+}
+
+.about.nonedisplay {
+    display: none;
+}
+
+.meet.nonedisplay {
+    display: none;
+}
+
+.join.nonedisplay {
+    display: none;
+}
+
+}

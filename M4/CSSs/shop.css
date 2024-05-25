@@ -1,0 +1,391 @@
+:root {
+    --download: #00ffaa;
+  }
+  
+body {
+    margin: 0;
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    background-image: url(../Images/cielo_estrellado.png);
+    background-position:center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    font-family: "Freeman", sans-serif;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+}
+
+
+/*Header*/
+header {
+    background-color: black;
+    padding: 5px;
+    padding-left: 100px;
+    display: flex;
+    align-items: center;
+    position: sticky;
+    margin:0;
+    border-bottom: 1px solid white;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo {
+    width: 80%;
+}
+
+.logo img {
+    width: 5%;
+    margin-left:2%;
+}
+
+.header-links {
+    width: 34%;
+}
+
+.header-links ul, .header-links a {
+    display: flex;
+    text-decoration: none;
+    color: white;
+    list-style: none;
+    text-transform: uppercase;
+    font-family: "Freeman", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    text-shadow: 5px 2px 5px rgba(255, 255, 255, 0.4) ;
+}
+
+.header-links ul {
+    padding-left: 0;
+    margin-left: 0;
+}
+
+.header-links li {
+    transition: text-decoration 0.3s ease-in-out;
+    padding-right: 10%;
+}
+
+.header-links li:hover {
+    text-decoration: underline overline;
+    text-decoration-color: var(--download);
+}
+
+.header-links-movile {
+    display: none;
+}
+
+ 
+/*Main*/
+.shop {
+    display: flex;
+    justify-content: space-evenly;
+    padding: 19%;
+    padding-top: 5%;
+    padding-bottom: 5%;
+    flex-wrap: wrap;
+}
+.articulo {
+    border: 1px solid black;
+    width: 300px;
+    background-color: white;
+    border-radius: 10%;
+    box-shadow: 5px 2px 5px rgba(255, 255, 255, 0.4) ;
+}
+
+
+
+.articulotexto h1 {
+    color: black;
+    text-transform: uppercase;
+    font-family: "Freeman", sans-serif;
+    margin: 0;
+    padding: 2%;
+    text-align: center;
+    text-shadow: 3px 1px 3px rgba(0, 0, 0, 0.4) ;
+}
+
+.articulotexto h2 {
+    color: black;
+    text-transform: uppercase;
+    font-family: "Freeman", sans-serif;
+    margin: 0;
+    padding: 2%;
+    padding-left: 4%;
+    text-shadow: 2px 1px 2px rgba(0, 0, 0, 0.4) ;
+
+}
+
+main > h1 {
+    color: white;
+    font-size: 60px;
+    text-transform: uppercase;
+    font-family: "Freeman", sans-serif;
+    margin: 0;
+    padding-top: 5% ;
+    text-align: center;
+    text-shadow: 4px 2px 3px rgba(255, 255, 255, 0.4) ;
+}
+
+.articulo {
+    margin-bottom: 3em;
+}
+
+.articuloimg {
+    border-bottom: 1px solid white;
+}
+
+.articulo img {
+    width: 290px;
+}
+
+.articuloimg {
+    position: relative;
+    width: 290px;
+  }
+  
+.hoverr {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  
+.articuloimg:hover .hoverr {
+    opacity: 1;
+  }
+
+.articuloimg:hover .nohoverr {
+    transition: opacity 0.3s ease;
+    opacity: 0;
+}
+
+#black {
+    background-color: black;
+}
+
+#black h1 {
+    color: white;
+    text-shadow: 2px 1px 2px rgba(255, 255, 255, 0.4) ;
+}
+
+#black h2 {
+    color: white;
+    text-shadow: 2px 1px 2px rgba(255, 255, 255, 0.4) ;
+}
+
+.precio {
+    display: flex;
+}
+
+#black button {
+    background-color: white;
+}
+
+#black a {
+    color: black;
+}
+
+#black span {
+    background-color: rgb(116, 116, 116);
+}
+
+.precio h2 {
+    padding-right: 25%;
+}
+
+
+.future-shop {
+    display: flex;
+    flex-direction: column;
+}
+
+
+.future-shop  > h1 {
+    color: white;
+    font-size: 60px;
+    text-transform: uppercase;
+    font-family: "Freeman", sans-serif;
+    margin: 0;
+    padding-top: 5% ;
+    text-align: center;
+    text-shadow: 4px 2px 3px rgba(255, 255, 255, 0.4) ;
+}
+
+.future-articles {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    padding: 10%;
+    padding-top: 5%;
+}
+
+/* Purchase button*/
+
+.precio a {
+    color: black;
+    font-family: "Freeman",sans-serif;
+    font-weight: 400;
+    font-size: 30px;
+    text-decoration: underline;
+    transition: text-decoration 0.3s ease-in-out;
+    
+}
+
+#black a {
+    color: white;
+    transition: text-decoration 0.3s ease-in-out;
+}
+
+.precio a:hover {
+    text-decoration: underline overline;
+    text-decoration-color: var(--download);
+}
+
+
+/*Footer*/
+
+footer {
+    background-color: black;
+    text-align: center;
+    justify-content: center;
+    border-top: 1px solid white;
+}
+
+footer p {
+    padding: 1%;
+    margin: 0;
+    color: white;
+    text-transform: uppercase;
+    font-family: "Freeman", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    text-shadow: 5px 2px 5px rgba(255, 255, 255, 0.4) ;
+}
+
+.shop.nonedisplay {
+    display: none;
+}
+
+.future-shop.nonedisplay{
+    display: none;
+}
+
+@media screen and (max-width: 768px) {
+    /*Header*/
+
+    .articulo.nonedisplay {
+        display: none;
+    }
+
+    .logo {
+        width: 50%;
+        margin-left: 20%;
+    }
+
+    .logo a{
+        display: flex;
+        justify-content: center;
+        min-width: 150px;
+        }
+    
+    .logo img {
+        width: 30%;
+    }
+
+    header {
+        background-color: black;
+        padding: 5px;
+        align-items: center;
+        position: sticky;
+        margin:0;
+        justify-content: center;
+    }
+
+    .header-links {
+        display: none;
+    }
+
+    .header-links-movile {
+        display: block;
+        position:relative;
+        margin-left: 7%;
+        z-index: 1000;
+    }
+
+    .header-links-movile p {
+        color: white;
+    }
+
+    .header-links-movile p:active {
+        color: var(--download)
+    }
+    
+    .navlinks.show {
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        top: 6%;
+        bottom: 0; 
+        left: 0; 
+        right: 0;    
+        box-sizing: border-box;
+
+    }
+    .navlinks li {
+        display: none;
+    }
+    .navlinks.show li {
+        display: block;
+        list-style: none;
+    }
+
+    .navlinks.show a {
+        color: white;
+        z-index: 10;
+        position: static;
+        float: left;
+        text-decoration: none;
+        font-size: 35px;
+        text-transform: uppercase;
+        font-family: "Freeman", sans-serif;
+        margin-top: 1em;
+        text-shadow: 5px 2px 5px rgba(255, 255, 255, 0.4) ;
+    }
+    
+    /*Shop part*/
+
+    .shop {
+        display: flex;
+        flex-direction: column;
+        padding: 10%;
+        padding-top: 5%;
+        align-items: center;
+    }
+
+    /*future shop*/
+    .future-articles {
+        display: flex;
+        flex-direction: column;
+        padding: 10%;
+        padding-top: 5%; 
+        align-items: center;
+    }
+
+    main > h1 {
+        font-size: 50px;
+    }
+
+    main > h1.nonedisplay {
+        display: none;
+    }
+
+    footer.nonedisplay {
+        display: none;
+    }
+}
