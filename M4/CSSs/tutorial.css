@@ -238,33 +238,39 @@ footer p {
 
 .tutor {
     display: flex;
-    flex-direction: row;
+    flex-wrap: wrap;
     margin-bottom: 2em;
     background-color: rgb(7, 7, 7);
     box-shadow: 5px 2px 5px rgba(255, 255, 255, 0.4) ;
     border-radius: 20px;
 }
 
-.reves {
+.tutor.reves {
     flex-direction: row-reverse;
+    border-radius: 20px;
+    box-shadow: 5px 2px 5px rgba(255, 255, 255, 0.4) ;
 }
 
 .reves .imge {
     margin-right: 0;
-    margin-left: 5em;
+    margin-left: 10em;
+
 }
 
 .tutor .imge img {
     width: 30em;
     margin: 2em;
     margin-right: 5em;
+    margin-left: 5em;
     border-radius: 5%;
+    box-shadow: 5px 2px 5px rgba(255, 255, 255, 0.4) ;
 }
 
 .tutor .texto {
     text-align: left;
     margin: 3em;
-    font-size: 20px;    
+    font-size: 20px;
+    width: 30em;    
 }
 
 
