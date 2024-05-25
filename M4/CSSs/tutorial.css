@@ -359,11 +359,15 @@ footer p {
 
 }
 
-
+.movil {
+    display: none;
+}
 
 @media screen and (max-width: 768px) {
+    h1 {
+        font-size: 3.5em;
+    }
     /*Header*/
-
     .articulo.nonedisplay {
         display: none;
     }
@@ -441,7 +445,7 @@ footer p {
         margin-top: 1em;
         text-shadow: 5px 2px 5px rgba(255, 255, 255, 0.4) ;
     }
-
+/*welcome*/
     .welcome h1 {
         color: white;
         font-size: 5em;
@@ -451,7 +455,7 @@ footer p {
         display: none;
     }
 
-
+/*objective*/
     .objective {
         padding: 0;
         padding-left: 0.5em;
@@ -460,7 +464,7 @@ footer p {
     .objective button {
         margin-bottom: 3em;
     }
-
+/*secciones*/
     .secciones {
         flex-direction: column;
         padding: 0;
@@ -471,7 +475,64 @@ footer p {
         margin-bottom: 3em;
     }
 
+/*FAQ*/
+    .FAQ {
+        padding-top: 0;
+    }
+
     .seccion_faq {
         padding: 0;
     }
+
+    .pregunta h2 {
+        font-size: 1em;
+    }
+
+    .normal {
+        display: none;
+    }
+
+    .movil {
+        display: block;
+    }
+
+/*Tutorial*/
+
+    .opcmenu {
+        padding: 0;
+    }
+
+    .tutor {
+        background-color: transparent;
+        box-shadow: none;
+    }
+
+    .tuto_sect {
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .tutor .imge img {
+        width: 20em;
+        margin: 0;
+        border-radius: 5%;
+        box-shadow: 5px 2px 5px rgba(255, 255, 255, 0.4) ;
+        margin-bottom: 1em;
+    }
+    
+    .tutor .texto {
+        text-align: left;
+        margin: 0.5em;
+        font-size: 1em;
+        width: 26em;    
+        text-transform: none;
+    }
+    
+    .sect_reves .texto {
+        margin-right: 0;
+    }
+    .sect_reves .imge {
+        margin-right: 0;
+    }
+
 }

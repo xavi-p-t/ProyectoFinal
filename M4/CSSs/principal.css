@@ -117,42 +117,38 @@ header {
     background-color: black;
 }
 
-.explicacion-imagen {
-    width: 34%;
-    height: 90%;
-}
-
-.explicacion-texto {
-    width: 50%;
-    margin-left: 5%;
-
-}
-
-.explicacion-texto h1 {
-    margin-top: 0;
-    font-size: 60px;
-    font-family: "Freeman", sans-serif;
+.explica_game {
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(14, 14, 14);
+    border-radius: 20px;
     color: white;
+    padding: 2em;
+    box-shadow: 5px 2px 5px rgba(255, 255, 255, 0.4) ;
+}
+.explica_game h2{
+    text-align: center;
     text-transform: uppercase;
+    font-size: 2em;
+    font-family: "Freeman", sans-serif;
+    width: 20em;
+    text-shadow: 5px 2px 5px rgba(255, 255, 255, 0.4);
+    margin-bottom: 0;
 }
 
-.explicacion-texto-span {
-    margin-top: 0;
-    font-size: 85px;
-    font-family: "Road Rage", sans-serif;
+.explica_game p {
+    font-family: "Freeman", sans-serif;
+    text-transform: uppercase;
+    font-size: 1em;
+    text-align: center;
+    margin-top: 0.2em;
 }
 
-.explicacion-texto p {
-    font-family: "Yanone Kaffeesatz", sans-serif;
-    font-size: 40px;
-    padding-right: 30%;
-    color: white;
+.explica_game img {
+    border: 1px solid white;
+    border-radius: 15px;
 }
 
-#img-explicacion {
-    width: 120%;
-    height: 120%;
-}
 
 /*seccion de secciones*/
 .secciones {
@@ -175,6 +171,7 @@ header {
     transition: filter 0.3s ease;
     background-color: black;
     align-items: center; 
+    box-shadow: 5px 2px 5px rgba(255, 255, 255, 0.4) ;
 }
 
 .seccion:hover {
@@ -551,6 +548,35 @@ footer p {
     }
     .main-download h2 {
         display: none;
+    }
+
+
+    .explica_game h2{
+        text-align: left;
+        text-transform: uppercase;
+        font-size: 1em;
+        font-family: "Freeman", sans-serif;
+        width: 23em;
+        text-shadow: 5px 2px 5px rgba(255, 255, 255, 0.4);
+        margin-bottom: 0;
+    }
+    
+    .explica_game p {
+        font-family: "Freeman", sans-serif;
+        text-transform: uppercase;
+        font-size: 0.5em;
+        text-align: left;
+        margin-top: 0.2em;
+    }
+
+    .explica_game {
+        display: flex;
+        flex-direction: column;
+        background-color: transparent;
+        border-radius: 20px;
+        color: white;
+        padding: 2em;
+        box-shadow: none;
     }
 }
 

@@ -2,7 +2,12 @@
 body {
     margin: 0;
     padding: 0;
-    background-image:url(../Images/cielo_estrellado.png);
+    background-image: url(../Images/cielo_estrellado.png);
+    background-position:center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    font-family: "Freeman", sans-serif;
 }   
 
 /*Header*/
@@ -64,6 +69,55 @@ header {
 }
 
 
+.text {
+    color: white;
+    width: 50em;
+    font-family: "Freeman", sans-serif;
+    font-size: 20px;
+}
+
+.text {
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.info {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.imagen img{
+    width: 30em;
+}
+
+.icon {
+    background-color: white;
+    width: 10em;
+    border-radius: 15px;
+    display: flex;
+}
+
+.icon:hover {
+    cursor: pointer;
+    background-color: #9927a8;
+}
+
+.icon img {
+    width: 10em;
+}
+
+.icon img:hover {
+    filter: invert(100%);
+}
+
+.about {
+    padding: 10em ;
+    padding-top: 0;
+}
 /* TITULO MEET THE TEAM */
 .title {
     text-align: center;
@@ -345,8 +399,64 @@ footer p {
     text-shadow: 5px 2px 5px rgba(255, 255, 255, 0.4) ;
 }
 
-
 /*############################################################################ */
+
+.join {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+    background-color: black;
+    text-transform: uppercase;
+    text-shadow: 5px 2px 5px rgba(255, 255, 255, 0.4) ;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    width: 30em;   
+    padding: 2em;
+    background-color: #1d1d1d;
+    border-radius: 8px;
+    box-shadow: 5px 2px 5px rgba(255, 255, 255, 0.4) ;
+    margin-bottom: 5em;
+}
+
+label {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+input[type="text"],
+input[type="email"],
+textarea {
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+button[type="submit"] {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
 
 /* Pantalla de movil */
 @media screen and (max-width: 768px) {
@@ -480,5 +590,45 @@ header {
     text-shadow: 5px 2px 5px rgba(255, 255, 255, 0.4) ;
 }
 
+.about {
+    padding: 0;
+}
+.title h1{
+    font-size: 5em;
+}
+
+.info {
+    flex-direction: column-reverse;
+}
+
+.imagen {
+    display: none;
+}
+
+.text {
+    width: 20em;
+}
+
+
+.join {
+    padding: 0;
+    margin: 0;
+}
+
+.join h1 {
+    font-size: 5em;
+    text-align: center;
+}
+
+.join form {
+    display: flex;
+    flex-direction: column;
+    width: 20em;   
+    padding: 2em;
+    background-color: #1d1d1d;
+    border-radius: 8px;
+    box-shadow: 5px 2px 5px rgba(255, 255, 255, 0.4) ;
+    margin-bottom: 5em;
+}
 
 }
