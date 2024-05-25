@@ -21,7 +21,9 @@ main {
 
 }
 
-
+h1 {
+    font-size: 60px;
+}
 /*Header*/
 header {
     background-color: black;
@@ -169,6 +171,7 @@ footer p {
 
 .seccion h2 {
     font-size: 50px;
+    margin-bottom: 0;
 }
 .seccion p {
     font-size: 25px;
@@ -238,25 +241,17 @@ footer p {
     padding-bottom: 12em;
 }
 
+.opcmenu h1 {
+    font-size: 40px;
+}
+
 .tutor {
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column ;
     margin-bottom: 2em;
     background-color: rgb(7, 7, 7);
     box-shadow: 5px 2px 5px rgba(255, 255, 255, 0.4) ;
     border-radius: 20px;
-}
-
-.tutor.reves {
-    flex-direction: row-reverse;
-    border-radius: 20px;
-    box-shadow: 5px 2px 5px rgba(255, 255, 255, 0.4) ;
-}
-
-.reves .imge {
-    margin-right: 0;
-    margin-left: 10em;
-
 }
 
 .tutor .imge img {
@@ -271,11 +266,26 @@ footer p {
 .tutor .texto {
     text-align: left;
     margin: 3em;
-    font-size: 20px;
+    font-size: 25px;
     width: 30em;    
+    text-transform: none;
 }
 
+.tuto_sect {
+    display: flex;
+    flex-direction: row;
+}
 
+.sect_reves {
+    flex-direction: row-reverse;
+}
+
+.sect_reves .texto {
+    margin-right: 10em;
+}
+.sect_reves .imge {
+    margin-right: 5em;
+}
 
 
 
@@ -321,6 +331,7 @@ footer p {
     justify-content: space-between;
     padding-left: 2em;
     padding-right: 2em ;
+    border-bottom: 1px solid gray;
 }
 
 .pregunta p {
