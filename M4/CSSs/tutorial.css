@@ -1,5 +1,5 @@
 :root {
-    --downloadd: #00ffaa;
+    --download: #00ffaa;
   }
   
 body {
@@ -75,7 +75,7 @@ header {
 
 .header-links li:hover {
     text-decoration: underline overline;
-    text-decoration-color: var(--downloadd);
+    text-decoration-color: var(--download);
 }
 
 .header-links-movile {
@@ -363,6 +363,9 @@ footer p {
     display: none;
 }
 
+
+
+
 @media screen and (max-width: 768px) {
     h1 {
         font-size: 3.5em;
@@ -411,7 +414,7 @@ footer p {
     }
 
     .header-links-movile p:active {
-        color: var(--downloadd)
+        color: var(--download)
     }
     
     .navlinks.show {
@@ -535,4 +538,27 @@ footer p {
         margin-right: 0;
     }
 
+    .welcome.nonedisplay {
+        display: none;
+    }
+    
+    .gamemechanics.nonedisplay {
+        display: none;
+    }
+    
+    .objective.nonedisplay {
+        display: none;
+    }
+    
+    .opcmenu.nonedisplay {
+        display: none;
+    }
+    
+    .tips.nonedisplay {
+        display: none;
+    }
+    
+    .FAQ.nonedisplay {
+        display: none;
+    }
 }

@@ -1,5 +1,5 @@
 :root {
-    --downloadd: #00ffaa;
+    --download: #00ffaa;
   }
   
 body {
@@ -72,7 +72,7 @@ header {
 
 .header-links li:hover {
     text-decoration: underline overline;
-    text-decoration-color: var(--downloadd);
+    text-decoration-color: var(--download);
 }
 
 .header-links-movile {
@@ -244,7 +244,7 @@ main > h1 {
 
 .precio a:hover {
     text-decoration: underline overline;
-    text-decoration-color: var(--downloadd);
+    text-decoration-color: var(--download);
 }
 
 
@@ -315,6 +315,7 @@ footer p {
         display: block;
         position:relative;
         margin-left: 7%;
+        z-index: 1000;
     }
 
     .header-links-movile p {
@@ -322,7 +323,7 @@ footer p {
     }
 
     .header-links-movile p:active {
-        color: var(--downloadd)
+        color: var(--download)
     }
     
     .navlinks.show {
@@ -334,6 +335,7 @@ footer p {
         left: 0; 
         right: 0;    
         box-sizing: border-box;
+
     }
     .navlinks li {
         display: none;
@@ -377,5 +379,13 @@ footer p {
 
     main > h1 {
         font-size: 50px;
+    }
+
+    main > h1.nonedisplay {
+        display: none;
+    }
+
+    footer.nonedisplay {
+        display: none;
     }
 }
