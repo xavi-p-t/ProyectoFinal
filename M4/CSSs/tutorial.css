@@ -363,6 +363,10 @@ footer p {
     display: none;
 }
 
+.howtoplay{
+    text-decoration: none;
+    color: white;
+}
 
 
 
@@ -466,6 +470,11 @@ footer p {
 
     .objective button {
         margin-bottom: 3em;
+    }
+
+    .howtoplay{
+        text-decoration: none;
+        color: white;
     }
 /*secciones*/
     .secciones {
