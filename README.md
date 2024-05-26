@@ -44,4 +44,4 @@ En el siguiente proyecto hemos desarrollado un videojuego: **Space Wars**. Este 
 
 
 > [!CAUTION]
-> Advises about risks or negative outcomes of certain actions.
+> PROCESOS DE INSTACION EN DESARROLLO.
