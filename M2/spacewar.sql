@@ -40,6 +40,8 @@ CREATE TABLE Battle_log (
     planet_id NUMBER,
     num_battle NUMBER,
     num_line NUMBER,
+    battle_stats CLOB,
+    battle_log CLOB,
     PRIMARY KEY (planet_id, num_battle, num_line), 
     FOREIGN KEY (planet_id, num_battle) REFERENCES Battle_stats(planet_id, num_battle),
     log_entry VARCHAR2(100)
