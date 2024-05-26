@@ -25,6 +25,3 @@ En el siguiente proyecto hemos desarrollado un videojuego: **Space Wars**. Este 
      java -jar (ruta del juego/juego.jar)
      ```
 
-
-> [!CAUTION]
-> Advises about risks or negative outcomes of certain actions.
