@@ -3,10 +3,6 @@ package Atack;
 public class BattleShip extends Ship{
 	public BattleShip(int armor, int baseDamage) {
 		super(armor, baseDamage);
-		int temp = 2;
-		armor = ARMOR_BATTLESHIP + (temp*PLUS_ARMOR_BATTLESHIP_BY_TECHNOLOGY)*1000/100;
-		baseDamage = BASE_DAMAGE_BATTLESHIP + (temp*PLUS_ATTACK_BATTLESHIP_BY_TECHNOLOGY)*1000/100;
-		setInitialArmor(armor);
 	}
 	
 	public BattleShip() {
@@ -19,37 +15,27 @@ public class BattleShip extends Ship{
 	}
 
 	@Override
-	public void tekeDamage(int receivedDamage) {
-		super.tekeDamage(receivedDamage);
-	}
-
-	@Override
-	public int getActualArmor() {
-		return super.getActualArmor();
-	}
-
-	@Override
 	public int getMetalCost() {
-		return super.getMetalCost();
+		return METAL_COST_BATTLESHIP;
 	}
 
 	@Override
 	public int getDeuteriumCost() {
-		return super.getDeuteriumCost();
+		return DEUTERIUM_COST_BATTLESHIP;
 	}
 
 	@Override
 	public int getChanceGeneratinWaste() {
-		return super.getChanceGeneratinWaste();
+		return CHANCE_GENERATNG_WASTE_BATTLESHIP;
 	}
 
 	@Override
 	public int getChanceAttackAgain() {
-		return super.getChanceAttackAgain();
+		return CHANCE_ATTACK_AGAIN_BATTLESHIP;
 	}
 
 	@Override
-	public void resetArmor() {
-		super.resetArmor();
+	public void tekeDamage(int receivedDamage) {
+		setArmor(getActualArmor() - receivedDamage);
 	}
 }

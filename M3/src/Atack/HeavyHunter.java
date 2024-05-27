@@ -3,10 +3,6 @@ package Atack;
 public class HeavyHunter extends Ship{
 	public HeavyHunter(int armor, int baseDamage) {
 		super(armor, baseDamage);
-		int temp = 2;
-		armor = ARMOR_HEAVYHUNTER + (temp*PLUS_ARMOR_HEAVYHUNTER_BY_TECHNOLOGY)*1000/100;
-		baseDamage = BASE_DAMAGE_HEAVYHUNTER + (temp*PLUS_ATTACK_HEAVYHUNTER_BY_TECHNOLOGY)*1000/100;
-		setInitialArmor(armor);
 	}
 	
 	public HeavyHunter() {
@@ -19,37 +15,27 @@ public class HeavyHunter extends Ship{
 	}
 
 	@Override
-	public void tekeDamage(int receivedDamage) {
-		super.tekeDamage(receivedDamage);
-	}
-
-	@Override
-	public int getActualArmor() {
-		return super.getActualArmor();
-	}
-
-	@Override
 	public int getMetalCost() {
-		return super.getMetalCost();
+		return METAL_COST_HEAVYHUNTER;
 	}
 
 	@Override
 	public int getDeuteriumCost() {
-		return super.getDeuteriumCost();
+		return DEUTERIUM_COST_HEAVYHUNTER;
 	}
 
 	@Override
 	public int getChanceGeneratinWaste() {
-		return super.getChanceGeneratinWaste();
+		return CHANCE_GENERATNG_WASTE_HEAVYHUNTER;
 	}
 
 	@Override
 	public int getChanceAttackAgain() {
-		return super.getChanceAttackAgain();
+		return CHANCE_ATTACK_AGAIN_HEAVYHUNTER;
 	}
 
 	@Override
-	public void resetArmor() {
-		super.resetArmor();
+	public void tekeDamage(int receivedDamage) {
+		setArmor(getActualArmor() - receivedDamage);
 	}
 }

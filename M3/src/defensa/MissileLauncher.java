@@ -1,9 +1,12 @@
 package defensa;
-
+import partPlanetas.planeta;
 public class MissileLauncher extends Defense{
 	// contructor
-		public MissileLauncher(int initialArmor, int baseDamage) {
-			super(initialArmor, baseDamage);
+		public MissileLauncher(int Armor, int baseDamage) {
+			super(Armor, baseDamage);
+		}
+		public MissileLauncher() {
+			super(ARMOR_MISSILELAUNCHER,BASE_DAMAGE_MISSILELAUNCHER);
 		}
 
 		// implementacion de las variables y militaryUnit
@@ -44,7 +47,7 @@ public class MissileLauncher extends Defense{
 
 		 
 		public void resetArmor() {
-			setArmor(getInitialArmor());
+			setArmor(ARMOR_MISSILELAUNCHER);
 		}
 
 }
