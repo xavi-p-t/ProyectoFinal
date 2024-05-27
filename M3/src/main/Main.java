@@ -42,6 +42,8 @@ class juego implements Variables{
 	private boolean flag_04 = false;
 	private boolean flag_05 = false;
 	
+	private boolean iniciado = false;
+	
 	private Scanner opc = new Scanner(System.in);
     private Timer timer;
     private TimerTask task1;
@@ -114,6 +116,7 @@ class juego implements Variables{
 	    			menuReporte();
 	    		}
 	    	}
+			if (iniciado) {
 			String[] recNaves = {"LIGHT_HUNTERS","HEAVY_HUNTERS","BATTLE_SHIPS","ARMORED_SHIPS","MISSILE_LAUNCHER","ION_CANNON","PLASMA_CANNON"};
 			String update = "";
 			int id = 1;
@@ -197,6 +200,7 @@ class juego implements Variables{
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			}
 			if (timer != null) {
 				timer.cancel();	
 			}
@@ -276,14 +280,16 @@ class juego implements Variables{
 		num = opc.nextInt();
 		if (num == 1) {
 			iniciarSesion();
-			
+			iniciado = true;
 		}
 		else if(num == 2) {
 			crearCuenta();
+			iniciado = true;
 		}
 		else if(num == 0) {
 			inicioSesion = false;
 			menu = false;
+			startGame();
 		}
 		else {
 			System.out.println("Invalid Option");
