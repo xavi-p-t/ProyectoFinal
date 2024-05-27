@@ -21,7 +21,7 @@ En el siguiente proyecto hemos desarrollado un videojuego: **Space Wars**. Este 
 
 2. **Abrir el juego**:
    - Abre una terminal y ejecuta el siguiente comando:
-     
+     ```
      java -jar (ruta del juego/ejecutable.jar)
-     
+     ```
 
