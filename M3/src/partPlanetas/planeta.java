@@ -155,20 +155,24 @@ public class planeta implements Variables{
 	
 
 	//constructor
-	public planeta(int metal, int deuterium) {
+	public planeta(int metal, int deuterium,int tecnologyDefense,int tecnologyAtack) {
 		super();
 		this.metal = metal;
 		this.deuterium = deuterium;
-		this.technologyDefense = 0;
-		this.technologyAtack = 0;
-		this.upgradeAttackTechnologyDeuteriumCost = UPGRADE_BASE_DEFENSE_TECHNOLOGY_DEUTERIUM_COST;
-		this.upgradeDefenseTechnologyDeuteriumCost = UPGRADE_BASE_ATTACK_TECHNOLOGY_DEUTERIUM_COST;
+		this.technologyDefense = tecnologyDefense;
+		this.technologyAtack = tecnologyAtack;
+		for(int i = 0;i<tecnologyDefense;i++) {
+			this.upgradeDefenseTechnologyDeuteriumCost += (this.upgradeDefenseTechnologyDeuteriumCost*UPGRADE_PLUS_DEFENSE_TECHNOLOGY_DEUTERIUM_COST)/100 ;
+		}
+		for(int i = 0;i<tecnologyAtack;i++) {
+			this.upgradeAttackTechnologyDeuteriumCost += (this.upgradeAttackTechnologyDeuteriumCost*UPGRADE_PLUS_DEFENSE_TECHNOLOGY_DEUTERIUM_COST)/100;
+		}
 		
 	}
 	public planeta() {
 		super();
-		this.metal = 500000000;
-		this.deuterium = 250000000;
+		this.metal = 50000;
+		this.deuterium = 25000;
 		this.technologyDefense = 0;
 		this.technologyAtack = 0;
 		this.upgradeAttackTechnologyDeuteriumCost = UPGRADE_BASE_DEFENSE_TECHNOLOGY_DEUTERIUM_COST;
@@ -183,15 +187,18 @@ public class planeta implements Variables{
 	}
 	
 	//seters geters
-	
+	public void setArmy(ArrayList<MilitaryUnit>[] army) {
+		this.army = army;
+	}
+	public ArrayList<MilitaryUnit>[] getArmy() {
+		return army;
+	}
 	
 	public int getTechnologyDefense() {
 		return technologyDefense;
 	}
 
-	public ArrayList<MilitaryUnit>[] getArmy() {
-		return army;
-	}
+	
 	
 	public void setTechnologyDefense(int technologyDefense) {
 		this.technologyDefense = technologyDefense;

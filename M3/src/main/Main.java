@@ -1,5 +1,11 @@
 package main;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.Timer;
@@ -20,8 +26,12 @@ public class Main{
 	}
 }
 class juego implements Variables{
-	private boolean flag_0 = true;
-	private boolean flag_00 = true;
+	private boolean menu = true;
+	private boolean inicioSesion = true;
+	private boolean selecPlanetas = false;
+	
+	private boolean flag_0 = false;
+	private boolean flag_00 = false;
 	private boolean ataque = false;
 	
 	private boolean flag_02 = false;
@@ -36,6 +46,7 @@ class juego implements Variables{
     private Timer timer;
     private TimerTask task1;
     private TimerTask task2;
+    private TimerTask task3;
     
     private String menuMostr = "Main Menu\n\n1)View Planet Stats\n2)Build\n3)Upgrade Technology\n4)View Battle Reports\n0)Exit\n\nOption:";
     private String menuPrinc = "Main Menu\n\n1)View Planet Stats\n2)Build\n3)Upgrade Technology\n4)View Battle Reports\n0)Exit\n\nOption:";
@@ -46,7 +57,13 @@ class juego implements Variables{
     private String building = "Amount of Units\nAmount:";
     private String levelUp = "";
     private String report = "Battle Reports\nThere is not reports to read\nPress enter to go back";
+    private String menuIni = "MAIN MENU\n1)Log In\n2)create Account\n0)Exit\n\nOpcion:";
+    private String menuplaneta = "PLANETS MENU\n1)Create new Planet\n2)Select Planet\n0)Back\n\nOption:";
     
+    private String planetName;
+    
+    private int userId;
+    private int planetId;
     private int num = 0;
     private int enemyMetal = METAL_BASE_ENEMY_ARMY;
     private int enemyDeut = DEUTERIUM_BASE_ENEMY_ARMY;
@@ -55,57 +72,145 @@ class juego implements Variables{
     private ArrayList reportes = new ArrayList();
     private ArrayList peleas = new ArrayList();
     
-    planeta miPlaneta = new planeta();
-    Battle pelea = new Battle();
+    private Connection conexion;
+    private Statement stmnt;
+    private ResultSet rs;
+    private PreparedStatement pst;
+    
+    private planeta miPlaneta;
+    private Battle pelea = new Battle();
     
     //juego principal
-    juego(){
-    	startGame();
-    	try {
-			miPlaneta.newLigthHunter(10);
-		} catch (ResourceException e) {
-			System.out.println(e.getMessage());
+    public juego(){
+    	connectar();    	
+		while (menu) {
+			while(inicioSesion) {
+				 menuniciarsesion();
+			}
+			while(selecPlanetas) {
+				selPlanet();
+			}
+			timer.schedule(task1, 120000,180000);
+    		timer.schedule(task2, 180000,180000);
+    		timer.schedule(task3, 60000,60000);
+			while(flag_0) {
+	    		while (flag_00) {
+
+	    			menuInicial();
+	    		}
+	    		while (flag_02) {
+	    			segundoMenu();
+	    		}
+	    		while (flag_021) {
+	    			menuShips();
+	    		}
+	    		while (flag_022) {
+	    			menuDefensas();
+	    		}
+	    		while (flag_03) {
+	    			menuNivel();
+	    		}
+	    		while (flag_04) {
+	    			menuReporte();
+	    		}
+	    	}
+			String[] recNaves = {"LIGHT_HUNTERS","HEAVY_HUNTERS","BATTLE_SHIPS","ARMORED_SHIPS","MISSILE_LAUNCHER","ION_CANNON","PLASMA_CANNON"};
+			String update = "";
+			int id = 1;
+			String query = "";
+			for (int i = 0; i< recNaves.length;i++) {
+				update = "delete FROM "+recNaves[i]+" where planet_id = "+"\'"+planetId+"\'";
+				try {
+					//System.out.println(update);
+					stmnt.executeUpdate(update);
+					
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				if (!miPlaneta.getArmy()[i].isEmpty()) {
+					for (int j = 0;j< miPlaneta.getArmy()[i].size();j++) {
+						try {
+							query = "select * from "+recNaves[i];
+							try {
+							rs = stmnt.executeQuery(query);
+							while(rs.next()) {
+								id = rs.getInt(1)+1;
+							}
+							} catch (SQLException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+							
+							update =  "INSERT INTO " + recNaves[i] + " (id, planet_id, armour, atack) VALUES (?, ?, ?, ?)";
+							//System.out.println(update);
+							pst = conexion.prepareStatement(update,ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_UPDATABLE);
+							pst.setInt(1, id);
+							pst.setInt(2, planetId);
+							pst.setInt(3, miPlaneta.getArmy()[i].get(j).getActualArmor());
+							pst.setInt(4, miPlaneta.getArmy()[i].get(j).attack());
+							pst.executeUpdate();
+//							 int rowsInserted = pst.executeUpdate();
+//						        if (rowsInserted > 0) {
+//						            System.out.println("Inserción exitosa en la tabla " + recNaves[i]);
+//						        }
+							
+						} catch (SQLException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}	
+					}
+				
+				}
+			}
+			update = "UPDATE Planet_stats SET " +
+                    "resource_metal_amount = ?, " +
+                    "resource_deuterion_amount = ?, " +
+                    "technology_defense_level = ?, " +
+                    "technology_attack_level = ?, " +
+                    "battle_counter = ?, " +
+                    "missile_launcher_remaining = ?, " +
+                    "ion_cannon_remaining = ?, " +
+                    "plasma_canon_remaining = ?, " +
+                    "light_hunter_remaining = ?, " +
+                    "heavy_hunter_remaining = ?, " +
+                    "battleship_remaining = ?, " +
+                    "armored_ship_remaining = ? " +
+                    "WHERE planet_id = ?";
+			try {
+				pst = conexion.prepareStatement(update,ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_UPDATABLE);
+				pst.setInt(1, miPlaneta.getMetal());
+				pst.setInt(2, miPlaneta.getDeuterium());
+				pst.setInt(3, miPlaneta.getTechnologyDefense());
+				pst.setInt(4, miPlaneta.getTechnologyAtack());
+				pst.setInt(5, enemyLevel);
+				pst.setInt(6, miPlaneta.getArmy()[4].size());
+				pst.setInt(7, miPlaneta.getArmy()[5].size());
+				pst.setInt(8, miPlaneta.getArmy()[6].size());
+				pst.setInt(9, miPlaneta.getArmy()[0].size());
+				pst.setInt(10, miPlaneta.getArmy()[1].size());
+				pst.setInt(11, miPlaneta.getArmy()[2].size());
+				pst.setInt(12, miPlaneta.getArmy()[3].size());
+				pst.setInt(13, planetId);
+				pst.executeUpdate();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			if (timer != null) {
+				timer.cancel();	
+			}
 		}
-//    	createEnemyArmy();
-//    	pelea.setPlanetArmy(miPlaneta.getArmy().clone());
-//        pelea.fleetResourceCost(miPlaneta.getArmy());
-//        pelea.fleetResourceCost(enemyArmie);
-//        pelea.initialFleetNumber(miPlaneta.getArmy());
-//        pelea.initialFleetNumber(enemyArmie);
-//        pelea.initInitialArmies();
-//        pelea.setArmies();
-//        lucha();
-//        System.out.println("a");
-//        pelea.updateResourcesLooses();
-    	timer.schedule(task1, 120000,180000);
-		timer.schedule(task2, 180000,180000);
-		
-    	while(flag_0) {
-    		while (flag_00) {
-    			menuInicial();
-    		}
-    		while (flag_02) {
-    			segundoMenu();
-    		}
-    		while (flag_021) {
-    			menuShips();
-    		}
-    		while (flag_022) {
-    			menuDefensas();
-    		}
-    		while (flag_03) {
-    			menuNivel();
-    		}
-    		while (flag_04) {
-    			menuReporte();
-    		}
-    		
-    	}
+		try {
+			conexion.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     	opc.close();
     }
     //necesario para iniciar los timers y el planeta
     private void startGame() {
-    	miPlaneta.setArray();
         timer = new Timer();
         task1 = new TimerTask() {
             public void run() {
@@ -138,6 +243,378 @@ class juego implements Variables{
                 }
             }
         };
+        task3 = new TimerTask() {
+            public void run() {
+                miPlaneta.setMetal(miPlaneta.getMetal()+10000);
+                miPlaneta.setDeuterium(miPlaneta.getDeuterium()+5000);
+            }
+        };
+    }
+    //conectar
+    private void connectar() {
+    	String url = "jdbc:oracle:thin:@//localhost:1521/orcl";
+        String usuario = "admin_spacewars";
+        String contraseña = "admin";
+        try {
+            conexion = DriverManager.getConnection(url, usuario, contraseña);
+            stmnt =	conexion.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_UPDATABLE);
+//            System.out.println("Conexión establecida con éxito a Oracle.");
+            // Realiza operaciones con la conexión aquí
+//            conexion.close(); // Cierra la conexión cuando hayas terminado
+        } catch (SQLException e) {
+            System.out.println("Error al conectar con Oracle.");
+            e.printStackTrace();
+        }
+    }
+    //iniciar sesion menu
+    private void menuniciarsesion() {
+    	System.out.println(menuIni);
+		while (!opc.hasNextInt()) {
+			System.out.println("Invalid Option");
+			opc.nextLine();
+		}
+		num = opc.nextInt();
+		if (num == 1) {
+			iniciarSesion();
+			
+		}
+		else if(num == 2) {
+			crearCuenta();
+		}
+		else if(num == 0) {
+			inicioSesion = false;
+			menu = false;
+		}
+		else {
+			System.out.println("Invalid Option");
+		}
+    }
+    //INICIAR SESION
+    private void iniciarSesion() {
+    	boolean compusu = true;
+    	boolean compcont = true;
+    	String nombre = "";
+    	String pasw;
+    	String query ;
+    	PreparedStatement ps;
+    	while(compusu) {
+    		System.out.println("User Name:");
+    		while (!opc.hasNext()) {
+    			System.out.println("Invalid Option");
+    			opc.nextLine();
+    		}
+    		nombre = opc.next();
+    		query = "Select * from Users where username = ?";
+    		try {
+    			ps = conexion.prepareStatement(query);
+    			ps.setString(1, nombre);
+    			rs = ps.executeQuery();
+    			while (rs.next()) {
+    				if (nombre.equals(rs.getString(2))) {
+        				compusu = false;
+        			}
+    			}
+    			
+			} catch (SQLException e) {
+				System.out.println("User name dont exist");
+			}
+    	}
+    	while(compcont) {
+    		System.out.println("User Password:");
+    		while (!opc.hasNext()) {
+    			System.out.println("Invalid Option");
+    			opc.nextLine();
+    		}
+    		pasw = opc.next();
+    		query = "Select * from Users where username = ? and user_password = ?";
+    		try {
+    			ps = conexion.prepareStatement(query);
+    			ps.setString(1, nombre);
+    			ps.setString(2, pasw);
+    			rs = ps.executeQuery();
+    			while (rs.next()) {
+    				if (pasw.equals(rs.getString(3))) {
+        				compcont = false;
+        			}
+    			}
+			} catch (SQLException e) {
+				System.out.println("User password dont match");
+			}
+    	}
+    	try {
+    		query = "Select * FROM Users where username = "+"\'"+nombre+"\'";
+    		rs = stmnt.executeQuery(query);
+    		while(rs.next()) {
+    			//System.out.println(rs.getString(2));
+        		userId = rs.getInt(1);
+        		//System.out.println(userId);
+    		}
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+    	inicioSesion = false;
+    	selecPlanetas = true;
+    }
+    //CREAR CUENTA
+    private void crearCuenta() {
+    	boolean compusu = true;
+    	boolean compcont = true;
+    	String nombre = "";
+    	String cont = "";
+    	String query ;
+    	int id = 1;
+    	boolean selid = false;
+    	
+    	while(compusu) {
+    		System.out.println("New User Name:");
+    		while (!opc.hasNext()) {
+    			System.out.println("Invalid Option");
+    			opc.nextLine();
+    		}
+    		nombre = opc.next();
+    		query = "Select * FROM Users where username = "+"\'"+nombre+"\'";
+    		try {
+				rs = stmnt.executeQuery(query);
+				if(!rs.next()) {
+					compusu = false;
+				}	
+			} catch (SQLException e) {
+				System.out.println(e.getMessage());
+			}
+    	}
+    	while(compcont) {
+    		System.out.println("New User Password:");
+    		while (!opc.hasNext()) {
+    			System.out.println("Invalid Option");
+    			opc.nextLine();
+    		}
+    		cont = opc.next();
+    		compcont = false;
+    	}
+    	String update = "INSERT INTO Users(user_id,username,user_password) VALUES (?,?,?)";
+    	try {
+    		query = "SELECT * FROM USERS";
+			rs = stmnt.executeQuery(query);
+			//System.out.println("peta la query");
+			while(rs.next()) {
+				//System.out.println("El while");
+				
+				
+				id = rs.getInt(1)+1;		
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			
+		}
+		System.out.println(id);
+    	try {
+    		//System.out.println("entra en el catch");
+			PreparedStatement ps = conexion.prepareStatement(update,ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_UPDATABLE);
+			ps.setInt(1, id);
+			ps.setString(2, nombre);
+			ps.setString(3, cont);
+			ps.executeUpdate();
+			//System.out.println("hace el insert");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	userId = id;
+    	inicioSesion = false;
+    	selecPlanetas = true;
+    }
+    //seleccionar uno de los planetas
+    private void selPlanet() {
+    	
+    	System.out.println(menuplaneta);
+		while (!opc.hasNextInt()) {
+			System.out.println("Invalid Option");
+			opc.nextLine();
+		}
+		num = opc.nextInt();
+		if (num == 1) {
+			newPlanet();
+			startGame();
+			selecPlanetas = false;
+			flag_0 = true;
+			flag_00 = true;
+		}
+		else if(num == 2) {
+			selectExistPlanets();
+			startGame();
+			selecPlanetas = false;
+			flag_0 = true;
+			flag_00 = true;
+		}
+		else if(num == 0) {
+			selecPlanetas = false;
+			inicioSesion = true;
+		}
+		else {
+			System.out.println("Invalid Option");
+		}
+    }
+    //crear un nuevo planeta
+    private void newPlanet() {
+    	int id = 1;
+    	boolean selid = false;
+    	System.out.println("Planet Name:");
+    	while (!opc.hasNext()) {
+			System.out.println("Invalid Option");
+			opc.nextLine();
+			
+		}
+		planetName = opc.next();
+		
+		miPlaneta = new planeta();
+		String update = "INSERT INTO Planet_stats(planet_id, planet_name, resource_metal_amount, resource_deuterion_amount,"
+	            + "technology_defense_level, technology_attack_level, battle_counter, "
+	            + "missile_launcher_remaining, ion_cannon_remaining, plasma_canon_remaining, "
+	            + "light_hunter_remaining, heavy_hunter_remaining, battleship_remaining, armored_ship_remaining,user_id)"
+	            + " VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+		try {
+			rs = stmnt.executeQuery("SELECT * FROM Planet_stats");
+			while(rs.next()) {
+				id = rs.getInt(1)+1;
+				
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			
+			e.printStackTrace();
+			//System.out.println("peta en el id");
+			
+		}
+		System.out.println(id);
+		planetId = id;
+		try {
+			System.out.println("a");
+			PreparedStatement ps = conexion.prepareStatement(update,ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_UPDATABLE);
+			ps.setInt(1, id );
+			ps.setString(2, planetName);
+			ps.setInt(3, miPlaneta.getMetal());
+			ps.setInt(4, miPlaneta.getDeuterium());
+			ps.setInt(5, miPlaneta.getTechnologyDefense());
+			ps.setInt(6, miPlaneta.getTechnologyAtack());
+			ps.setInt(7, 0);
+			ps.setInt(8, 0);
+			ps.setInt(9, 0);
+			ps.setInt(10, 0);
+			ps.setInt(11, 0);
+			ps.setInt(12, 0);
+			ps.setInt(13, 0);
+			ps.setInt(14, 0);
+			ps.setInt(15, userId);
+			ps.executeUpdate();
+			
+			System.out.println("insertado");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    }
+    //SELECCIONAR PLANETA EXISTENTE
+    private void selectExistPlanets() {
+    	String query = "SELECT * FROM Planet_stats where User_id = "+"\'"+userId+"\'";
+    	String mens = "";
+    	int num = 0;
+    	boolean exist = false;
+    	boolean comp = true;
+    	ArrayList opciones = new ArrayList();
+    	try {
+			rs = stmnt.executeQuery(query);
+			while(rs.next()) {
+				mens += rs.getInt(1)+") "+rs.getString(2)+"\n";
+				opciones.add(rs.getInt(1));
+			}
+			mens += "\nOption:";
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	while (comp) {
+	    	System.out.println(mens);
+	    	while (!opc.hasNextInt()) {
+				System.out.println("Invalid Option");
+				opc.nextLine();
+			}
+	    	num = opc.nextInt();
+	    	for (Object object : opciones) {
+				if(num == (int)object) {
+					exist = true;
+					comp = false;
+				}
+			}
+	    	if(!exist) {
+	    		System.out.println("Invalid option");
+	    	}
+    	}
+    	planetId = num;
+    	String[] recNaves = {"LIGHT_HUNTERS","HEAVY_HUNTERS","BATTLE_SHIPS","ARMORED_SHIPS","MISSILE_LAUNCHER","ION_CANNON","PLASMA_CANNON"};
+    	query = "SELECT * FROM Planet_stats where Planet_id = "+"\'"+planetId+"\'";
+    	try {
+			rs = stmnt.executeQuery(query);
+			while(rs.next()) {
+				planetName = rs.getString(2);
+				miPlaneta = new planeta(rs.getInt(3),rs.getInt(4),rs.getInt(5),rs.getInt(6));
+				enemyLevel = rs.getInt(7);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	miPlaneta.setArray();
+    	ArrayList<MilitaryUnit>[] army = new ArrayList[7];
+    	for (int i = 0;i<army.length;i++) {
+    		army[i] = new ArrayList<MilitaryUnit>();
+    	}
+    	for (int i = 0; i< recNaves.length;i++) {
+    		query = "SELECT * FROM " + recNaves[i] + " WHERE planet_id = " + planetId;
+    		try {
+				rs = stmnt.executeQuery(query);
+				while(rs.next()) {
+					switch (i) {
+						case 0: 
+							LigthHunter light = new LigthHunter(rs.getInt(3),rs.getInt(4));
+							army[i].add(light);
+							break;
+						case 1:
+							HeavyHunter heavy = new HeavyHunter(rs.getInt(3),rs.getInt(4));
+							army[i].add(heavy);
+							break;
+						case 2:
+							BattleShip bat = new BattleShip(rs.getInt(3),rs.getInt(4));
+							army[i].add(bat);
+							break;
+						case 3:
+							ArmoredShip arm = new ArmoredShip(rs.getInt(3),rs.getInt(4));
+							army[i].add(arm);
+							break;
+						case 4:
+							MissileLauncher mis = new MissileLauncher(rs.getInt(3),rs.getInt(4));
+							army[i].add(mis);
+							break;
+						case 5:
+							IonCannon ion = new IonCannon(rs.getInt(3),rs.getInt(4));
+							army[i].add(ion);
+							break;
+						case 6:
+							PlasmaCannon plasm = new PlasmaCannon(rs.getInt(3),rs.getInt(4));
+							army[i].add(plasm);
+							break;
+					}
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+    	}
+//    	for(int i = 0;i< army.length;i++) {
+//    		System.out.println(army[i]);
+//    	}
+    	miPlaneta.setArmy(army);
     }
     //menu 00
     private void menuInicial() {
@@ -179,6 +656,7 @@ class juego implements Variables{
 				
 				flag_00 = false;
 				flag_0 = false;
+				menu = false;
 				timer.cancel();
 
 			}
@@ -389,7 +867,9 @@ class juego implements Variables{
     	String verPelea;
     	if (reportes.size() == 0) {
     		report = "Battle Reports\nThere is not reports to read\nPress enter to go back";
-    		
+    		opc.next();
+    		flag_04 = false;
+    		flag_00 = true;
     	}
     	else {
     		if (reportes.size() > 5) {
@@ -521,6 +1001,7 @@ class juego implements Variables{
     }
     //pelearse
     private void lucha() {
+    	System.out.println("Empieza pelea");
 //    	int condicionPerdidaPlaneta = (int) (pelea.getInitialNumberUnitsPlanet()*20/100);
 //    	int condicionPerdidaEnemy = (int) (pelea.getInitialNumberUnitsEnemy()*20/100);
     	boolean salir = false;
@@ -534,10 +1015,12 @@ class juego implements Variables{
     	int contEmpieza = 0;
 		boolean eliminado = false;
     	String mensaje = "";
+    	//System.out.println("el while");
     	while(!salir) {
     		mensaje += "\n"+"*".repeat(20)+"CHANGE ATTACKER"+"*".repeat(20)+"\n";
     		pelear = true;
     		eliminado = false;
+    		//System.out.println("Primer if");
     		if (empieza%2 == 0) {
     			gruAtacante = pelea.getEnemyGroupAttacker();
     			contEmpieza = 1;
@@ -548,35 +1031,25 @@ class juego implements Variables{
     			contEmpieza = 0;
     			mensaje += "Attacks Planet: ";
     		}
-//    		System.out.println(contEmpieza);
-//    		System.out.println(empieza%2);
-//    		System.out.println("Grupo atacante"+gruAtacante);
+    		//System.out.println("Grupos");
     		gruDefensor = pelea.getGroupDefender(pelea.getArmies()[empieza%2]);
-//    		System.out.println("Grupo defensor"+ gruDefensor);
-    		//seleccionamos quien es el tacante del grupo y quien se defiende
-    		
+    		//System.out.println("No es el defensor");
     		atacante = (int) (Math.random()*pelea.getArmies()[contEmpieza][gruAtacante].size());
+    		//System.out.println("No es el atacate");
     		//para ver al atacante
     		mensaje += pelea.getArmies()[contEmpieza][gruAtacante].get(atacante).getClass().getName().substring(pelea.getArmies()[contEmpieza][gruAtacante].get(atacante).getClass().getName().lastIndexOf(".")+1)+" attacks ";
-    		//System.out.println("Ataca : "+pelea.getArmies()[contEmpieza][gruAtacante].get(atacante));
     		defensor = (int) (Math.random()*pelea.getArmies()[empieza%2][gruDefensor].size());
+    		//System.out.println("No es la unidad defensora");
     		//mas el defensor
     		mensaje += pelea.getArmies()[contEmpieza][gruAtacante].get(atacante).getClass().getName().substring(pelea.getArmies()[contEmpieza][gruAtacante].get(atacante).getClass().getName().lastIndexOf(".")+1)+"\n";
     		
-    		//			System.out.println("llega a pegarle");
-//			System.out.println("atacante,grupo atacante = "+atacante+"- "+gruAtacante);
-//			System.out.println("defensor,grupo grupo defensor = "+defensor+"- "+gruDefensor);
-			//pillamos el enemy armie en la posicion defensor, luego tenemos que hacer el .get, luego take damage
-    		// y por ultimo lo mismo con planeta pero usamos la funcion attak
-//			System.out.println(pelea.getArmies()[empieza%2][gruDefensor].get(defensor));
 			((MilitaryUnit) pelea.getArmies()[empieza%2][gruDefensor].get(defensor)).tekeDamage(((MilitaryUnit) pelea.getArmies()[contEmpieza][gruAtacante].get(atacante)).attack());
-    		while (pelear) {
+    		//System.out.println("golpes");
+			while (pelear) {
     			mensaje += pelea.getArmies()[contEmpieza][gruAtacante].get(atacante).getClass().getName().substring(pelea.getArmies()[contEmpieza][gruAtacante].get(atacante).getClass().getName().lastIndexOf(".")+1)+" generates the damage = "+
     					((MilitaryUnit) pelea.getArmies()[contEmpieza][gruAtacante].get(atacante)).attack()+"\n"+
     					pelea.getArmies()[contEmpieza][gruAtacante].get(atacante).getClass().getName().substring(pelea.getArmies()[contEmpieza][gruAtacante].get(atacante).getClass().getName().lastIndexOf(".")+1)+" stays with armor = "+
     					((MilitaryUnit) pelea.getArmies()[empieza%2][gruDefensor].get(defensor)).getActualArmor()+"\n";
-    			//paExcep = true;
-//    			System.out.println("entra en el while de pelea");
     			atacar = (int) (Math.random()*100);
     			if (((MilitaryUnit) pelea.getArmies()[empieza%2][gruDefensor].get(defensor)).getActualArmor() <= 0) {
     				mensaje += "We eliminate "+pelea.getArmies()[contEmpieza][gruAtacante].get(atacante).getClass().getName().substring(pelea.getArmies()[contEmpieza][gruAtacante].get(atacante).getClass().getName().lastIndexOf(".")+1)+"\n";
@@ -587,21 +1060,15 @@ class juego implements Variables{
     		    			salir = true;
     		    			pelear = false;
     		    			break;
-    		    			//System.out.println("Saliendo");
     		    		}
-    					
-    					
     					gruDefensor = pelea.getGroupDefender(pelea.getArmies()[empieza%2]);
-//    					System.out.println("Aqui no");
     				}
 					defensor = (int) (Math.random()*pelea.getArmies()[empieza%2][gruDefensor].size());				
-//					System.out.println("1 enemigo eliminado");
 					eliminado = true;
 				}
     			if (empieza%2 == 0) {
     				if (CHANCE_ATTACK_ENEMY_UNITS[gruAtacante]<=atacar) {
     					((MilitaryUnit) pelea.getArmies()[empieza%2][gruDefensor].get(defensor)).tekeDamage(((MilitaryUnit) pelea.getArmies()[contEmpieza][gruAtacante].get(atacante)).attack());
-//	    				System.out.println("Vuelves a pegar");
 	    			}
 	    			else {
 	    				pelear = false;
@@ -617,6 +1084,7 @@ class juego implements Variables{
 	    			}
     			}
 			}
+			//System.out.println("comprueba eliminado");
     		if (eliminado) {
 //    			System.out.println("porcentaje enemigo:");
 //        		System.out.println(pelea.remainderPercentageFleet(pelea.getArmies()[1]));
@@ -630,7 +1098,7 @@ class juego implements Variables{
     		}
     		empieza += 1;
     	}
-    //System.out.println(mensaje);
+    //System.out.println("ns");
     pelea.resto();
     if (pelea.getResourcesLooses()[0][2]>pelea.getResourcesLooses()[1][2]) {
     	pelea.generateWaste();
@@ -643,5 +1111,31 @@ class juego implements Variables{
     pelea.updateResourcesLooses();
     peleas.add(mensaje);
     reportes.add(pelea.getBattleDevelopment());
+    //reseteamos armadura
+    pelea.resetArmyArmor();
+    miPlaneta.setArmy(pelea.getPlanetArmy());
+    //System.out.println("todo normal");
+    int idBatle = 1;
+    try {
+		rs = stmnt.executeQuery("SELECT * FROM battle");
+		while(rs.next()) {
+			idBatle = rs.getInt(1)+1;
+		}
+	} catch (SQLException e) {
+		e.printStackTrace();		
+	}
+    try {
+    	String update = "INSERT INTO battle(planet_id,num_battles,battle_stats,battle_log) VALUES (?,?,?,?)";
+    	pst = conexion.prepareStatement(update,ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_UPDATABLE);
+    	pst.setInt(1, planetId);
+    	pst.setInt(2, idBatle);
+    	pst.setString(3, pelea.getBattleDevelopment());
+    	pst.setString(4, pelea.getBattleDevelopment());
+    	pst.executeUpdate();
+    	
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
     }
 }

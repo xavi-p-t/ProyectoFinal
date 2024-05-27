@@ -80,6 +80,61 @@ public class Battle implements Variables {
 		return battleDevelopment;
 	}
 
+	
+	public int[][] getInitialCostFleet() {
+		return initialCostFleet;
+	}
+
+
+	public void setInitialCostFleet(int[][] initialCostFleet) {
+		this.initialCostFleet = initialCostFleet;
+	}
+
+
+	public int[][] getInitialArmys() {
+		return initialArmys;
+	}
+
+
+	public void setInitialArmys(int[][] initialArmys) {
+		this.initialArmys = initialArmys;
+	}
+
+
+	public int[] getActualNumberUnitsPlaneta() {
+		return actualNumberUnitsPlaneta;
+	}
+
+
+	public void setActualNumberUnitsPlaneta(int[] actualNumberUnitsPlaneta) {
+		this.actualNumberUnitsPlaneta = actualNumberUnitsPlaneta;
+	}
+
+
+	public int[] getActualNumberUnitsEnemy() {
+		return actualNumberUnitsEnemy;
+	}
+
+
+	public void setActualNumberUnitsEnemy(int[] actualNumberUnitsEnemy) {
+		this.actualNumberUnitsEnemy = actualNumberUnitsEnemy;
+	}
+
+
+	public void setArmies(ArrayList[][] armies) {
+		this.armies = armies;
+	}
+
+
+	public void setInitialNumberUnitsPlanet(int initialNumberUnitsPlanet) {
+		this.initialNumberUnitsPlanet = initialNumberUnitsPlanet;
+	}
+
+
+	public void setInitialNumberUnitsEnemy(int initialNumberUnitsEnemy) {
+		this.initialNumberUnitsEnemy = initialNumberUnitsEnemy;
+	}
+
 
 	public void setBattleDevelopment(String battleDevelopment) {
 		this.battleDevelopment = battleDevelopment;
@@ -320,24 +375,11 @@ public class Battle implements Variables {
 			
 			
 		}
-		//System.out.println("VARIABLE FLOTA RESTANTE "+flotaRestante);
-		
-		
 		if (army.length < 7) {
-			//System.out.println("Initial number enemy "+initialNumberUnitsEnemy);
-			//flotaRestante = this.initialNumberUnitsEnemy - flotaRestante;
-			//System.out.println(flotaRestante);
 			res = (100* flotaRestante)/this.initialNumberUnitsEnemy;
-			
-			//System.out.println(res);
-			
 		}
 		else{
-			//flotaRestante = this.initialNumberUnitsPlanet - flotaRestante;
-			//System.out.println("Initial number planet "+initialNumberUnitsPlanet);
 			res = (100* flotaRestante)/this.initialNumberUnitsPlanet;
-			//System.out.println(res);
-			
 		}
 		return res;
 	}
@@ -346,6 +388,7 @@ public class Battle implements Variables {
 		int calcProb = 0;
 		int totalPorc = 0;
 		int totalUnidades = 0;
+		System.out.println("group defender el for");
 		for (int i = 0;i<army.length;i++) {
 			if(army[i] != null) {
 				totalUnidades = army[i].size();
@@ -355,6 +398,7 @@ public class Battle implements Variables {
 			totalUnidades = 1;
 		}
 		ArrayList arprob = new ArrayList();
+		System.out.println("group defender el segundo for");
 		for (int i = 0;i<army.length;i++) {
 			if(army[i] != null) {
 				calcProb = army[i].size()*100;
@@ -371,17 +415,14 @@ public class Battle implements Variables {
 		int selected = 0;
 		boolean seleccionado = false;
 		boolean parar = false;
+		System.out.println("group defender el while");
 		while (!parar) {
-//			System.out.println(this.initialNumberUnitsEnemy);
-//			System.out.println(this.initialNumberUnitsPlanet);
-//			System.out.println("para en el while");
 			seleccionado = false;
 			defRandom = (int) (Math.random()*totalPorc);
-//			System.out.println(defRandom);
+			System.out.println("group defender el tercer for");
 			for (int i = 0;i<arprob.size();i++) {
 				selRandom +=  (int) arprob.get(i);
-//				System.out.println(selRandom);
-//				System.out.println(army[i]);
+				System.out.println("group defender el if tercer for");
 				if (selRandom>= defRandom & army[i].size() > 0 & !seleccionado) {
 					selected = i;
 					seleccionado = true;
@@ -412,7 +453,6 @@ public class Battle implements Variables {
 			atRandom = (int) (Math.random()*totalPorc);
 			for (int i = 0;i<CHANCE_ATTACK_PLANET_UNITS.length;i++) {
 				selRandom += CHANCE_ATTACK_PLANET_UNITS[i];
-				//if (selRandom>= atRandom & armies[0][i] != null & !seleccionado) {
 				if (selRandom>= atRandom & armies[0][i].size() > 0  & !seleccionado) {
 					selected = i;
 					seleccionado = true;
@@ -430,7 +470,6 @@ public class Battle implements Variables {
 
 			totalPorc += CHANCE_ATTACK_ENEMY_UNITS[i];
 		}
-		//System.out.println("La variable total porc es : "+totalPorc);
 		int atRandom;
 		int selRandom = 0;
 		int selected = 0;
@@ -445,17 +484,21 @@ public class Battle implements Variables {
 					selected = i;
 					seleccionado = true;
 					parar = true;
-					//System.out.println("Seleccionado : "+selected);
 				}				
 			
 		}
 	}
-		//System.out.println("Salienso del crear enemigos");
 		return selected;
 	}
 	
 	public void resetArmyArmor() {
-		//por hacer
+		for (ArrayList<MilitaryUnit> armyList : this.planetArmy) {
+            if (armyList != null) {
+                for (int i = 0;i<armyList.size();i++) {
+                	armyList.get(i).resetArmor();
+                }
+            }
+		}
 	}
 
 	
